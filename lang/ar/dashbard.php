@@ -1,0 +1,7 @@
+<?php
+return [
+    'copyright' => 'حقوق الطبع والنشر',
+    'all_rights_reserved' => 'جميع الحقوق محفزظة',
+    'site_name' => 'موقع تجارة الكترونية',
+    'dashboard' => 'لوحة التحكم',
+];

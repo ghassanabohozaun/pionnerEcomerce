@@ -16,5 +16,9 @@ Route::group(
     ],
     function () {
 
+        Route::get('/index',function(){
+
+            return view('dashboard.index');
+        });
     },
 );
