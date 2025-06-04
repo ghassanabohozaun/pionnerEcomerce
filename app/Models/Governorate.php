@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class Governorate extends Model
 {
     use SoftDeletes;
-    protected $table = 'categories';
-    protected $fillable = ['name', 'slug', 'status', 'parent'];
+
+    protected $table = 'governorates';
+    protected $fillable = ['name' , 'country_id'];
 }
