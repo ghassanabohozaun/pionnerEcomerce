@@ -1,13 +1,7 @@
 <?php
 
-use App\Http\Controllers\CatController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Route::group(
     [
@@ -15,10 +9,12 @@ Route::group(
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
     ],
     function () {
+        Route::get('/', function () {
+            return view('website.welcome');
+        });
 
-        Route::get('/index',function(){
-
-            return view('dashboard.index');
+        Route::get('/email', function () {
+            return view('dashboard.auth.password.email');
         });
     },
 );

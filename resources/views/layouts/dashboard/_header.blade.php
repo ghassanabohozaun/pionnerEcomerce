@@ -224,15 +224,21 @@
                              <a class="dropdown-item" href="#"><i class="ft-mail"></i> My Inbox</a>
                              <a class="dropdown-item" href="#"><i class="ft-check-square"></i> Task</a>
                              <a class="dropdown-item" href="#"><i class="ft-message-square"></i> Chats</a>
-                             <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i
-                                     class="ft-power"></i> Logout</a>
+                             <div class="dropdown-divider">
+                             </div>
+                             <form action="{!! route('dashboard.logout') !!}" method="post" enctype="multipart/form-data">
+                                 @csrf
+                                 <button type="submit" class="dropdown-item" style="cursor: pointer">
+                                     <i class="ft-power"></i> {!! __('auth.logout') !!}
+                                 </button>
+                             </form>
+
                          </div>
                      </li>
 
 
 
                      {{-- dropdown-language --}}
-
                      <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link"
                              id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true"
                              aria-expanded="false">
