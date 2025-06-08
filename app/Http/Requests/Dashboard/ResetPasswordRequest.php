@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Dashbaord;
+namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminLoginRequest extends FormRequest
+class ResetPasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,18 +23,8 @@ class AdminLoginRequest extends FormRequest
     {
         return [
             'email' => 'required|email',
-            'password' => 'required|string|max:30',
-            'g-recaptcha-response' => 'required|captcha'
+            'password' => 'required|min:6',
+            'confirm_password' => 'required',
         ];
     }
-
-    // public function messages()
-    // {
-    //     return [
-    //         'required' => __('validation.required'),
-    //         'email' => __('validation.email'),
-    //         'string' => __('validation.string'),
-    //         'max.string' => __('validation.max'),
-    //     ];
-    // }
 }

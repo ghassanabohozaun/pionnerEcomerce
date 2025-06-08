@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-    <div class="app-content content">
+    <div class="app-content content" style="margin-right: 0 !important;">
         <div class="content-wrapper">
             <div class="content-header row">
             </div>

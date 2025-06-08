@@ -35,7 +35,7 @@
     @else
         <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/vendors.css">
         <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/app.css">
-        <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/custom.css">
+        <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/custom-rtl.css">
         <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/core/colors/palette-gradient.css">
         <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/pages/login-register.css">
         <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/style.css">
@@ -52,13 +52,12 @@
             <div class="navbar-header">
                 <ul class="nav navbar-nav flex-row">
                     <li class="nav-item mobile-menu d-md-none mr-auto"><a
-                            class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i
-                                class="ft-menu font-large-1"></i></a></li>
+                            class="nav-link nav-menu-main menu-toggle hidden-xs" href="#">&nbsp;</a></li>
                     <li class="nav-item">
                         <a class="navbar-brand" href="#">
                             {{-- <img class="brand-logo" alt="modern admin logo"
                                 src="{!! asset('assets/dashbaord') !!}/images/logo/logo.png"> --}}
-                            <h3 class="brand-text">{!! __('dashbard.site_name') !!}</h3>
+                            <h3 class="brand-text">&nbsp;</h3>
                         </a>
                     </li>
                     <li class="nav-item d-md-none">
@@ -69,7 +68,7 @@
             </div>
             <div class="navbar-container">
                 <div class="collapse navbar-collapse justify-content-end" id="navbar-mobile">
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav" style="{!! Config::get('app.locale') == 'ar' ? 'margin-left:35px' : '' !!}">
 
                         {{-- dropdown-language --}}
                         <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link"
@@ -102,8 +101,7 @@
 
                         {{-- settings --}}
                         <li class="dropdown nav-item">
-                            <a class="nav-link mr-2 nav-link-label" href="#" data-toggle="dropdown"><i
-                                    class="ficon ft-settings"></i></a>
+                            <a class="nav-link mr-2 nav-link-label" href="#" data-toggle="dropdown">&nbsp;</a>
                         </li>
                     </ul>
                 </div>
@@ -114,7 +112,8 @@
     @yield('content')
 
     <!-- footer ////////////////////////////////////////////////////////////////////////////-->
-    <footer class="footer footer-static footer-light navbar-border navbar-shadow">
+    <footer class="footer footer-static footer-light navbar-border navbar-shadow"
+        style="  margin-right: 0px !important; margin-top: -12px;">
         <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
             <span class="float-md-left d-block d-md-inline-block">{!! __('dashbard.copyright') !!} &copy;
                 {!! date('Y') !!} <a class="text-bold-800 grey darken-2" href="#"

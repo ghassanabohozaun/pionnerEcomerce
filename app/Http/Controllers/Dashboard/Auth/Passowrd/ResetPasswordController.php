@@ -3,38 +3,38 @@
 namespace App\Http\Controllers\Dashboard\Auth\Passowrd;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\ResetPasswordRequest;
 use App\Models\Admin;
+use App\Services\Auth\PasswordService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class ResetPasswordController extends Controller
 {
+    protected $passwordService;
+    //__construct
+    public function __construct(PasswordService $passwordService)
+    {
+        $this->passwordService = $passwordService;
+    }
 
     // show Reset From
-    public function showResetFrom($email){
-
-        return view('dashboard.auth.password.reset' , ['email'=>$email]);
+    public function showResetFrom($email)
+    {
+        return view('dashboard.auth.password.reset', ['email' => $email]);
     }
 
     // reset Pasword
-    public function resetPasword(Request $request)  {
-
-        $request->validate([
-            'email'=>'required|email',
-            'password'=>'required|min:6',
-            'confirm_password' =>'required',
-        ]);
-
-        $admin = Admin::where('email', $request->email)->first();
-        if(!$admin){
-            Session::flash('error' , __('auth.try_again_later'));
+    public function resetPasword(ResetPasswordRequest $request)
+    {
+        $admin = $this->passwordService->resetPasword($request->email, $request->password);
+        if (!$admin) {
+            Session::flash('error', __('auth.try_again_later'));
             return redirect()->back();
         }
 
-        $admin->update([
-            'password'=>bcrypt($request->password),
-        ]);
-
-        return redirect()->route('dashboard.get.login')->with(['success'=>__('auth.your_password_update_successfully')]);
+        return redirect()
+            ->route('dashboard.get.login')
+            ->with(['success' => __('auth.your_password_update_successfully')]);
     }
 }

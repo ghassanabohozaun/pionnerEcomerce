@@ -73,7 +73,6 @@
                                     <p class="float-sm-left text-center">
                                         <a href="{!! route('dashboard.get.login') !!}" class="card-link">{!! __('auth.login') !!}</a>
                                     </p>
-
                                 </div>
 
                             </div>

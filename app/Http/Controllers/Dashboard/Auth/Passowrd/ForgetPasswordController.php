@@ -3,20 +3,21 @@
 namespace App\Http\Controllers\Dashboard\Auth\Passowrd;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
-use App\Notifications\sendOTPNotify;
+use App\Http\Requests\Dashboard\ForgetPasswordRequest;
+use App\Services\Auth\PasswordService;
 use Ichtrojan\Otp\Otp;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class ForgetPasswordController extends Controller
 {
     protected $otp2;
+    protected $passwordService;
 
     // __construct
-    public function __construct()
+    public function __construct(PasswordService $passwordService)
     {
         $this->otp2 = new Otp();
+        $this->passwordService = $passwordService;
     }
 
     // show Email Form
@@ -26,13 +27,9 @@ class ForgetPasswordController extends Controller
     }
 
     // send OTP
-    public function sendOTP(Request $request)
+    public function sendOTP(ForgetPasswordRequest $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-        ]);
-
-        $admin = Admin::where('email', $request->email)->first();
+        $admin = $this->passwordService->getAdminByEmail($request->email);
 
         if (!$admin) {
             return redirect()
@@ -40,7 +37,6 @@ class ForgetPasswordController extends Controller
                 ->withErrors(['error' => __('auth.sorry_email_is_not_registerd')]);
         }
 
-        $admin->notify(new sendOTPNotify());
         return redirect()->route('dashboard.password.verify', ['email' => $admin->email]);
     }
 
@@ -51,20 +47,18 @@ class ForgetPasswordController extends Controller
     }
 
     //verify OTP
-    public function verifyOTP(Request $request)
+    public function verifyOTP(ForgetPasswordRequest $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'code' => 'required|min:5',
-        ]);
+        $data = $request->only(['email', 'code']);
 
-        $otp = $this->otp2->validate($request->email, $request->code);
-        if ($otp->status == false) {
+        $otp = $this->passwordService->verifyOTP($data);
+
+        if (!$otp) {
             return redirect()
                 ->back()
                 ->withErrors(['error' => __('auth.code_is_invalid')]);
+        } else {
+            return redirect()->route('dashboard.password.reset', ['email' => $request->email]);
         }
-
-        return redirect()->route('dashboard.password.reset', ['email' => $request->email]);
     }
 }
