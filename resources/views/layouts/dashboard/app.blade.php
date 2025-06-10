@@ -4,6 +4,7 @@
 
 <head>
     @include('layouts.dashboard._head')
+    @stack('style')
 </head>
 
 <body class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar" data-open="click"
@@ -932,6 +933,7 @@
 
     @include('layouts.dashboard._footer')
     @include('layouts.dashboard._scripts')
+    @stack('scripts')
 </body>
 
 </html>

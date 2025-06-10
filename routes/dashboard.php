@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard\Auth\AuthController;
 use App\Http\Controllers\Dashboard\Auth\Passowrd\ForgetPasswordController;
 use App\Http\Controllers\Dashboard\Auth\Passowrd\ResetPasswordController;
+use App\Http\Controllers\Dashboard\RolesController;
 use App\Http\Controllers\Dashboard\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -39,6 +40,13 @@ Route::group(
         Route::group(['middleware' => 'auth:admin'], function () {
             ########################################### welcome  ############################################################
             Route::get('welcome', [WelcomeController::class, 'index'])->name('welcome');
+
+            ########################################### roles  ############################################################
+            Route::group(['middleware'=>'can:roles'] ,function(){
+            Route::resource('roles', RolesController::class);
+            Route::post('/roles/destroy', [RolesController::class, 'destroy'])->name('roles.destroy');
+            });
+
         });
     },
 );

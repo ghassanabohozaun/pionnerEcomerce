@@ -12,7 +12,7 @@
         content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
     <meta name="author" content="PIXINVENT">
     <title>
-        {!! __('dashbard.dashboard') !!} | @yield('title')
+        {!! __('dashboard.dashboard') !!} | @yield('title')
     </title>
     <link rel="apple-touch-icon" href="{!! asset('assets/dashbaord') !!}/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="{!! asset('assets/dashbaord') !!}/images/ico/favicon.ico">
@@ -115,10 +115,10 @@
     <footer class="footer footer-static footer-light navbar-border navbar-shadow"
         style="  margin-right: 0px !important; margin-top: -12px;">
         <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
-            <span class="float-md-left d-block d-md-inline-block">{!! __('dashbard.copyright') !!} &copy;
+            <span class="float-md-left d-block d-md-inline-block">{!! __('dashboard.copyright') !!} &copy;
                 {!! date('Y') !!} <a class="text-bold-800 grey darken-2" href="#"
-                    target="_blank">{!! __('dashbard.site_name') !!}
-                </a>, {!! __('dashbard.all_rights_reserved') !!}. </span>
+                    target="_blank">{!! __('dashboard.site_name') !!}
+                </a>, {!! __('dashboard.all_rights_reserved') !!}. </span>
         </p>
     </footer>
 

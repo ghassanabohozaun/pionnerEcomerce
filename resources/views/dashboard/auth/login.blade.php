@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.auth')
 @section('title')
-    {!! __('dashbard.login') !!}
+    {!! __('dashboard.login') !!}
 @endsection
 
 @section('content')

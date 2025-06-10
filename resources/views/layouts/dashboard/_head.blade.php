@@ -6,7 +6,8 @@
  <meta name="keywords"
      content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
  <meta name="author" content="PIXINVENT">
- <title>{!! __('dashbard.dashboard') !!} | @yield('title')</title>
+ <meta name="csrf-token" content="{{ csrf_token() }}">
+ <title>{!! __('dashboard.dashboard') !!} | @yield('title')</title>
  <link rel="apple-touch-icon" href="{!! asset('assets/dashbaord') !!}/images/ico/apple-icon-120.png">
  <link rel="shortcut icon" type="image/x-icon" href="{!! asset('assets/dashbaord') !!}/images/ico/favicon.ico">
  <link
@@ -45,7 +46,7 @@
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/vendors.css">
      <!-- BEGIN MODERN CSS-->
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/app.css">
-     <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/custom.css">
+     {{-- <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/custom.css"> --}}
      <!-- END MODERN CSS-->
      <!-- BEGIN Page Level CSS-->
      <link rel="stylesheet" type="text/css"
@@ -56,6 +57,6 @@
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/pages/dashboard-ecommerce.css">
      <!-- END Page Level CSS-->
      <!-- BEGIN Custom CSS-->
-     <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/assets/css/style.css">
+     {{-- <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/assets/css/style.css"> --}}
      <!-- END Custom CSS-->
  @endif

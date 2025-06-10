@@ -42,7 +42,7 @@ html body .content .content-wrapper .content-header-title {
   color : #464855;
 }
 html body .la {
-  font-size : 1.4rem;
+  font-size : 1.1rem;
 }
 html body[data-col='1-column']:not(.vertical-content-menu) .content, html body[data-col='1-column']:not(.vertical-content-menu) .footer {
   margin-right : 0 !important;
