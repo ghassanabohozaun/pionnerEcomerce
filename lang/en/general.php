@@ -66,6 +66,8 @@ return [
     'certification_format_allow' => 'Allowed file types pdf,jpg,jpeg,png',
     'word_format_allow' => 'Allowed file types Word',
 
+    'login_faild' => 'Sorry , Login Faild ',
+    'login_succsss' => 'Login Successfully',
     'add_success_message' => 'Added Successfully',
     'add_error_message' => 'Added Failed',
     'delete_success_message' => 'Deleted Successfully',
