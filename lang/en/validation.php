@@ -196,5 +196,8 @@ return [
         'name.en' => 'English Name',
         'role.ar' => 'Arabic Role ',
         'role.en' => 'English Role',
+        'email' => 'Email ',
+        'password' => 'Password ',
+        'role_id'=>'Role ',
     ],
 ];

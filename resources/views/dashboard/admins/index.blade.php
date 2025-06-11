@@ -11,7 +11,7 @@
 
                 <!-- begin: content header left-->
                 <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
-                    <h3 class="content-header-title mb-0 d-inline-block">{!! __('roles.roles') !!}</h3>
+                    <h3 class="content-header-title mb-0 d-inline-block">{!! __('admins.admins') !!}</h3>
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
@@ -21,8 +21,8 @@
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="{!! route('dashboard.roles.index') !!}">
-                                        {!! __('roles.roles') !!}
+                                    <a href="{!! route('dashboard.admins.index') !!}">
+                                        {!! __('admins.admins') !!}
                                     </a>
                                 </li>
 
@@ -35,8 +35,8 @@
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
                     <div class="float-md-right">
-                        <a href="{{ route('dashboard.roles.create') }}" class="btn btn-info round btn-glow px-2" i>
-                            {!! __('roles.create_new_role') !!}</a>
+                        <a href="{{ route('dashboard.admins.create') }}" class="btn btn-info round btn-glow px-2" i>
+                            {!! __('admins.create_new_admin') !!}</a>
 
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                                 <!-- begin: card header -->
                                 <div class="card-header">
                                     <h4 class="card-title" id="basic-layout-colored-form-control">
-                                        {!! __('roles.show_all_roles') !!}
+                                        {!! __('admins.show_all_admins') !!}
                                     </h4>
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -76,37 +76,27 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>{!! __('roles.role_name') !!}</th>
-                                                        <th>{!! __('roles.permissions') !!}</th>
+                                                        <th>{!! __('admins.name') !!}</th>
+                                                        <th>{!! __('admins.email') !!}</th>
+                                                        <th>{!! __('admins.role_id') !!}</th>
                                                         <th style="text-align: center">{!! __('general.actions') !!}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @forelse ($roles as $role)
+                                                    @forelse ($admins as $admin)
                                                         <tr>
                                                             <th class="col-lg-1">{!! $loop->iteration !!} </th>
-                                                            <td class="col-lg-1">{!! $role->role !!}</td>
-                                                            <td class="col-lg-8">
-                                                                @foreach (config('global.permissions') as $name => $value)
-                                                                    {{ in_array($name, $role->permissions) ? __(config('global.permissions.', $value)) . ' | ' : '' }}
-                                                                @endforeach
-                                                            </td>
+                                                            <td class="col-lg-1">{!! $admin->name !!}</td>
+                                                            <td class="col-lg-1">{!! $admin->email !!}</td>
+                                                            <td class="col-lg-1">{!! $admin->role->role !!}</td>
                                                             <td class="col-lg-2">
-                                                                @include('dashboard.roles.parts.actions')
+                                                                @include('dashboard.admins.parts.actions')
                                                             </td>
                                                         </tr>
-
-                                                        <!-- begin: delete form -->
-                                                        {{-- <form id='delete_form_{{ $role->id }}'
-                                                            action=" {!! route('dashboard.roles.destroy', $role->id) !!}" method="post"
-                                                            enctype="multipart/form-data">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                        </form> --}}
                                                     @empty
                                                         <tr>
-                                                            <td colspan="4" class="text-center">
-                                                                {!! __('roles.no_roles_found') !!}
+                                                            <td colspan="5" class="text-center">
+                                                                {!! __('admins.no_admins_found') !!}
                                                             </td>
                                                         </tr>
                                                     @endforelse
@@ -114,7 +104,7 @@
 
                                             </table>
                                             <div class="float-right">
-                                                {!! $roles->links() !!}
+                                                {!! $admins->links() !!}
                                             </div>
                                         </div>
                                     </div>
@@ -129,7 +119,7 @@
     </div><!-- end: content app  -->
 @endsection
 @push('scripts')
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $('body').on('click', '.delete_role_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
@@ -177,10 +167,80 @@
                         }, //end success
                     });
 
+
                 } else {
                     swal("{!! __('general.cancelled') !!}", "{!! __('general.delete_success_message') !!}", "error");
                 }
             });
+
+
+            // //  console.log('delete');
+            // var id = $(this).data('id');
+            // // console.log(id);
+
+
+
+            // Swal.fire({
+            //     title: "{{ __('general.ask_delete_record') }}",
+            //     icon: "warning",
+            //     showCancelButton: true,
+            //     confirmButtonText: "{{ __('general.yes') }}",
+            //     cancelButtonText: "{{ __('general.no') }}",
+            //     reverseButtons: false,
+            //     allowOutsideClick: false,
+            // }).then(function(result) {
+            //     if (result.value) {
+            //         //////////////////////////////////////
+            //         // Delete role
+            //         $.ajax({
+            //             url: '{!! route('dashboard.roles.destroy') !!}',
+            //             data: {
+            //                 id,
+            //                 id
+            //             },
+            //             type: 'post',
+            //             dataType: 'json',
+            //             success: function(data) {
+            //                 console.log(data);
+            //                 if (data == true) {
+            //                     Swal.fire({
+            //                         title: "{!! __('general.deleted') !!}",
+            //                         text: "{!! __('general.delete_success_message') !!}",
+            //                         icon: "success",
+            //                         allowOutsideClick: false,
+            //                         customClass: {
+            //                             confirmButton: 'delete_role_button'
+            //                         }
+            //                     });
+            //                     $('.delete_role_button').click(function() {
+            //                         $('#myTable').load(location.href + (' #myTable'));
+            //                     });
+            //                 }
+
+            //                 if (data == false) {
+            //                     Swal.fire({
+            //                         title: "{!! __('general.cancelled') !!}",
+            //                         text: data.msg,
+            //                         icon: "warning",
+            //                         allowOutsideClick: false,
+            //                     });
+
+            //                 }
+            //             }, //end success
+            //         });
+
+            //     } else if (result.dismiss === "cancel") {
+            //         Swal.fire({
+            //             title: "{!! __('general.cancelled') !!}",
+            //             text: "{!! __('general.cancelled_message') !!}",
+            //             icon: "error",
+            //             allowOutsideClick: false,
+            //             customClass: {
+            //                 confirmButton: 'cancel_delete_role_button'
+            //             }
+            //         })
+            //     }
+            // });
         });
-    </script>
+    </script> --}}
 @endpush

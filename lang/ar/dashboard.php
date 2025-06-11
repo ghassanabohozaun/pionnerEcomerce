@@ -11,7 +11,8 @@ return [
     'search'=>'بحث ...',
 
     // menu
-    'roles' => '',
+    'roles' => 'الصلاحيات',
+    'admins'=>'المديرين',
 
     // login
     'login' => 'تسجيل الدخول',

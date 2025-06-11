@@ -16,7 +16,7 @@ class RolesController extends Controller
     {
         $this->roleService = $roleService;
     }
-    // index
+    // roles index
     public function index()
     {
         $title = __('roles.roles');
@@ -24,14 +24,14 @@ class RolesController extends Controller
         return view('dashboard.roles.index', compact('title', 'roles'));
     }
 
-    // create
+    // role create
     public function create()
     {
         $title = __('roles.create_role');
         return view('dashboard.roles.create', compact('title'));
     }
 
-    // store
+    // role store
     public function store(RoleRequest $request)
     {
         $role = $this->roleService->storeRole($request);
@@ -47,17 +47,13 @@ class RolesController extends Controller
         //return redirect()->back()->with('success' , 'success');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    // role store
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    // role edit
     public function edit(string $id)
     {
         $title = __('roles.update_role');
@@ -70,9 +66,8 @@ class RolesController extends Controller
         return view('dashboard.roles.edit', compact('role', 'title'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
+    // role update
     public function update(RoleRequest $request, string $id)
     {
         $role = $this->roleService->updateRole($request, $id);
@@ -85,12 +80,8 @@ class RolesController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    // public function destroy(string $id)
-    // {
 
+     // role destroy
     public function destroy(Request $request)
     {
         if ($request->ajax()) {

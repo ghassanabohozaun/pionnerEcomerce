@@ -42,5 +42,31 @@
             @endcan
             <!-- end: roles -->
 
+            <!-- begin: admins -->
+            @can('admins')
+                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li class=" nav-item">
+                        <a href="index.html">
+                            <i class="la la-lock"></i>
+                            <span class="menu-title" data-i18n="nav.dash.main">{!! __('dashboard.admins') !!}</span>
+                            {{-- <span class="badge badge badge-info badge-pill float-right mr-2">3</span> --}}
+                        </a>
+                        <!-- begin: ceCommerce -->
+                        <ul class="menu-content">
+                            <li class="">
+                                <a class="menu-item" href="{!! route('dashboard.admins.index') !!}" data-i18n="nav.dash.admins">
+                                    {!! __('admins.admins') !!}
+                                </a>
+                                <a class="menu-item" href="{!! route('dashboard.admins.create') !!}" data-i18n="nav.dash.admins">
+                                    {!! __('admins.create_new_admin') !!}
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- end: eCommerce -->
+                    </li>
+                </ul>
+            @endcan
+            <!-- end: roles -->
+
         </div>
     </div>

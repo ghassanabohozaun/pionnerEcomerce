@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AdminsController;
 use App\Http\Controllers\Dashboard\Auth\AuthController;
 use App\Http\Controllers\Dashboard\Auth\Passowrd\ForgetPasswordController;
 use App\Http\Controllers\Dashboard\Auth\Passowrd\ResetPasswordController;
@@ -41,12 +42,17 @@ Route::group(
             ########################################### welcome  ############################################################
             Route::get('welcome', [WelcomeController::class, 'index'])->name('welcome');
 
-            ########################################### roles  ############################################################
-            Route::group(['middleware'=>'can:roles'] ,function(){
-            Route::resource('roles', RolesController::class);
-            Route::post('/roles/destroy', [RolesController::class, 'destroy'])->name('roles.destroy');
+            ########################################### roles routes ############################################################
+            Route::group(['middleware' => 'can:roles'], function () {
+                Route::resource('roles', RolesController::class);
+                Route::post('/roles/destroy', [RolesController::class, 'destroy'])->name('roles.destroy');
             });
 
+            ########################################### admins routes  ############################################################
+            Route::group(['middleware' => 'can:admins'], function () {
+                Route::resource('admins', AdminsController::class);
+                Route::get('/admins/{id?}/status', [AdminsController::class, 'changeStatus'])->name('admin.change.status');
+            });
         });
     },
 );

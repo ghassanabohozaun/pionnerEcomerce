@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\Dashboard;
 
+use CodeZero\UniqueTranslation\UniqueTranslationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminLoginRequest extends FormRequest
+class AdminRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,19 +23,10 @@ class AdminLoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required|string|max:30',
-          //  'g-recaptcha-response' => 'required|captcha'
+            'name.*' => ['required','max:100' , UniqueTranslationRule::for('admins')->ignore($this->id)],
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'max:30'],
+            'role_id' => ['required'],
         ];
     }
-
-    // public function messages()
-    // {
-    //     return [
-    //         'required' => __('validation.required'),
-    //         'email' => __('validation.email'),
-    //         'string' => __('validation.string'),
-    //         'max.string' => __('validation.max'),
-    //     ];
-    // }
 }
