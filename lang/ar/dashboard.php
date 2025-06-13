@@ -5,13 +5,16 @@ return [
     'site_name' => 'موقع تجارة الكترونية',
     'dashboard' => 'لوحة التحكم',
     'home' => 'الرئيسية',
-    'access_restricted'=>'الوصول ممنوع',
-    'access_denied'=>'الوصول مقيد / ممنوع',
-    'back_to_home'=>'الرجوع الي الشاشة الرئيسية',
-    'search'=>'بحث ...',
+    'access_restricted' => 'الوصول ممنوع',
+    'access_denied' => 'الوصول مقيد / ممنوع',
+    'back_to_home' => 'الرجوع الي الشاشة الرئيسية',
+    'search' => 'بحث ...',
+    'hello' => 'مرحبا ,',
 
     // menu
-    'roles' => '',
+    'roles' => 'الصلاحيات',
+    'admins' => 'المديرين',
+    'brands' => 'البرندات',
 
     // login
     'login' => 'تسجيل الدخول',

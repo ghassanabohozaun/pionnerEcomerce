@@ -17,16 +17,12 @@ class AdminSeeder extends Seeder
         $first_role_id = Role::first()->id;
 
         Admin::create([
-            'name' => 'Admin',
+            'name' => [
+                'en' => 'Admin',
+                'ar' => 'المدير',
+            ],
             'password' => bcrypt('123456'),
             'email' => 'admin@admin.com',
-            'role_id' => $first_role_id,
-        ]);
-
-        Admin::create([
-            'name' => 'Ghassan',
-            'password' => bcrypt('123456'),
-            'email' => 'ghassan@admin.com',
             'role_id' => $first_role_id,
         ]);
     }

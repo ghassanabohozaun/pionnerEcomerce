@@ -1,5 +1,5 @@
 html {
-  font-size: 14px;
+  font-size: 13px;
   height: 100%; }
   html body {
     height: 100%;
@@ -26,7 +26,7 @@ html {
           letter-spacing: 1px;
           color: #464855; }
     html body .la {
-      font-size: 1.1rem; }
+     font-size : 1.4rem; }
     html body[data-col="1-column"]:not(.vertical-content-menu) .content,
     html body[data-col="1-column"]:not(.vertical-content-menu) .footer {
       margin-left: 0px !important; }
@@ -243,7 +243,7 @@ footer.footer-dark {
         .main-menu.menu-light .navigation > li ul {
           padding: 0;
           margin: 0;
-          font-size: 1rem; }
+          font-size: rem; }
           .main-menu.menu-light .navigation > li ul li {
             color: #6B6F82;
             background: transparent; }
@@ -317,7 +317,8 @@ footer.footer-dark {
           font-weight: 500; }
       .main-menu.menu-dark .navigation li a {
         color: #dcdcdc;
-        transition: all 0.2s ease; }
+        transition: all 0.2s ease;
+       font-size: 12px;}
         .main-menu.menu-dark .navigation li a i, .main-menu.menu-dark .navigation li a span {
           transition: all 0.2s ease; }
         .main-menu.menu-dark .navigation li a span {
@@ -454,7 +455,7 @@ footer.footer-dark {
       text-decoration: none; }
 
 .navigation {
-  font-size: 1.1rem;
+  font-size: 1.0rem;
   letter-spacing: 0.2px;
   font-family: "Quicksand", Georgia, "Times New Roman", Times, serif;
   font-weight: 400;
@@ -465,7 +466,7 @@ footer.footer-dark {
     font-weight: 400;
     line-height: 1.2;
     padding: 12px 22px;
-    font-size: 1rem; }
+    font-size: rem; }
   .navigation li {
     position: relative;
     white-space: nowrap; }

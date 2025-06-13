@@ -16,8 +16,13 @@ class AuthService
     // login
     public function login($credinatioals, $remmber, $gaurd)
     {
+<<<<<<< HEAD
         $loginCheck = $this->authRepository->login($credinatioals, $remmber, $gaurd);
         if (!$loginCheck) {
+=======
+        $checkLogin = $this->authRepository->login($credinatioals, $remmber, $gaurd);
+        if (!$checkLogin) {
+>>>>>>> admin
             return false;
         }
         return true;
@@ -25,6 +30,10 @@ class AuthService
 
     public function logout($gaurd)
     {
+<<<<<<< HEAD
         return $this->authRepository->logout($gaurd);
+=======
+        $this->authRepository->logout($gaurd);
+>>>>>>> admin
     }
 }

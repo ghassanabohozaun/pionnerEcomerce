@@ -1,12 +1,12 @@
 <?php
 return [
     'permissions' => [
-        'admins' => 'global.admins',
         'settings' => 'global.settings',
         'roles' => 'global.roles',
+        'admins' => 'global.admins',
         'users' => 'global.users',
+        'brands' => 'global.brands',
         'categories' => 'global.categories',
-        'brand' => 'global.brand',
         'coupons' => 'global.coupons',
         'products' => 'global.products',
         'orders' => 'global.orders',

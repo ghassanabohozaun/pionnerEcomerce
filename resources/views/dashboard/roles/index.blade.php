@@ -143,14 +143,14 @@
                         text: "{{ __('general.no') }}",
                         value: null,
                         visible: true,
-                        className: "",
+                        className: "btn-danger",
                         closeModal: false,
                     },
                     confirm: {
                         text: "{{ __('general.yes') }}",
                         value: true,
                         visible: true,
-                        className: "",
+                        className: "btn-info",
                         closeModal: false
                     }
                 }
@@ -177,80 +177,10 @@
                         }, //end success
                     });
 
-
                 } else {
                     swal("{!! __('general.cancelled') !!}", "{!! __('general.delete_success_message') !!}", "error");
                 }
             });
-
-
-            // //  console.log('delete');
-            // var id = $(this).data('id');
-            // // console.log(id);
-
-
-
-            // Swal.fire({
-            //     title: "{{ __('general.ask_delete_record') }}",
-            //     icon: "warning",
-            //     showCancelButton: true,
-            //     confirmButtonText: "{{ __('general.yes') }}",
-            //     cancelButtonText: "{{ __('general.no') }}",
-            //     reverseButtons: false,
-            //     allowOutsideClick: false,
-            // }).then(function(result) {
-            //     if (result.value) {
-            //         //////////////////////////////////////
-            //         // Delete role
-            //         $.ajax({
-            //             url: '{!! route('dashboard.roles.destroy') !!}',
-            //             data: {
-            //                 id,
-            //                 id
-            //             },
-            //             type: 'post',
-            //             dataType: 'json',
-            //             success: function(data) {
-            //                 console.log(data);
-            //                 if (data == true) {
-            //                     Swal.fire({
-            //                         title: "{!! __('general.deleted') !!}",
-            //                         text: "{!! __('general.delete_success_message') !!}",
-            //                         icon: "success",
-            //                         allowOutsideClick: false,
-            //                         customClass: {
-            //                             confirmButton: 'delete_role_button'
-            //                         }
-            //                     });
-            //                     $('.delete_role_button').click(function() {
-            //                         $('#myTable').load(location.href + (' #myTable'));
-            //                     });
-            //                 }
-
-            //                 if (data == false) {
-            //                     Swal.fire({
-            //                         title: "{!! __('general.cancelled') !!}",
-            //                         text: data.msg,
-            //                         icon: "warning",
-            //                         allowOutsideClick: false,
-            //                     });
-
-            //                 }
-            //             }, //end success
-            //         });
-
-            //     } else if (result.dismiss === "cancel") {
-            //         Swal.fire({
-            //             title: "{!! __('general.cancelled') !!}",
-            //             text: "{!! __('general.cancelled_message') !!}",
-            //             icon: "error",
-            //             allowOutsideClick: false,
-            //             customClass: {
-            //                 confirmButton: 'cancel_delete_role_button'
-            //             }
-            //         })
-            //     }
-            // });
         });
     </script>
 @endpush

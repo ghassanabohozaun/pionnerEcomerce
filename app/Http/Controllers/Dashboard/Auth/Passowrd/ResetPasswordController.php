@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Dashboard\Auth\Passowrd;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\ResetPasswordRequest;
-use App\Models\Admin;
 use App\Services\Auth\PasswordService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class ResetPasswordController extends Controller

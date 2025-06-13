@@ -5,11 +5,8 @@ namespace App\Http\Controllers\Dashboard\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\AdminLoginRequest;
 use App\Services\Auth\AuthService;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller implements HasMiddleware
 {
@@ -34,18 +31,24 @@ class AuthController extends Controller implements HasMiddleware
     // post login function
     public function postLogin(AdminLoginRequest $request)
     {
-        // $email = $request->input('email');
-        // $password = $request->input('password');
-
         $credinatioals = $request->only(['email', 'password']);
         $remmber = $request->has('remmber') ? true : false;
 
+<<<<<<< HEAD
         $loginCheck = $this->authService->login($credinatioals, $remmber, 'admin');
         if (!$loginCheck) {
             flash()->error(__('general.login_faild'));
             return redirect()->back();
         } else {
             flash()->success(__('general.login_succsss'));
+=======
+        $checkLogin = $this->authService->login($credinatioals, $remmber, 'admin');
+        if (!$checkLogin) {
+            flash()->error(__('general.login_faild'));
+            return redirect()->back();
+        } else {
+            flash()->success(__('general.login_success'));
+>>>>>>> admin
             return redirect()->intended(route('dashboard.welcome'));
         }
     }

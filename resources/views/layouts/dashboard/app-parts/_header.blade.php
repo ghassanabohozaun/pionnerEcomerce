@@ -8,9 +8,9 @@
                              class="ft-menu font-large-1"></i></a></li>
                  <li class="nav-item mr-auto">
                      <a class="navbar-brand" href="index.html">
-                         <img class="brand-logo" alt="modern admin logo"
-                             src="{!! asset('assets/dashbaord') !!}/images/logo/logo.png">
-                         <h3 class="brand-text">Modern Admin</h3>
+                         {{-- <img class="brand-logo" alt="modern admin logo"
+                             src="{!! asset('assets/dashbaord') !!}/images/logo/logo.png"> --}}
+                         <h4 class="brand-text">{!! __('dashboard.site_name') !!}</h4>
                      </a>
                  </li>
                  <li class="nav-item d-none d-md-block float-right"><a class="nav-link modern-nav-toggle pr-0"
@@ -25,8 +25,7 @@
          <div class="navbar-container content">
              <div class="collapse navbar-collapse" id="navbar-mobile">
                  <ul class="nav navbar-nav mr-auto float-left">
-                     <li class="nav-item d-none d-md-block"><a class="nav-link nav-link-expand" href="#"><i
-                                 class="ficon ft-maximize"></i></a></li>
+
                      <li class="dropdown nav-item mega-dropdown"><a class="dropdown-toggle nav-link" href="#"
                              data-toggle="dropdown">Mega</a>
                          <ul class="mega-dropdown-menu dropdown-menu row">
@@ -212,8 +211,8 @@
                      <li class="dropdown dropdown-user nav-item">
                          <a class="dropdown-toggle nav-link dropdown-user-link" href="#"
                              data-toggle="dropdown">
-                             <span class="mr-1">Hello,
-                                 <span class="user-name text-bold-700">John Doe</span>
+                             <span class="mr-1">{!! __('dashboard.hello') !!}
+                                 <span class="user-name text-bold-700">{!! Auth::guard('admin')->name !!}</span>
                              </span>
                              <span class="avatar avatar-online">
                                  <img src="{!! asset('assets/dashbaord') !!}/images/portrait/small/avatar-s-19.png"
@@ -239,9 +238,9 @@
 
 
                      {{-- dropdown-language --}}
-                     <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link"
-                             id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true"
-                             aria-expanded="false">
+                     <li class="dropdown dropdown-notification nav-item" style="margin-top: -5px">
+                         <a class="dropdown-toggle nav-link" id="dropdown-flag" href="#"
+                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              @if (Config::get('app.locale') == 'ar')
                                  <img class="flag-icon"
                                      src="{{ asset('assets/dashbaord/media/svg/flags/العربية.svg') }}" />
@@ -259,7 +258,7 @@
                                          <img src="{{ asset('assets/dashbaord/media/svg/flags/' . $properties['native'] . '.svg') }}"
                                              alt="" />
                                      </i>
-                                     <span>
+                                     <span style="padding: 10px ;font-size: 12px">
                                          {{ $properties['native'] }}
                                      </span>
                                  </a>
