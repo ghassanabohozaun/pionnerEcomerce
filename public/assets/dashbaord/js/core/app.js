@@ -93,7 +93,6 @@
             e.preventDefault();
             $(this).closest('.card').children('.card-content').collapse('toggle');
             $(this).closest('.card').find('[data-action="collapse"] i').toggleClass('ft-minus ft-plus');
-
         });
 
         // Toggle fullscreen
@@ -113,7 +112,6 @@
         // Reload Card
         $('a[data-action="reload"]').on('click',function(){
             var block_ele = $(this).closest('.card');
-
             // Block Element
             block_ele.block({
                 message: '<div class="ft-refresh-cw icon-spin font-medium-2"></div>',

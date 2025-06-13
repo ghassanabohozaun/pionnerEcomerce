@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
-        Paginator::useBootstrap();
+         Paginator::useBootstrap();
 
         foreach (config('global.permissions') as $ability => $value) {
             Gate::define($ability, function ($auth) use ($ability) {

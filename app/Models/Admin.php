@@ -15,7 +15,7 @@ class Admin extends Authenticatable
     protected $table = 'admins';
 
     // fillable
-    protected $fillable = ['name', 'email', 'password', 'role_id'];
+    protected $fillable = ['name', 'email', 'password', 'role_id' , 'status'];
 
     public array $translatable = ['name'];
 
@@ -34,6 +34,12 @@ class Admin extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    // accessories
+      public function getStatusAttribute($status)
+    {
+        return $status == 1 ? 'on' : '';
     }
 
     // has ability permission

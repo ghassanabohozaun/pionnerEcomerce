@@ -24,7 +24,7 @@ class AdminReporitoy
     // get admins
     public function getAdmins()
     {
-        $admins = Admin::orderByDesc('created_at')->select('id', 'name', 'email', 'password', 'role_id', 'created_at')->paginate(5);
+        $admins = Admin::orderByDesc('created_at')->select('id', 'name', 'email', 'password', 'status', 'role_id', 'created_at')->paginate(5);
         return $admins;
     }
 
@@ -40,7 +40,7 @@ class AdminReporitoy
             'email' => $request->email,
             'password' => $request->password,
             'role_id' => $request->role_id,
-            'status' => $request->status,
+            'status' => $request->has('status') ? 1 : 0,
         ]);
 
         return $admin;
@@ -49,17 +49,18 @@ class AdminReporitoy
     // updata admin
     public function updateAdmin($request, $admin)
     {
-        // $admin = self::getAdmin($admin->id);
+        $admin = self::getAdmin($admin->id);
         $admin->update([
             'name' => [
                 'ar' => $request->name['ar'],
                 'en' => $request->name['en'],
             ],
             'email' => $request->email,
-            'password' => $request->password,
+            'password' => empty($request->input('password')) ? $admin->password : $request->password,
             'role_id' => $request->role_id,
-            'status' => $request->status,
+            'status' => $request->has('status') ? 1 : 0,
         ]);
+
         return $admin;
     }
 
@@ -67,7 +68,7 @@ class AdminReporitoy
     public function destroyAdmin($admin)
     {
         //$admin = self::getAdmin($admin->id);
-        return $admin->delete();
+        return $admin->forceDelete();
     }
 
     // change status
@@ -77,7 +78,6 @@ class AdminReporitoy
         $admin = $admin->update([
             'status' => $status,
         ]);
-
         return $admin;
     }
 }

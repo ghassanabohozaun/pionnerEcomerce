@@ -71,6 +71,7 @@ return [
     'certification_format_allow' => 'صيغ الملفات المسموح بها pdf,jpg ,jpeg, png فقط',
     'word_format_allow' => 'صيغ الملفات المسموح بها word فقط',
 
+    'prevent_delete' => 'ممنوع الحذف',
     'login_faild' => 'عذراً لم يتم تسجيل الدخول ',
     'login_success' => 'تم تسجيل الدخول بنجاح',
     'add_success_message' => 'تمت عملية الحفظ بنجاح',
@@ -97,6 +98,7 @@ return [
     'move_to_trash' => 'ثم نقل  السجل الي المحذوفات',
     'trash' => 'سلة المحذوفات',
     'change_status_success_message' => 'تمت عملية تغير الحالة بنجاح',
+    'change_status_error_message' => 'لم تتم عملية تغير الحالة',
     'change_password_success_message' => 'تمت عملية تغير كلمة المرور بنجاح',
     'warning' => 'تنبيه',
 

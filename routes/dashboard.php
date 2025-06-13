@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\AdminsController;
 use App\Http\Controllers\Dashboard\Auth\AuthController;
 use App\Http\Controllers\Dashboard\Auth\Passowrd\ForgetPasswordController;
 use App\Http\Controllers\Dashboard\Auth\Passowrd\ResetPasswordController;
+use App\Http\Controllers\Dashboard\BrandsController;
 use App\Http\Controllers\Dashboard\RolesController;
 use App\Http\Controllers\Dashboard\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -21,8 +22,7 @@ Route::group(
         Route::post('login', [AuthController::class, 'postLogin'])->name('post.login');
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-        ########################################### reset password  #########################################################
-
+        ########################################### reset password  ######################################################################
         Route::group(['prefix' => 'password', 'as' => 'password.'], function () {
             Route::controller(ForgetPasswordController::class)->group(function () {
                 Route::get('email', 'showEmailForm')->name('get.email');
@@ -37,21 +37,27 @@ Route::group(
             });
         });
 
-        ########################################### protected routes  #######################################################
+        ########################################### protected routes  #####################################################################
         Route::group(['middleware' => 'auth:admin'], function () {
-            ########################################### welcome  ############################################################
+            ########################################### welcome  ##########################################################################
             Route::get('welcome', [WelcomeController::class, 'index'])->name('welcome');
 
-            ########################################### roles routes ############################################################
+            ########################################### roles routes ######################################################################
             Route::group(['middleware' => 'can:roles'], function () {
                 Route::resource('roles', RolesController::class);
                 Route::post('/roles/destroy', [RolesController::class, 'destroy'])->name('roles.destroy');
             });
-
-            ########################################### admins routes  ############################################################
+            ########################################### admins routes  #####################################################################
             Route::group(['middleware' => 'can:admins'], function () {
                 Route::resource('admins', AdminsController::class);
-                Route::get('/admins/{id?}/status', [AdminsController::class, 'changeStatus'])->name('admin.change.status');
+                Route::post('/admins/destroy', [AdminsController::class, 'destroy'])->name('admins.destroy');
+                Route::post('/admins/status', [AdminsController::class, 'changeStatus'])->name('admins.change.status');
+            });
+            ########################################### brands routes  ######################################################################
+            Route::group(['middleware' => 'can:brands'], function () {
+                Route::resource('brands', BrandsController::class);
+                Route::post('/brands/destroy', [BrandsController::class, 'destroy'])->name('brands.destroy');
+                Route::post('/brands/status', [BrandsController::class, 'changeStatusBrand'])->name('brands.change.status');
             });
         });
     },

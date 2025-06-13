@@ -37,7 +37,7 @@ class AdminsController extends Controller
     //  admin store
     public function store(AdminRequest $request)
     {
-        $data = $request->only(['name', 'email', 'password', 'role_id']);
+        // $data = $request->only(['name', 'email', 'password', 'role_id']);
         $admin = $this->adminService->storeAdmin($request);
         if (!$admin) {
             flash()->error(__('general.add_error_message'));
@@ -57,21 +57,50 @@ class AdminsController extends Controller
     //  admin edit
     public function edit(string $id)
     {
-        //
+        $title = __('admins.update_admin');
+        $admin = $this->adminService->getAdmin($id);
+        $roles = $this->roleService->getRoles();
+        if (!$admin) {
+            flash()->error(__('general.no_record_found'));
+            return redirect()->route('dashboard.admins.index');
+        }
+        return view('dashboard.admins.edit', compact('title', 'admin', 'roles'));
     }
 
     //  admin update
-    public function update(Request $request, string $id)
+    public function update(AdminRequest $request, string $id)
     {
-        //
+        // $data = $request->only(['name', 'email', 'password', 'role_id']);
+        $admin = $this->adminService->updateAdmin($request, $id);
+        if (!$admin) {
+            flash()->error(__('general.update_error_message'));
+            return redirect()->back();
+        }
+        flash()->success(__('general.update_success_message'));
+        return redirect()->back();
     }
 
     //  admin destroy
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $admin = $this->adminService->destroyAdmin($request->id);
+            if (!$admin) {
+                return response()->json(['status' => false]);
+            }
+
+            return response()->json(['status' => true]);
+        }
     }
 
     // admin change status
-    public function changeStatus($id) {}
+    public function changeStatus(Request $request)
+    {
+        $admin = $this->adminService->changeStatusAdmin($request->id, $request->statusSwitch);
+
+        if (!$admin) {
+            return response()->json(['status' => false]);
+        }
+        return response()->json(['status' => true]);
+    }
 }

@@ -3,6 +3,9 @@
     {!! $title !!}
 @endsection
 
+@push('style')
+@endpush
+
 @section('content')
     <div class="app-content content">
         <div class="content-wrapper">
@@ -79,23 +82,26 @@
                                                         <th>{!! __('admins.name') !!}</th>
                                                         <th>{!! __('admins.email') !!}</th>
                                                         <th>{!! __('admins.role_id') !!}</th>
+                                                        <th>{!! __('admins.status') !!}
                                                         <th style="text-align: center">{!! __('general.actions') !!}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @forelse ($admins as $admin)
-                                                        <tr>
-                                                            <th class="col-lg-1">{!! $loop->iteration !!} </th>
-                                                            <td class="col-lg-1">{!! $admin->name !!}</td>
-                                                            <td class="col-lg-1">{!! $admin->email !!}</td>
-                                                            <td class="col-lg-1">{!! $admin->role->role !!}</td>
+                                                    @forelse ($admins as $key=>$admin)
+                                                        <tr id="row{{ $admin->id }}">
+                                                            <th class="col-lg-2">{!! $loop->iteration !!} </th>
+                                                            <td class="col-lg-2">{!! $admin->name !!}</td>
+                                                            <td class="col-lg-3">{!! $admin->email !!}</td>
+                                                            <td class="col-lg-2">{!! $admin->role->role !!}</td>
+                                                            <td class="col-lg-1">
+                                                                @include('dashboard.admins.parts.status')</td>
                                                             <td class="col-lg-2">
                                                                 @include('dashboard.admins.parts.actions')
                                                             </td>
                                                         </tr>
                                                     @empty
                                                         <tr>
-                                                            <td colspan="5" class="text-center">
+                                                            <td colspan="6" class="text-center">
                                                                 {!! __('admins.no_admins_found') !!}
                                                             </td>
                                                         </tr>
@@ -119,35 +125,36 @@
     </div><!-- end: content app  -->
 @endsection
 @push('scripts')
-    {{-- <script type="text/javascript">
-        $('body').on('click', '.delete_role_btn', function(e) {
+    <script type="text/javascript">
+        // delete admin
+        $('body').on('click', '.delete_admin_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
+            var rowIdToRemove = "row" + id;
 
             swal({
                 title: "{{ __('general.ask_delete_record') }}",
-                // text: "See the confirm button text! Have you noticed the Change?",
                 icon: "warning",
                 buttons: {
                     cancel: {
                         text: "{{ __('general.no') }}",
                         value: null,
                         visible: true,
-                        className: "",
+                        className: "btn-danger",
                         closeModal: false,
                     },
                     confirm: {
                         text: "{{ __('general.yes') }}",
                         value: true,
                         visible: true,
-                        className: "",
+                        className: "btn-info",
                         closeModal: false
                     }
                 }
             }).then(isConfirm => {
                 if (isConfirm) {
                     $.ajax({
-                        url: '{!! route('dashboard.roles.destroy') !!}',
+                        url: '{!! route('dashboard.admins.destroy') !!}',
                         data: {
                             id,
                             id
@@ -155,11 +162,14 @@
                         type: 'post',
                         dataType: 'json',
                         success: function(data) {
-                            $('#myTable').load(location.href + (' #myTable'));
+
                             if (data.status == true) {
+                                $('#myTable').load(location.href + (' #myTable'));
+                                // $("#" + rowIdToRemove).remove();
                                 swal("{!! __('general.deleted') !!} !",
                                     "{!! __('general.delete_success_message') !!} !!", "success");
                             } else if (data.status == false) {
+                                $('#myTable').load(location.href + (' #myTable'));
                                 swal("{!! __('general.warning') !!} !",
                                     "{!! __('roles.role_have_admins') !!}", "warning");
                             }
@@ -167,80 +177,44 @@
                         }, //end success
                     });
 
-
                 } else {
                     swal("{!! __('general.cancelled') !!}", "{!! __('general.delete_success_message') !!}", "error");
                 }
             });
-
-
-            // //  console.log('delete');
-            // var id = $(this).data('id');
-            // // console.log(id);
-
-
-
-            // Swal.fire({
-            //     title: "{{ __('general.ask_delete_record') }}",
-            //     icon: "warning",
-            //     showCancelButton: true,
-            //     confirmButtonText: "{{ __('general.yes') }}",
-            //     cancelButtonText: "{{ __('general.no') }}",
-            //     reverseButtons: false,
-            //     allowOutsideClick: false,
-            // }).then(function(result) {
-            //     if (result.value) {
-            //         //////////////////////////////////////
-            //         // Delete role
-            //         $.ajax({
-            //             url: '{!! route('dashboard.roles.destroy') !!}',
-            //             data: {
-            //                 id,
-            //                 id
-            //             },
-            //             type: 'post',
-            //             dataType: 'json',
-            //             success: function(data) {
-            //                 console.log(data);
-            //                 if (data == true) {
-            //                     Swal.fire({
-            //                         title: "{!! __('general.deleted') !!}",
-            //                         text: "{!! __('general.delete_success_message') !!}",
-            //                         icon: "success",
-            //                         allowOutsideClick: false,
-            //                         customClass: {
-            //                             confirmButton: 'delete_role_button'
-            //                         }
-            //                     });
-            //                     $('.delete_role_button').click(function() {
-            //                         $('#myTable').load(location.href + (' #myTable'));
-            //                     });
-            //                 }
-
-            //                 if (data == false) {
-            //                     Swal.fire({
-            //                         title: "{!! __('general.cancelled') !!}",
-            //                         text: data.msg,
-            //                         icon: "warning",
-            //                         allowOutsideClick: false,
-            //                     });
-
-            //                 }
-            //             }, //end success
-            //         });
-
-            //     } else if (result.dismiss === "cancel") {
-            //         Swal.fire({
-            //             title: "{!! __('general.cancelled') !!}",
-            //             text: "{!! __('general.cancelled_message') !!}",
-            //             icon: "error",
-            //             allowOutsideClick: false,
-            //             customClass: {
-            //                 confirmButton: 'cancel_delete_role_button'
-            //             }
-            //         })
-            //     }
-            // });
         });
-    </script> --}}
+
+        //  change status
+        var statusSwitch = false;
+        $('body').on('change', '.change_status', function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+
+            if ($(this).is(':checked')) {
+                statusSwitch = 1;
+            } else {
+                statusSwitch = 0;
+            }
+
+            $.ajax({
+                url: "{{ route('dashboard.admins.change.status') }}",
+                data: {
+                    statusSwitch: statusSwitch,
+                    id: id
+                },
+                type: 'post',
+                dataType: 'JSON',
+                success: function(data) {
+                    $('#myTable').load(location.href + (' #myTable'));
+                    console.log(data);
+                    if (data.status == true) {
+                        swal("{!! __('general.yes') !!}", "{!! __('general.change_status_success_message') !!}",
+                            "success");
+                    } else {
+                        swal("{!! __('general.no') !!}", "{!! __('general.change_status_error_message') !!}",
+                            "error");
+                    }
+                }, //end success
+            })
+        });
+    </script>
 @endpush

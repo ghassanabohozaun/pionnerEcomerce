@@ -2998,7 +2998,10 @@ tbody.collapse.show {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 0.35rem; }
+  border-radius: 0.35rem;
+/* min-height: 320px; */
+/* padding-bottom: 10px; */
+}
   .card > hr {
     margin-right: 0;
     margin-left: 0; }
@@ -3007,11 +3010,15 @@ tbody.collapse.show {
     border-top-right-radius: 0.35rem; }
   .card > .list-group:last-child .list-group-item:last-child {
     border-bottom-right-radius: 0.35rem;
-    border-bottom-left-radius: 0.35rem; }
+    border-bottom-left-radius: 0.35rem;
+
+}
 
 .card-body {
   flex: 1 1 auto;
-  padding: 1.5rem; }
+  padding: 1.5rem;
+  padding-top: 40px;
+}
 
 .card-title {
   margin-bottom: 1.5rem; }

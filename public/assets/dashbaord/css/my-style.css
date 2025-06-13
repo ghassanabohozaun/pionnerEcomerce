@@ -1,0 +1,24 @@
+input[type="checkbox"] {
+width: 1.0em;
+height: 1.0em;
+}
+
+#myTable td,
+#myTable th {
+vertical-align: middle
+}
+
+#statusLabel
+{
+margin-top: 35px;
+font-size: 13px
+}
+#statusLabel span
+{
+padding: 0 10px;
+}
+
+.text-danger strong {
+padding: 10px 10px ;
+
+}

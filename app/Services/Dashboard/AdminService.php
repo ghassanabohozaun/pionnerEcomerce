@@ -23,8 +23,8 @@ class AdminService
     {
         $admin = $this->adminReporitoy->getAdmin($id);
         if (!$admin) {
-            //return false;
-            abort(404);
+             return false;
+            //abort(404);
         }
         return $admin;
     }
@@ -52,8 +52,7 @@ class AdminService
         if (!$admin) {
             abort(404);
         }
-
-        $admin = $this->updateAdmin($request, $admin);
+        $admin = $this->adminReporitoy->updateAdmin($request, $admin);
         if (!$admin) {
             return false;
         }
@@ -65,7 +64,7 @@ class AdminService
     {
         $admin = $this->adminReporitoy->getAdmin($id);
         if (!$admin) {
-            abort(404);
+            return false;
         }
         $admin = $this->adminReporitoy->destroyAdmin($admin);
         if (!$admin) {
@@ -79,8 +78,9 @@ class AdminService
     {
         $admin = $this->adminReporitoy->getAdmin($id);
         if (!$admin) {
-            abort(404);
+            return false;
         }
+
         $admin = $this->adminReporitoy->changeStatusAdmin($admin, $status);
         if (!$admin) {
             return false;

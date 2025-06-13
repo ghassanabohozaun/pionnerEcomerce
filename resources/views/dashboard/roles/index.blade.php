@@ -143,14 +143,14 @@
                         text: "{{ __('general.no') }}",
                         value: null,
                         visible: true,
-                        className: "",
+                        className: "btn-danger",
                         closeModal: false,
                     },
                     confirm: {
                         text: "{{ __('general.yes') }}",
                         value: true,
                         visible: true,
-                        className: "",
+                        className: "btn-info",
                         closeModal: false
                     }
                 }

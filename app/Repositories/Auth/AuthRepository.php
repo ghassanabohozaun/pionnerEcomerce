@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthRepository
 {
+
+
     // login
     public function login($credinatioals, $remmber, $gaurd)
     {

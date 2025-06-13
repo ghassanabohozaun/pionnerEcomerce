@@ -4,6 +4,7 @@ namespace App\Http\Requests\Dashboard;
 
 use CodeZero\UniqueTranslation\UniqueTranslationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AdminRequest extends FormRequest
 {
@@ -23,10 +24,12 @@ class AdminRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name.*' => ['required','max:100' , UniqueTranslationRule::for('admins')->ignore($this->id)],
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'max:30'],
-            'role_id' => ['required'],
+            'name.*' => ['required', 'string', 'max:50', 'min : 2'],
+            'email' => ['required', 'email', 'max:120', Rule::unique('admins', 'email')->ignore($this->id)],
+            'password' => ['required_without:id',],
+            'password_confirm' => ['same:password'],
+            'role_id' => ['required', 'exists:admins,id'],
+            'status' => ['in:on,off'],
         ];
     }
 }

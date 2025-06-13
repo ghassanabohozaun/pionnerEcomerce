@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\ForgetPasswordRequest;
 use App\Services\Auth\PasswordService;
 use Ichtrojan\Otp\Otp;
-use Illuminate\Http\Request;
 
 class ForgetPasswordController extends Controller
 {

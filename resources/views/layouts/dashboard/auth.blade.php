@@ -19,7 +19,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
         rel="stylesheet">
-    <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/fonts/line-awesome/css/line-awesome.min.css">
 
     <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/vendors/css/forms/icheck/icheck.css">
     <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/vendors/css/forms/icheck/custom.css">
@@ -35,10 +35,8 @@
     @else
         <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/vendors.css">
         <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/app.css">
-        <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/custom-rtl.css">
         <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/core/colors/palette-gradient.css">
         <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/pages/login-register.css">
-        <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/style.css">
     @endif
 </head>
 
@@ -49,14 +47,14 @@
     <nav
         class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-shadow">
         <div class="navbar-wrapper">
-            <div class="navbar-header">
+            {{-- <div class="navbar-header">
                 <ul class="nav navbar-nav flex-row">
                     <li class="nav-item mobile-menu d-md-none mr-auto"><a
                             class="nav-link nav-menu-main menu-toggle hidden-xs" href="#">&nbsp;</a></li>
                     <li class="nav-item">
                         <a class="navbar-brand" href="#">
-                            {{-- <img class="brand-logo" alt="modern admin logo"
-                                src="{!! asset('assets/dashbaord') !!}/images/logo/logo.png"> --}}
+                            <img class="brand-logo" alt="modern admin logo"
+                                src="{!! asset('assets/dashbaord') !!}/images/logo/logo.png">
                             <h3 class="brand-text">&nbsp;</h3>
                         </a>
                     </li>
@@ -65,15 +63,15 @@
                                 class="la la-ellipsis-v"></i></a>
                     </li>
                 </ul>
-            </div>
+            </div> --}}
             <div class="navbar-container">
-                <div class="collapse navbar-collapse justify-content-end" id="navbar-mobile">
+                <div class="collapse navbar-collapse justify-content-start" id="navbar-mobile">
                     <ul class="nav navbar-nav" style="{!! Config::get('app.locale') == 'ar' ? 'margin-left:35px' : '' !!}">
 
                         {{-- dropdown-language --}}
-                        <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link"
-                                id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
+                        <li class="dropdown dropdown-notification nav-item">
+                            <a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                                 @if (Config::get('app.locale') == 'ar')
                                     <img class="flag-icon"
                                         src="{{ asset('assets/dashbaord/media/svg/flags/العربية.svg') }}" />
@@ -99,10 +97,7 @@
                             </div>
                         </li>
 
-                        {{-- settings --}}
-                        <li class="dropdown nav-item">
-                            <a class="nav-link mr-2 nav-link-label" href="#" data-toggle="dropdown">&nbsp;</a>
-                        </li>
+
                     </ul>
                 </div>
             </div>

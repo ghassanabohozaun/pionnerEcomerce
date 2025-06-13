@@ -60,7 +60,7 @@ class RolesController extends Controller
         $role = $this->roleService->getRole($id);
         if (!$role) {
             flash()->error(__('general.no_record_found'));
-            return redirect()->back();
+            return redirect()->route('dashboard.roles.index');
         }
 
         return view('dashboard.roles.edit', compact('role', 'title'));

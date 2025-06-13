@@ -66,6 +66,7 @@ return [
     'certification_format_allow' => 'Allowed file types pdf,jpg,jpeg,png',
     'word_format_allow' => 'Allowed file types Word',
 
+    'prevent_delete' => 'Prevent Delete',
     'login_faild' => 'Sorry , Login Faild',
     'login_success' => 'Login Successfully',
     'add_success_message' => 'Added Successfully',
@@ -93,6 +94,7 @@ return [
     'move_to_trash' => 'Record Moved To Trash',
     'trash' => 'Trash',
     'change_status_success_message' => 'change Status Successfully',
+    'change_status_error_message' => 'change Status Faild',
     'change_password_success_message' => 'change password Successfully',
 
     'export' => 'Export',
