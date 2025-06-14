@@ -66,14 +66,11 @@ return [
     'certification_format_allow' => 'Allowed file types pdf,jpg,jpeg,png',
     'word_format_allow' => 'Allowed file types Word',
 
-<<<<<<< HEAD
-    'login_faild' => 'Sorry , Login Faild ',
+
     'login_succsss' => 'Login Successfully',
-=======
     'prevent_delete' => 'Prevent Delete',
     'login_faild' => 'Sorry , Login Faild',
     'login_success' => 'Login Successfully',
->>>>>>> admin
     'add_success_message' => 'Added Successfully',
     'add_error_message' => 'Added Failed',
     'delete_success_message' => 'Deleted Successfully',

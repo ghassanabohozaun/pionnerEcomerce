@@ -71,14 +71,10 @@ return [
     'certification_format_allow' => 'صيغ الملفات المسموح بها pdf,jpg ,jpeg, png فقط',
     'word_format_allow' => 'صيغ الملفات المسموح بها word فقط',
 
-<<<<<<< HEAD
     'login_faild' => 'عذراً , لم يتم تسجيل الدخول',
     'login_succsss' => 'تمت عملية تسجيل الدخول بنجاح',
-=======
     'prevent_delete' => 'ممنوع الحذف',
-    'login_faild' => 'عذراً لم يتم تسجيل الدخول ',
     'login_success' => 'تم تسجيل الدخول بنجاح',
->>>>>>> admin
     'add_success_message' => 'تمت عملية الحفظ بنجاح',
     'add_error_message' => 'لم تتم عملية الحفظ',
     'delete_success_message' => 'تمت عملية الحذف بنجاح',
