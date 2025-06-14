@@ -94,11 +94,10 @@ class BrandService
         }
 
         // delete old logo
-        $logo_path = public_path('assets/dashbaord/uploadImages/brands/').$brand->logo;
-         if(File::exists($logo_path)){
+        $logo_path = public_path('assets/dashbaord/uploadImages/brands/') . $brand->logo;
+        if (File::exists($logo_path)) {
             File::delete($logo_path);
-         }
-
+        }
 
         $brand = $this->brandRepository->destroyBrand($brand);
         if (!$brand) {
