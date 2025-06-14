@@ -86,7 +86,7 @@ class BrandsController extends Controller
     }
 
     // change status
-    public function changeStatusBrand(Request $request)
+    public function changeStatus(Request $request)
     {
         if ($request->json()) {
             $brand = $this->brandService->changeStatusBrand($request->id, $request->statusSwitch);

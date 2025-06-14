@@ -15,6 +15,7 @@ return [
     'roles' => 'الصلاحيات',
     'admins' => 'المديرين',
     'brands' => 'البرندات',
+    'categories' => 'المجموعات',
 
     // login
     'login' => 'تسجيل الدخول',

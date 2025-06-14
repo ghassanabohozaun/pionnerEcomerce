@@ -9,12 +9,13 @@ return [
     'access_denied' => 'Access Denied/Forbidden !',
     'back_to_home' => 'Back To Home',
     'search' => 'Search ... ',
-    'hello'=>'Hello ,',
+    'hello' => 'Hello ,',
 
     // menu
     'roles' => 'Roles',
     'admins' => 'Admins',
-    'brands'=>'Brands',
+    'brands' => 'Brands',
+    'categories' => 'Categories',
 
     // login
     'login' => 'Login',

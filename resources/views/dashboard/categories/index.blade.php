@@ -11,7 +11,7 @@
 
                 <!-- begin: content header left-->
                 <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
-                    <h3 class="content-header-title mb-0 d-inline-block">{!! __('brands.brands') !!}</h3>
+                    <h3 class="content-header-title mb-0 d-inline-block">{!! __('categories.categories') !!}</h3>
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
@@ -21,8 +21,8 @@
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="{!! route('dashboard.brands.index') !!}">
-                                        {!! __('brands.brands') !!}
+                                    <a href="{!! route('dashboard.categories.index') !!}">
+                                        {!! __('categories.categories') !!}
                                     </a>
                                 </li>
 
@@ -35,8 +35,8 @@
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
                     <div class="float-md-right">
-                        <a href="{{ route('dashboard.brands.create') }}" class="btn btn-info round btn-glow px-2" i>
-                            {!! __('brands.create_new_brand') !!}</a>
+                        <a href="{{ route('dashboard.categories.create') }}" class="btn btn-info round btn-glow px-2" i>
+                            {!! __('categories.create_new_category') !!}</a>
 
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                                 <!-- begin: card header -->
                                 <div class="card-header">
                                     <h4 class="card-title" id="basic-layout-colored-form-control">
-                                        {!! __('brands.show_all_brands') !!}
+                                        {!! __('categories.show_all_categories') !!}
                                     </h4>
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -76,29 +76,33 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>{!! __('brands.logo') !!}</th>
-                                                        <th>{!! __('brands.brand_name') !!}</th>
-                                                        <th>{!! __('brands.status') !!}</th>
+                                                        <th>{!! __('categories.category_name') !!}</th>
+                                                        <th>{!! __('categories.slug') !!}</th>
+                                                        <th>{!! __('categories.parent') !!}</th>
+
+                                                        <th>{!! __('categories.status') !!}</th>
                                                         <th style="text-align: center">{!! __('general.actions') !!}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @forelse ($brands as $brand)
+                                                    @forelse ($categories as $category)
                                                         <tr>
-                                                            <th class="col-lg-1">{!! $loop->iteration !!} </th>
-                                                            <td class="col-lg-2">@include('dashboard.brands.parts.logo')</td>
-                                                            <td class="col-lg-2">{!! $brand->name !!}</td>
-                                                            <td class="col-lg-1">
-                                                                @include('dashboard.brands.parts.status')
+                                                            <th class="col-lg-2">{!! $loop->iteration !!} |
+                                                                {!! $category->id !!}</th>
+                                                            <td class="col-lg-2">{!! $category->name !!}</td>
+                                                            <td class="col-lg-2">{!! $category->slug !!}</td>
+                                                            <th class="col-lg-2">{!! $category->parent !!}</th>
+                                                            <td class="col-lg-2">
+                                                                @include('dashboard.categories.parts.status')
                                                             </td>
                                                             <td class="col-lg-2">
-                                                                @include('dashboard.brands.parts.actions')
+                                                                @include('dashboard.categories.parts.actions')
                                                             </td>
                                                         </tr>
                                                     @empty
                                                         <tr>
-                                                            <td colspan="5" class="text-center">
-                                                                {!! __('brands.no_brands_found') !!}
+                                                            <td colspan="6" class="text-center">
+                                                                {!! __('categories.no_categories_found') !!}
                                                             </td>
                                                         </tr>
                                                     @endforelse
@@ -106,7 +110,7 @@
 
                                             </table>
                                             <div class="float-right">
-                                                {!! $brands->links() !!}
+                                                {!! $categories->links() !!}
                                             </div>
                                         </div>
                                     </div>
@@ -122,7 +126,7 @@
 @endsection
 @push('scripts')
     <script type="text/javascript">
-        $('body').on('click', '.delete_brand_btn', function(e) {
+        $('body').on('click', '.delete_category_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
@@ -148,7 +152,7 @@
             }).then(isConfirm => {
                 if (isConfirm) {
                     $.ajax({
-                        url: '{!! route('dashboard.brands.destroy') !!}',
+                        url: '{!! route('dashboard.categories.destroy') !!}',
                         data: {
                             id,
                             id
@@ -188,7 +192,7 @@
             }
 
             $.ajax({
-                url: "{{ route('dashboard.brands.change.status') }}",
+                url: "{{ route('dashboard.categories.change.status') }}",
                 data: {
                     statusSwitch: statusSwitch,
                     id: id

@@ -105,5 +105,36 @@
                 </ul>
             @endcan
             <!-- end: roles -->
+
+            <!-- begin: categories -->
+            @can('categories')
+                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li class=" nav-item">
+                        <a href="#">
+                            <i class="la la-user"></i>
+                            <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.categories') !!}</span>
+                            {{-- <span class="badge badge badge-info badge-pill float-right mr-2">3</span> --}}
+                        </a>
+                        <!-- begin: categories -->
+                        <ul class="menu-content">
+                            <li class="@if (str_contains(url()->current(), 'categories')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.categories.index') !!}" data-i18n="nav.dash.categories">
+                                    {!! __('categories.categories') !!}
+                                </a>
+
+                            </li>
+
+                            <li class="@if (str_contains(url()->current(), 'categories')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.categories.create') !!}" data-i18n="nav.dash.categories">
+                                    {!! __('categories.create_new_category') !!}
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- end: categories -->
+                    </li>
+                </ul>
+            @endcan
+            <!-- end: roles -->
+
         </div>
     </div>

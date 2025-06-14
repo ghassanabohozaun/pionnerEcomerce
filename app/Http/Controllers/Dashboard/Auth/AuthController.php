@@ -34,12 +34,6 @@ class AuthController extends Controller implements HasMiddleware
         $credinatioals = $request->only(['email', 'password']);
         $remmber = $request->has('remmber') ? true : false;
 
-        $loginCheck = $this->authService->login($credinatioals, $remmber, 'admin');
-        if (!$loginCheck) {
-            flash()->error(__('general.login_faild'));
-            return redirect()->back();
-        } else {
-            flash()->success(__('general.login_succsss'));
         $checkLogin = $this->authService->login($credinatioals, $remmber, 'admin');
         if (!$checkLogin) {
             flash()->error(__('general.login_faild'));
@@ -48,7 +42,6 @@ class AuthController extends Controller implements HasMiddleware
             flash()->success(__('general.login_success'));
             return redirect()->intended(route('dashboard.welcome'));
         }
-    }
     }
     public function logout()
     {

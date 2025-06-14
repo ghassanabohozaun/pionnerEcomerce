@@ -16,14 +16,11 @@ class AuthService
     // login
     public function login($credinatioals, $remmber, $gaurd)
     {
-        $loginCheck = $this->authRepository->login($credinatioals, $remmber, $gaurd);
-        if (!$loginCheck) {
-            $checkLogin = $this->authRepository->login($credinatioals, $remmber, $gaurd);
-            if (!$checkLogin) {
-                return false;
-            }
-            return true;
+        $checkLogin = $this->authRepository->login($credinatioals, $remmber, $gaurd);
+        if (!$checkLogin) {
+            return false;
         }
+        return true;
     }
 
     // logout

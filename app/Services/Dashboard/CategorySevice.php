@@ -30,6 +30,12 @@ class CategorySevice
         return $this->categoryRepository->getCategories();
     }
 
+    //  get parent categories
+    public function getParentCategories()
+    {
+        return $this->categoryRepository->getParentCategories();
+    }
+
     // store category
     public function storeCategory($request)
     {
@@ -48,7 +54,7 @@ class CategorySevice
         if (!$category) {
             return false;
         }
-        $category = $this->categoryRepository->updateCategory($category, $id);
+        $category = $this->categoryRepository->updateCategory($request, $id);
         if (!$category) {
             return false;
         }
@@ -70,15 +76,15 @@ class CategorySevice
     }
 
     // change status category
-    public function changeStatusCategory($id , $status) {
-
+    public function changeStatusCategory($id, $status)
+    {
         $category = $this->categoryRepository->getCategory($id);
         if (!$category) {
             return false;
         }
 
-          $category = $this->categoryRepository->changeStatusCategory($category , $status);
-           if (!$category) {
+        $category = $this->categoryRepository->changeStatusCategory($category, $status);
+        if (!$category) {
             return false;
         }
         return $category;

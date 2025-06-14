@@ -2,8 +2,8 @@
 return [
     'create_new_brand' => 'انشاء براند جديدة',
     'update_brand' => 'تعديل البراند',
-    'brands' => 'الصلاحيات',
-    'show_all_brands' => 'عرض جميع الصلاحيات',
+    'brands' => 'البرندات',
+    'show_all_brands' => 'عرض جميع البرندات',
 
     'brand_name' => 'اسم البراند',
     'brand_ar' => 'اسم البراند بالعربي',
@@ -12,7 +12,7 @@ return [
     'logo' => 'شعار البراند ',
     'enter_brand_ar' => 'ادخل اسم البراند بالعربي',
     'enter_brand_en' => 'ادخل اسم البراند بالانجليزي',
-    'permissions' => 'الصلاحيات',
+    'permissions' => 'البرندات',
 
-    'no_brands_found' => 'لا يوجد صلاحيات حالياً !',
+    'no_brands_found' => 'لا يوجد البرندات حالياً !',
 ];

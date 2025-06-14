@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\Auth\AuthController;
 use App\Http\Controllers\Dashboard\Auth\Passowrd\ForgetPasswordController;
 use App\Http\Controllers\Dashboard\Auth\Passowrd\ResetPasswordController;
 use App\Http\Controllers\Dashboard\BrandsController;
+use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\RolesController;
 use App\Http\Controllers\Dashboard\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -57,7 +58,13 @@ Route::group(
             Route::group(['middleware' => 'can:brands'], function () {
                 Route::resource('brands', BrandsController::class);
                 Route::post('/brands/destroy', [BrandsController::class, 'destroy'])->name('brands.destroy');
-                Route::post('/brands/status', [BrandsController::class, 'changeStatusBrand'])->name('brands.change.status');
+                Route::post('/brands/status', [BrandsController::class, 'changeStatus'])->name('brands.change.status');
+            });
+            ########################################### categories routes  ######################################################################
+            Route::group(['middlewarw' => 'can:categories'], function () {
+                Route::resource('categories', CategoriesController::class);
+                Route::post('/categories/destroy', [CategoriesController::class, 'destroy'])->name('categories.destroy');
+                Route::post('/categories/status', [CategoriesController::class, 'changeStatus'])->name('categories.change.status');
             });
         });
     },
