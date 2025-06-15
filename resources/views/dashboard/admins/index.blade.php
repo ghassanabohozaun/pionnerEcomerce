@@ -83,6 +83,8 @@
                                                         <th>{!! __('admins.email') !!}</th>
                                                         <th>{!! __('admins.role_id') !!}</th>
                                                         <th>{!! __('admins.status') !!}
+                                                        <th>{!! __('admins.created_at') !!}
+
                                                         <th style="text-align: center">{!! __('general.actions') !!}</th>
                                                     </tr>
                                                 </thead>
@@ -91,10 +93,11 @@
                                                         <tr id="row{{ $admin->id }}">
                                                             <th class="col-lg-2">{!! $loop->iteration !!} </th>
                                                             <td class="col-lg-2">{!! $admin->name !!}</td>
-                                                            <td class="col-lg-3">{!! $admin->email !!}</td>
+                                                            <td class="col-lg-2">{!! $admin->email !!}</td>
                                                             <td class="col-lg-2">{!! $admin->role->role !!}</td>
                                                             <td class="col-lg-1">
                                                                 @include('dashboard.admins.parts.status')</td>
+                                                            <td class="col-lg-1">{!! $admin->created_at->format('Y-m-d') !!}</td>
                                                             <td class="col-lg-2">
                                                                 @include('dashboard.admins.parts.actions')
                                                             </td>
@@ -178,7 +181,7 @@
                     });
 
                 } else {
-                    swal("{!! __('general.cancelled') !!}", "{!! __('general.delete_success_message') !!}", "error");
+                    swal("{!! __(key: 'general.cancelled') !!}", "{!! __('general.delete_success_message') !!}", "error");
                 }
             });
         });
@@ -204,14 +207,14 @@
                 type: 'post',
                 dataType: 'JSON',
                 success: function(data) {
-                    $('#myTable').load(location.href + (' #myTable'));
-                    console.log(data);
                     if (data.status == true) {
                         swal("{!! __('general.yes') !!}", "{!! __('general.change_status_success_message') !!}",
                             "success");
+                        $('#myTable').load(location.href + (' #myTable'));
                     } else {
                         swal("{!! __('general.no') !!}", "{!! __('general.change_status_error_message') !!}",
                             "error");
+                        $('#myTable').load(location.href + (' #myTable'));
                     }
                 }, //end success
             })
