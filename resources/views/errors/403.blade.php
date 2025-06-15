@@ -46,8 +46,8 @@
 <body class="vertical-layout vertical-menu-modern 1-column  menu-expanded fixed-navbar" data-open="click"
     data-menu="vertical-menu-modern" data-col="1-column">
     <!-- fixed-top-->
-    <nav
-        class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-shadow">
+    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-light navbar-border navbar-shadow"
+        {{-- class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-shadow" --}}>
         <div class="navbar-wrapper">
             <div class="navbar-header">
                 <ul class="nav navbar-nav flex-row">

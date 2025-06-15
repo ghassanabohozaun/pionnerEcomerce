@@ -192,7 +192,7 @@ footer.footer-dark {
         .main-menu.menu-light .navigation .navigation-header span {
           font-weight: 500; }
       .main-menu.menu-light .navigation li a {
-        color: #6B6F82;
+        color: #33363d;
         transition: all 0.2s ease; }
         .main-menu.menu-light .navigation li a i, .main-menu.menu-light .navigation li a span {
           transition: all 0.2s ease; }
@@ -213,7 +213,7 @@ footer.footer-dark {
             position: relative;
             top: 3px; }
         .main-menu.menu-light .navigation > li.open > a {
-          color: #545766;
+          color: #000000;
           background: whitesmoke;
           border-right: 4px solid #1E9FF2; }
         .main-menu.menu-light .navigation > li.open .hover > a {
@@ -266,7 +266,7 @@ footer.footer-dark {
           .main-menu.menu-light .navigation > li ul .active {
             background: transparent; }
             .main-menu.menu-light .navigation > li ul .active > a {
-              color: #85899b;
+              color: rgb(66, 68, 80);
               font-weight: 700; }
             .main-menu.menu-light .navigation > li ul .active .hover > a {
               background-color: transparent; }

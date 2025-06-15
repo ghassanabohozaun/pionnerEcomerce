@@ -1,5 +1,5 @@
- <nav
-     class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-dark navbar-shadow">
+ <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-light navbar-border navbar-shadow"
+     {{-- class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow navbar-semi-dark fixed-top navbar-shadow"> --}} {{--  --}}>
      <div class="navbar-wrapper">
          <div class="navbar-header">
              <ul class="nav navbar-nav flex-row">
@@ -77,7 +77,8 @@
                                                          </ul>
                                                      </li>
                                                      <li><a class="dropdown-item" href="#"><i
-                                                                 class="la la-hdd-o"></i> Second level, third
+                                                                 class="la la-hdd-o"></i>
+                                                             Second level, third
                                                              link</a></li>
                                                      <li><a class="dropdown-item" href="#"><i
                                                                  class="la la-floppy-o"></i> Second level, fourth
@@ -89,7 +90,8 @@
                                                          class="ft-camera"></i> Color palette system</a>
                                              </li>
                                              <li><a class="dropdown-item" href="sk-2-columns.html"><i
-                                                         class="ft-edit"></i> Page starter kit</a></li>
+                                                         class="ft-edit"></i>
+                                                     Page starter kit</a></li>
                                              <li><a class="dropdown-item" href="changelog.html"><i
                                                          class="ft-minimize-2"></i> Change log</a></li>
                                              <li>
@@ -108,7 +110,8 @@
                                          <div class="card-header p-0 pb-2 border-0" id="headingOne" role="tab"><a
                                                  data-toggle="collapse" data-parent="#accordionWrap"
                                                  href="#accordionOne" aria-expanded="true"
-                                                 aria-controls="accordionOne">Accordion Item #1</a></div>
+                                                 aria-controls="accordionOne">Accordion Item #1</a>
+                                         </div>
                                          <div class="card-collapse collapse show" id="accordionOne" role="tabpanel"
                                              aria-labelledby="headingOne" aria-expanded="true">
                                              <div class="card-content">
@@ -162,7 +165,8 @@
                                                      <input class="form-control" type="text" id="inputName1"
                                                          placeholder="John Doe">
                                                      <div class="form-control-position pl-1"><i
-                                                             class="la la-user"></i></div>
+                                                             class="la la-user"></i>
+                                                     </div>
                                                  </div>
                                              </div>
                                          </div>

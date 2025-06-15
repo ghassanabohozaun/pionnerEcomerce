@@ -31,7 +31,7 @@
         <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css-rtl/custom-rtl.css">
         <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css-rtl/core/colors/palette-gradient.css">
         <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css-rtl/pages/login-register.css">
-        <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/style-rtl.css">
+        {{-- <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/style-rtl.css"> --}}
     @else
         <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/vendors.css">
         <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/app.css">
@@ -44,8 +44,8 @@
     data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
     <!-- fixed-top ////////////////////////////////////////////////////////////////////////////-->
 
-    <nav
-        class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-shadow">
+    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-light navbar-border navbar-shadow"
+        {{-- class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-shadow" --}}>
         <div class="navbar-wrapper">
             {{-- <div class="navbar-header">
                 <ul class="nav navbar-nav flex-row">

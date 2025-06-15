@@ -36,7 +36,7 @@
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css-rtl/core/colors/palette-gradient.css">
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css-rtl/pages/timeline.css">
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css-rtl/pages/dashboard-ecommerce.css">
-     <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/assets/css/style-rtl.css">
+     {{-- <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/assets/css/style-rtl.css"> --}}
  @else
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/vendors.css">
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/app.css">

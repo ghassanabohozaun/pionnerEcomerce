@@ -1,4 +1,4 @@
-    <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
+    <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
         <div class="main-menu-content">
             <!-- begin: Dashboard -->
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
@@ -81,7 +81,7 @@
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class=" nav-item">
                         <a href="#">
-                            <i class="la la-user"></i>
+                            <i class="la la-navicon"></i>
                             <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.brands') !!}</span>
                             {{-- <span class="badge badge badge-info badge-pill float-right mr-2">3</span> --}}
                         </a>
@@ -111,7 +111,7 @@
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class=" nav-item">
                         <a href="#">
-                            <i class="la la-user"></i>
+                            <i class="la la-list-alt"></i>
                             <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.categories') !!}</span>
                             {{-- <span class="badge badge badge-info badge-pill float-right mr-2">3</span> --}}
                         </a>

@@ -15,7 +15,7 @@ class Category extends Model
     public array $translatable = ['name', 'slug'];
 
     // relation
-    public function parent()
+    public function parentFun()
     {
         return $this->hasOne(Category::class, 'id', 'parent');
     }
