@@ -20,7 +20,7 @@
 
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="{!! asset(path: 'assets/dashbaord') !!}/js/scripts/extensions/sweet-alerts.js" type="text/javascript"></script>
-    {{-- <script src="{!! asset(path: 'assets/dashbaord') !!}/js/scripts/my-scripts.js" type="text/javascript"></script> --}}
+    <script src="{!! asset(path: 'assets/dashbaord') !!}/js/scripts/my-scripts.js" type="text/javascript"></script>
 
     <!-- END PAGE LEVEL JS-->
 

@@ -1,0 +1,48 @@
+<?php
+return [
+    'create_new_country' => 'Create New Country',
+    'update_country' => 'Update Country',
+    'countries' => 'Countries',
+    'show_all_countries' => 'Show All Countries',
+
+    'country_name' => 'Country Name',
+    'country_name_ar' => 'Arabic Country Name',
+    'country_name_en' => 'English Country Name',
+
+    'country_status' => 'Country Status',
+    'phone_code' => 'Phone Code',
+
+    'enter_country_name_ar' => 'Enter Arabic Country Name',
+    'enter_country_name_en' => 'Enter English Country Name',
+    'enter_phone_code' => 'Enter Phone Code',
+
+    'no_countries_found' => 'No Countries Found !',
+
+    // governorates
+    'create_new_governorate' => 'Create New Governorate',
+    'update_governorate' => 'Update Governorate',
+    'governorates' => 'Governorates',
+    'show_all_governorates' => 'Show All Governorates',
+
+    'governorate_name' => 'Governorate Name',
+    'governorate_name_ar' => 'Arabic Governorate Name',
+    'governorate_name_en' => 'English Governorate Name',
+    'country_id'=>'Country',
+
+    'enter_governorate_name_ar' => 'Enter Arabic Governorate Name',
+    'enter_governorate_name_en' => 'Enter English Governorate Name',
+
+    // city
+    'create_new_city' => 'Create New City',
+    'update_city' => 'Update City',
+    'cities' => 'Cities',
+    'show_all_cities' => 'Show All Cities',
+
+    'city_name' => 'City Name',
+    'city_name_ar' => 'Arabic City Name',
+    'city_name_en' => 'English City Name',
+    'governorate_id' => ' Governorate ',
+
+    'enter_city_name_ar' => 'Enter Arabic City Name',
+    'enter_city_name_en' => 'Enter English City Name',
+];

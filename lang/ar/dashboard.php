@@ -16,6 +16,7 @@ return [
     'admins' => 'المديرين',
     'brands' => 'البرندات',
     'categories' => 'المجموعات',
+    'world'=>'المناطق',
 
     // login
     'login' => 'تسجيل الدخول',

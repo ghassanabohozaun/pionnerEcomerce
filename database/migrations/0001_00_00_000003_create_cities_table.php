@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->foreignId('governorate_id')->constrained('governorates')->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

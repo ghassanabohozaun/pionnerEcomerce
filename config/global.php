@@ -7,6 +7,7 @@ return [
         'users' => 'global.users',
         'brands' => 'global.brands',
         'categories' => 'global.categories',
+        'world'=>'global.world',
         'coupons' => 'global.coupons',
         'products' => 'global.products',
         'orders' => 'global.orders',

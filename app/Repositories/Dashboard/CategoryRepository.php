@@ -73,7 +73,7 @@ class CategoryRepository
     // destroy category
     public function destroyCategory($category)
     {
-        return $category->delete();
+        return $category->forceDelete();
     }
 
     // change status category

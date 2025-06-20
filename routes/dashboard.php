@@ -6,6 +6,9 @@ use App\Http\Controllers\Dashboard\Auth\Passowrd\ForgetPasswordController;
 use App\Http\Controllers\Dashboard\Auth\Passowrd\ResetPasswordController;
 use App\Http\Controllers\Dashboard\BrandsController;
 use App\Http\Controllers\Dashboard\CategoriesController;
+use App\Http\Controllers\Dashboard\CitiesController;
+use App\Http\Controllers\Dashboard\CountriesController;
+use App\Http\Controllers\Dashboard\GovernoratiesController;
 use App\Http\Controllers\Dashboard\RolesController;
 use App\Http\Controllers\Dashboard\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -65,6 +68,23 @@ Route::group(
                 Route::resource('categories', CategoriesController::class);
                 Route::post('/categories/destroy', [CategoriesController::class, 'destroy'])->name('categories.destroy');
                 Route::post('/categories/status', [CategoriesController::class, 'changeStatus'])->name('categories.change.status');
+            });
+
+            ########################################### countries routes  ######################################################################
+            Route::group(['middleware' => 'can:world'], function () {
+                // countries routes
+                Route::resource('countries', CountriesController::class);
+                Route::post('/countries/destroy', [CountriesController::class, 'destroy'])->name('countries.destroy');
+                Route::post('/countries/status', [CountriesController::class, 'changeStatus'])->name('countries.change.status');
+                Route::get('/countries/get/all/governoraties', [CountriesController::class, 'getAllGovernoratiesByCountry'])->name('countries.get.all.governoraties');
+                // governorates routes
+                Route::resource('governorates', GovernoratiesController::class);
+                Route::post('/governorates/destroy', [GovernoratiesController::class, 'destroy'])->name('governorates.destroy');
+                Route::get('/governorates/get/all/cities', [GovernoratiesController::class, 'getAllCitiesByGovernorate'])->name('governorates.get.all.cities');
+
+                // cities routes
+                Route::resource('cities', CitiesController::class);
+                Route::post('/cities/destroy', [CitiesController::class, 'destroy'])->name('cities.destroy');
             });
         });
     },
