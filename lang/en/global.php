@@ -7,6 +7,7 @@ return [
     'users' => 'Users Management',
     'brands' => 'Brand Management',
     'categories' => 'Categories Management',
+    'world' => 'World Management',
     'coupons' => 'Coupons Management',
     'products' => 'Products Management',
     'orders' => 'Orders Management',

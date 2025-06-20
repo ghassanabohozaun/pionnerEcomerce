@@ -16,6 +16,7 @@ return [
     'admins' => 'Admins',
     'brands' => 'Brands',
     'categories' => 'Categories',
+    'world' => 'World',
 
     // login
     'login' => 'Login',

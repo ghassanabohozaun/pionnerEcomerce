@@ -3722,7 +3722,7 @@ button.close {
   align-items: flex-start;
   justify-content: space-between;
   padding: 1rem;
-  border-bottom: 1px solid #98A4B8;
+  border-bottom: 1px solid #f5f5f5;
   border-top-left-radius: 0.35rem;
   border-top-right-radius: 0.35rem; }
   .modal-header .close {
@@ -3743,7 +3743,7 @@ button.close {
   align-items: center;
   justify-content: flex-end;
   padding: 1rem;
-  border-top: 1px solid #98A4B8; }
+  border-top: 1px solid #f5f5f5; }
   .modal-footer > :not(:first-child) {
     margin-left: .25rem; }
   .modal-footer > :not(:last-child) {

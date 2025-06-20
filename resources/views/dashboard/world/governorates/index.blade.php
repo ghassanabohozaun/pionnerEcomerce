@@ -3,9 +3,6 @@
     {!! $title !!}
 @endsection
 
-@push('style')
-@endpush
-
 @section('content')
     <div class="app-content content">
         <div class="content-wrapper">
@@ -14,7 +11,7 @@
 
                 <!-- begin: content header left-->
                 <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
-                    <h3 class="content-header-title mb-0 d-inline-block">{!! __('admins.admins') !!}</h3>
+                    <h3 class="content-header-title mb-0 d-inline-block">{!! __('world.governorates') !!}</h3>
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
@@ -24,8 +21,8 @@
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="{!! route('dashboard.admins.index') !!}">
-                                        {!! __('admins.admins') !!}
+                                    <a href="{!! route('dashboard.governorates.index') !!}">
+                                        {!! __('world.governorates') !!}
                                     </a>
                                 </li>
 
@@ -38,8 +35,8 @@
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
                     <div class="float-md-right">
-                        <a href="{{ route('dashboard.admins.create') }}" class="btn btn-info round btn-glow px-2" i>
-                            {!! __('admins.create_new_admin') !!}</a>
+                        <a href="{{ route('dashboard.governorates.create') }}" class="btn btn-info round btn-glow px-2" i>
+                            {!! __('world.create_new_governorate') !!}</a>
 
                     </div>
                 </div>
@@ -57,7 +54,7 @@
                                 <!-- begin: card header -->
                                 <div class="card-header">
                                     <h4 class="card-title" id="basic-layout-colored-form-control">
-                                        {!! __('admins.show_all_admins') !!}
+                                        {!! __('world.show_all_governorates') !!}
                                     </h4>
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -79,30 +76,27 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>{!! __('admins.name') !!}</th>
-                                                        <th>{!! __('admins.email') !!}</th>
-                                                        <th>{!! __('admins.role_id') !!}</th>
-                                                        <th>{!! __('admins.status') !!}
+                                                        <th>{!! __('world.governorate_name') !!}</th>
+                                                        <th>{!! __('world.country_id') !!}</th>
                                                         <th style="text-align: center">{!! __('general.actions') !!}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @forelse ($admins as $key=>$admin)
-                                                        <tr id="row{{ $admin->id }}">
-                                                            <th class="col-lg-2">{!! $loop->iteration !!} </th>
-                                                            <td class="col-lg-2">{!! $admin->name !!}</td>
-                                                            <td class="col-lg-3">{!! $admin->email !!}</td>
-                                                            <td class="col-lg-2">{!! $admin->role->role !!}</td>
-                                                            <td class="col-lg-1">
-                                                                @include('dashboard.admins.parts.status')</td>
+                                                    @forelse ($governorates as $governorate)
+                                                        <tr>
+                                                            <th class="col-lg-1">{!! $loop->iteration !!} </th>
+                                                            <td class="col-lg-4">{!! $governorate->name !!}</td>
+                                                            <td class="col-lg-3">
+                                                                {!! $governorate->country->name !!}
+                                                            </td>
                                                             <td class="col-lg-2">
-                                                                @include('dashboard.admins.parts.actions')
+                                                                @include('dashboard.world.governorates.parts.actions')
                                                             </td>
                                                         </tr>
                                                     @empty
                                                         <tr>
-                                                            <td colspan="6" class="text-center">
-                                                                {!! __('admins.no_admins_found') !!}
+                                                            <td colspan="4" class="text-center">
+                                                                {!! __('world.no_governorates_found') !!}
                                                             </td>
                                                         </tr>
                                                     @endforelse
@@ -110,7 +104,7 @@
 
                                             </table>
                                             <div class="float-right">
-                                                {!! $admins->links() !!}
+                                                {!! $governorates->links() !!}
                                             </div>
                                         </div>
                                     </div>
@@ -123,18 +117,15 @@
             </div><!-- end: content body  -->
         </div> <!-- end: content wrapper  -->
     </div><!-- end: content app  -->
+
+    @include('dashboard.world.governorates.modals.cities')
 @endsection
 @push('scripts')
-    {{-- <script defer src="https://cdn.jsdelivr.net/npm/@flasher/flasher@1.2.4/dist/flasher.min.js"></script> --}}
-    {{-- <script type="text/javascript" src="{!! asset('vendor/flasher/flasher.min.js') !!}"></script> --}}
-
-
     <script type="text/javascript">
-        // delete admin
-        $('body').on('click', '.delete_admin_btn', function(e) {
+        // delete governorate
+        $('body').on('click', '.delete_governorate_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
-            var rowIdToRemove = "row" + id;
 
             swal({
                 title: "{{ __('general.ask_delete_record') }}",
@@ -158,7 +149,7 @@
             }).then(isConfirm => {
                 if (isConfirm) {
                     $.ajax({
-                        url: '{!! route('dashboard.admins.destroy') !!}',
+                        url: '{!! route('dashboard.governorates.destroy') !!}',
                         data: {
                             id,
                             id
@@ -166,16 +157,13 @@
                         type: 'post',
                         dataType: 'json',
                         success: function(data) {
-
+                            $('#myTable').load(location.href + (' #myTable'));
                             if (data.status == true) {
-                                $('#myTable').load(location.href + (' #myTable'));
-                                // $("#" + rowIdToRemove).remove();
                                 swal("{!! __('general.deleted') !!} !",
                                     "{!! __('general.delete_success_message') !!} !!", "success");
                             } else if (data.status == false) {
-                                $('#myTable').load(location.href + (' #myTable'));
                                 swal("{!! __('general.warning') !!} !",
-                                    "{!! __('roles.role_have_admins') !!}", "warning");
+                                    "{!! __('general.delete_error_message') !!}", "warning");
                             }
 
                         }, //end success
@@ -187,40 +175,60 @@
             });
         });
 
-        //  change status
-        var statusSwitch = false;
-        $('body').on('change', '.change_status', function(e) {
+
+        // get all cities by governorate
+        $('body').on('click', '.get_all_cities_by_governorate_btn', function(e) {
+
             e.preventDefault();
             var id = $(this).data('id');
-
-            if ($(this).is(':checked')) {
-                statusSwitch = 1;
-            } else {
-                statusSwitch = 0;
-            }
+            console.log(id);
 
             $.ajax({
-                url: "{{ route('dashboard.admins.change.status') }}",
+                url: '{!! route('dashboard.governorates.get.all.cities') !!}',
                 data: {
-                    statusSwitch: statusSwitch,
-                    id: id
+                    id,
+                    id
                 },
-                type: 'post',
-                dataType: 'JSON',
-                success: function(data) {
-                    $('#myTable').load(location.href + (' #myTable'));
-                    console.log(data);
-                    if (data.status === true) {
-                        // flasher.success("Data has been saved successfully!");
+                method: 'get',
+                dataType: 'json',
 
-                        swal("{!! __('general.yes') !!}", "{!! __('general.change_status_success_message') !!}",
-                            "success");
+                success: function(data) {
+
+                    console.log(data.data);
+
+                    trHTML = "";
+                    if (!$.trim(data.data)) {
+                        $("#cities_tbody").empty();
+                        trHTML += '<tr class="notfound" id="notfound">' +
+                            '<td colspan="10">' + '{{ __('general.no_record_found') }}' + '</td>' +
+                            '</tr>';
                     } else {
-                        swal("{!! __('general.no') !!}", "{!! __('general.change_status_error_message') !!}",
-                            "error");
+                        $("#cities_tbody").empty();
+                        $.each(data.data, function(i, item) {
+                            var lang = '{!! Config::get('app.locale') !!}';
+
+                            var itration = i + 1;
+                            if (lang === 'en') {
+                                trHTML += '<tr id="row_' + item.id +
+                                    '">' +
+                                    '<td class="col-1">' + itration + '</td>' +
+                                    '<td class="col-6">' + item.name.en + '</td>' +
+                                    '</tr>';
+                            } else {
+                                trHTML += '<tr id="row_' + item.id +
+                                    '">' +
+                                    '<td class="col-1">' + itration + '</td>' +
+                                    '<td class="col-6">' + item.name.ar + '</td>' +
+                                    '</tr>';
+                            }
+                        });
                     }
-                }, //end success
-            })
+
+                    $('#cities_tbody').append(trHTML);
+                    $('#cities_modal').modal('show');
+                }
+
+            });
         });
     </script>
 @endpush

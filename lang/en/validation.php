@@ -198,6 +198,8 @@ return [
         'role.en' => 'English Role',
         'email' => 'Email ',
         'password' => 'Password ',
-        'role_id'=>'Role ',
+        'role_id' => 'Role ',
+        'phone_code' => 'Phone Code',
+        'country_id' => 'Country',
     ],
 ];

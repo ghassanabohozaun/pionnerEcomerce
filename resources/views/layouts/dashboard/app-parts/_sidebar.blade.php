@@ -83,7 +83,7 @@
                         <a href="#">
                             <i class="la la-navicon"></i>
                             <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.brands') !!}</span>
-                            {{-- <span class="badge badge badge-info badge-pill float-right mr-2">3</span> --}}
+                            {{-- <span  class="badge badge badge-info badge-pill float-right mr-2">3</span> --}}
                         </a>
                         <!-- begin: brands -->
                         <ul class="menu-content">
@@ -135,6 +135,44 @@
                 </ul>
             @endcan
             <!-- end: roles -->
+
+            <!-- begin: world -->
+            @can('world')
+                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li class=" nav-item">
+                        <a href="#">
+                            <i class="la la-flag-o"></i>
+                            <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.world') !!}</span>
+                            {{-- <span class="badge badge badge-info badge-pill float-right mr-2">3</span> --}}
+                        </a>
+
+                        <ul class="menu-content">
+                            <!-- begin: countries -->
+                            <li class="@if (str_contains(url()->current(), 'countries')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.countries.index') !!}" data-i18n="nav.dash.countries">
+                                    {!! __('world.countries') !!}
+                                </a>
+
+                            </li>
+                            <!-- end: countries -->
+
+                            <!-- begin: governorates -->
+                            <li class="@if (str_contains(url()->current(), 'governorates')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.governorates.index') !!}" data-i18n="nav.dash.governorates">
+                                    {!! __('world.governorates') !!}
+                                </a>
+
+                            </li>
+                            <!-- end: countries -->
+
+                        </ul>
+
+                    </li>
+                </ul>
+            @endcan
+            <!-- end: roles -->
+
+
 
         </div>
     </div>
