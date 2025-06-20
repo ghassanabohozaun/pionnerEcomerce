@@ -196,9 +196,6 @@
                     });
 
                 } else {
-<<<<<<< HEAD
-                    swal("{!! __(key: 'general.cancelled') !!}", "{!! __('general.delete_success_message') !!}", "error");
-=======
                     swal({
                         title: "{!! __('general.cancelled') !!} ",
                         text: "{!! __('general.delete_error_message') !!} ",
@@ -211,7 +208,6 @@
                             }
                         }
                     });
->>>>>>> world
                 }
             });
         });
@@ -219,43 +215,46 @@
         //  change status
         var statusSwitch = false;
         $('body').on('change', '.change_status', function(e) {
-            e.preventDefault();
-            var id = $(this).data('id');
+                    e.preventDefault();
+                    var id = $(this).data('id');
 
-            if ($(this).is(':checked')) {
-                statusSwitch = 1;
-            } else {
-                statusSwitch = 0;
-            }
-
-            $.ajax({
-                url: "{{ route('dashboard.admins.change.status') }}",
-                data: {
-                    statusSwitch: statusSwitch,
-                    id: id
-                },
-                type: 'post',
-                dataType: 'JSON',
-                success: function(data) {
-<<<<<<< HEAD
-                    if (data.status == true) {
-=======
-                    $('#myTable').load(location.href + (' #myTable'));
-                    console.log(data);
-                    if (data.status === true) {
-                        // flasher.success("Data has been saved successfully!");
-
->>>>>>> world
-                        swal("{!! __('general.yes') !!}", "{!! __('general.change_status_success_message') !!}",
-                            "success");
-                        $('#myTable').load(location.href + (' #myTable'));
+                    if ($(this).is(':checked')) {
+                        statusSwitch = 1;
                     } else {
-                        swal("{!! __('general.no') !!}", "{!! __('general.change_status_error_message') !!}",
-                            "error");
-                        $('#myTable').load(location.href + (' #myTable'));
+                        statusSwitch = 0;
                     }
-                }, //end success
-            })
-        });
+
+                    $.ajax({
+                            url: "{{ route('dashboard.admins.change.status') }}",
+                            data: {
+                                statusSwitch: statusSwitch,
+                                id: id
+                            },
+                            type: 'post',
+                            dataType: 'JSON',
+                            success: function(data) {
+                                <<
+                                << << < HEAD
+                                if (data.status == true) {
+                                    ===
+                                    === =
+                                    $('#myTable').load(location.href + (' #myTable'));
+                                    console.log(data);
+                                    if (data.status === true) {
+                                        // flasher.success("Data has been saved successfully!");
+
+                                        >>>
+                                        >>> > world
+                                        swal("{!! __('general.yes') !!}", "{!! __('general.change_status_success_message') !!}",
+                                            "success");
+                                        $('#myTable').load(location.href + (' #myTable'));
+                                    } else {
+                                        swal("{!! __('general.no') !!}", "{!! __('general.change_status_error_message') !!}",
+                                            "error");
+                                        $('#myTable').load(location.href + (' #myTable'));
+                                    }
+                                }, //end success
+                            })
+                    });
     </script>
 @endpush
