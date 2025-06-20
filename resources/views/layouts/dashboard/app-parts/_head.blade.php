@@ -1,10 +1,8 @@
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
- <meta name="description"
-     content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
- <meta name="keywords"
-     content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
+ <meta name="description" content="">
+ <meta name="keywords" content="">
  <meta name="author" content="PIXINVENT">
  <meta name="csrf-token" content="{{ csrf_token() }}">
  <title>{!! __('dashboard.dashboard') !!} | @yield('title')</title>
@@ -37,6 +35,15 @@
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css-rtl/pages/timeline.css">
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css-rtl/pages/dashboard-ecommerce.css">
      {{-- <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/assets/css/style-rtl.css"> --}}
+     <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet" />
+     <style>
+         body,
+         html {
+             font-family: "Poppins", "ArbFONTSBEINNormalAR", sans-serif;
+             font-weight: normal;
+             font-style: normal;
+         }
+     </style>
  @else
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/vendors.css">
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/app.css">

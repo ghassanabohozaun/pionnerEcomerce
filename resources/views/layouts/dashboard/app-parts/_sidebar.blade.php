@@ -34,9 +34,7 @@
                                 <a class="menu-item" href="{!! route('dashboard.roles.index') !!}" data-i18n="nav.dash.roles">
                                     {!! __('roles.roles') !!}
                                 </a>
-                                <a class="menu-item" href="{!! route('dashboard.roles.create') !!}" data-i18n="nav.dash.roles">
-                                    {!! __('roles.create_new_role') !!}
-                                </a>
+
                             </li>
                         </ul>
                         <!-- end: roles -->
@@ -61,12 +59,6 @@
                                     {!! __('admins.admins') !!}
                                 </a>
 
-                            </li>
-
-                            <li class="@if (str_contains(url()->current(), 'admins')) active @endif">
-                                <a class="menu-item" href="{!! route('dashboard.admins.create') !!}" data-i18n="nav.dash.admins">
-                                    {!! __('admins.create_new_admin') !!}
-                                </a>
                             </li>
                         </ul>
                         <!-- end: admins -->
@@ -93,12 +85,6 @@
                                 </a>
 
                             </li>
-
-                            <li class="@if (str_contains(url()->current(), 'brands')) active @endif">
-                                <a class="menu-item" href="{!! route('dashboard.brands.create') !!}" data-i18n="nav.dash.brands">
-                                    {!! __('brands.create_new_brand') !!}
-                                </a>
-                            </li>
                         </ul>
                         <!-- end: brands -->
                     </li>
@@ -123,12 +109,6 @@
                                 </a>
 
                             </li>
-
-                            <li class="@if (str_contains(url()->current(), 'categories')) active @endif">
-                                <a class="menu-item" href="{!! route('dashboard.categories.create') !!}" data-i18n="nav.dash.categories">
-                                    {!! __('categories.create_new_category') !!}
-                                </a>
-                            </li>
                         </ul>
                         <!-- end: categories -->
                     </li>
@@ -152,7 +132,6 @@
                                 <a class="menu-item" href="{!! route('dashboard.countries.index') !!}" data-i18n="nav.dash.countries">
                                     {!! __('world.countries') !!}
                                 </a>
-
                             </li>
                             <!-- end: countries -->
 
@@ -161,9 +140,16 @@
                                 <a class="menu-item" href="{!! route('dashboard.governorates.index') !!}" data-i18n="nav.dash.governorates">
                                     {!! __('world.governorates') !!}
                                 </a>
-
                             </li>
-                            <!-- end: countries -->
+                            <!-- end: governorates -->
+
+                            <!-- begin: cities -->
+                            <li class="@if (str_contains(url()->current(), 'cities')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.cities.index') !!}" data-i18n="nav.dash.cities">
+                                    {!! __('world.cities') !!}
+                                </a>
+                            </li>
+                            <!-- end: cities -->
 
                         </ul>
 
@@ -171,8 +157,5 @@
                 </ul>
             @endcan
             <!-- end: roles -->
-
-
-
         </div>
     </div>

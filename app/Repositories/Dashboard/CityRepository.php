@@ -14,8 +14,7 @@ class CityRepository
         //
     }
 
-
-      // get city
+    // get city
     public function getCity($id)
     {
         return City::find($id);
@@ -24,7 +23,7 @@ class CityRepository
     // get countries
     public function getCities()
     {
-        return City::orderByDesc('id')->select('name', 'governorate_id')->paginate(10);
+        return City::orderByDesc('id')->select('id', 'name', 'governorate_id')->paginate(10);
     }
 
     // store city
@@ -49,17 +48,21 @@ class CityRepository
                 'en' => $request->name['en'],
                 'ar' => $request->name['ar'],
             ],
-            'status' => $request->has('status') ? 1 : 0,
-            'phone_code' => $request->phone_code,
+            'governorate_id' => $request->governorate_id,
         ]);
 
         return $city;
     }
 
+    // destroy city
+    public function destroyCity($city)
+    {
+        return $city->forceDelete();
+    }
     // change status
     public function changeStatus($city, $status)
     {
-        $city=  $city->update([
+        $city = $city->update([
             'status' => $status,
         ]);
         return $city;

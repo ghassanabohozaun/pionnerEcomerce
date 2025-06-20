@@ -119,6 +119,4 @@ class CountriesController extends Controller
         }
     }
 
-
-
 }

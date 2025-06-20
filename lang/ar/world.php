@@ -41,7 +41,7 @@ return [
     'city_name' => 'اسم المدينة',
     'city_name_ar' => 'اسم المدينة بالعربي',
     'city_name_en' => 'اسم المدينة بالانجليزي',
-    'governorate' => 'المحافظة',
+    'governorate_id' => 'المحافظة',
 
     'enter_city_name_ar' => 'ادخل اسم المدينة بالعربي',
     'enter_city_name_en' => 'ادخل اسم المدينة بالانجليزي',

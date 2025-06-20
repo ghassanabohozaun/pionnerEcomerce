@@ -84,6 +84,7 @@ Route::group(
 
                 // cities routes
                 Route::resource('cities', CitiesController::class);
+                Route::post('/cities/destroy', [CitiesController::class, 'destroy'])->name('cities.destroy');
             });
         });
     },

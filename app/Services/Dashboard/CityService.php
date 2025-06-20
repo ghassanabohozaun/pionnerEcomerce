@@ -38,6 +38,22 @@ class CityService
         return $city;
     }
 
+    // destroy city
+    public function destroyCity($id)
+    {
+        $city = self::getCity($id);
+
+        if (!$city) {
+            return false;
+        }
+
+        $city = $this->cityRepository->destroyCity($city);
+        if (!$city) {
+            return false;
+        }
+        return $city;
+    }
+
     // update city
     public function updateCity($request, $id)
     {

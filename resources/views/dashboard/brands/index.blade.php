@@ -122,6 +122,7 @@
 @endsection
 @push('scripts')
     <script type="text/javascript">
+        // delete brand
         $('body').on('click', '.delete_brand_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
@@ -158,22 +159,51 @@
                         success: function(data) {
                             $('#myTable').load(location.href + (' #myTable'));
                             if (data.status == true) {
-                                swal("{!! __('general.deleted') !!} !",
-                                    "{!! __('general.delete_success_message') !!} !!", "success");
+                                swal({
+                                    title: "{!! __('general.deleted') !!} ",
+                                    text: "{!! __('general.delete_success_message') !!} ",
+                                    icon: "success",
+                                    buttons: {
+                                        confirm: {
+                                            text: "{!! __('general.yes') !!}",
+                                            visible: true,
+                                            closeModal: true
+                                        }
+                                    }
+                                });
                             } else if (data.status == false) {
-                                swal("{!! __('general.warning') !!} !",
-                                    "{!! __('general.delete_error_message') !!}", "warning");
+                                swal({
+                                    title: "{!! __('general.warning') !!} ",
+                                    text: "{!! __('general.delete_error_message') !!} ",
+                                    icon: "warning",
+                                    buttons: {
+                                        confirm: {
+                                            text: "{!! __('general.yes') !!}",
+                                            visible: true,
+                                            closeModal: true
+                                        }
+                                    }
+                                });
                             }
-
                         }, //end success
                     });
 
                 } else {
-                    swal("{!! __('general.cancelled') !!}", "{!! __('general.delete_success_message') !!}", "error");
+                    swal({
+                        title: "{!! __('general.cancelled') !!} ",
+                        text: "{!! __('general.delete_error_message') !!} ",
+                        icon: "error",
+                        buttons: {
+                            confirm: {
+                                text: "{!! __('general.yes') !!}",
+                                visible: true,
+                                closeModal: true
+                            }
+                        }
+                    });
                 }
             });
         });
-
 
         //  change status
         var statusSwitch = false;

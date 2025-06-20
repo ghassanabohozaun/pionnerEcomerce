@@ -41,7 +41,7 @@ return [
     'city_name' => 'City Name',
     'city_name_ar' => 'Arabic City Name',
     'city_name_en' => 'English City Name',
-    'governorate' => ' Governorate ',
+    'governorate_id' => ' Governorate ',
 
     'enter_city_name_ar' => 'Enter Arabic City Name',
     'enter_city_name_en' => 'Enter English City Name',

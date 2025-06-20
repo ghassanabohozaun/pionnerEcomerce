@@ -125,16 +125,11 @@
     </div><!-- end: content app  -->
 @endsection
 @push('scripts')
-    {{-- <script defer src="https://cdn.jsdelivr.net/npm/@flasher/flasher@1.2.4/dist/flasher.min.js"></script> --}}
-    {{-- <script type="text/javascript" src="{!! asset('vendor/flasher/flasher.min.js') !!}"></script> --}}
-
-
     <script type="text/javascript">
         // delete admin
         $('body').on('click', '.delete_admin_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
-            var rowIdToRemove = "row" + id;
 
             swal({
                 title: "{{ __('general.ask_delete_record') }}",
@@ -166,23 +161,50 @@
                         type: 'post',
                         dataType: 'json',
                         success: function(data) {
-
+                            $('#myTable').load(location.href + (' #myTable'));
                             if (data.status == true) {
-                                $('#myTable').load(location.href + (' #myTable'));
-                                // $("#" + rowIdToRemove).remove();
-                                swal("{!! __('general.deleted') !!} !",
-                                    "{!! __('general.delete_success_message') !!} !!", "success");
+                                swal({
+                                    title: "{!! __('general.deleted') !!} ",
+                                    text: "{!! __('general.delete_success_message') !!} ",
+                                    icon: "success",
+                                    buttons: {
+                                        confirm: {
+                                            text: "{!! __('general.yes') !!}",
+                                            visible: true,
+                                            closeModal: true
+                                        }
+                                    }
+                                });
                             } else if (data.status == false) {
-                                $('#myTable').load(location.href + (' #myTable'));
-                                swal("{!! __('general.warning') !!} !",
-                                    "{!! __('roles.role_have_admins') !!}", "warning");
+                                swal({
+                                    title: "{!! __('general.warning') !!} ",
+                                    text: "{!! __('general.delete_error_message') !!} ",
+                                    icon: "warning",
+                                    buttons: {
+                                        confirm: {
+                                            text: "{!! __('general.yes') !!}",
+                                            visible: true,
+                                            closeModal: true
+                                        }
+                                    }
+                                });
                             }
-
                         }, //end success
                     });
 
                 } else {
-                    swal("{!! __('general.cancelled') !!}", "{!! __('general.delete_success_message') !!}", "error");
+                    swal({
+                        title: "{!! __('general.cancelled') !!} ",
+                        text: "{!! __('general.delete_error_message') !!} ",
+                        icon: "error",
+                        buttons: {
+                            confirm: {
+                                text: "{!! __('general.yes') !!}",
+                                visible: true,
+                                closeModal: true
+                            }
+                        }
+                    });
                 }
             });
         });
