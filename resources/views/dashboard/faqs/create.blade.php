@@ -5,15 +5,15 @@
 
 @section('content')
     <div class="app-content content">
-        <form class="form" action="{!! route('dashboard.roles.update', $role->id) !!}" method="post" enctype="multipart/form-data">
+
+        <form class="form" action="{!! route('dashboard.faqs.store') !!}" method="post" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
             <div class="content-wrapper">
                 <!-- begin: content header -->
                 <div class="content-header row">
                     <!-- begin: content header left-->
                     <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
-                        <h3 class="content-header-title mb-0 d-inline-block">{!! __('roles.roles') !!}</h3>
+                        <h3 class="content-header-title mb-0 d-inline-block">{!! __('faqs.faqs') !!}</h3>
                         <div class="row breadcrumbs-top d-inline-block">
                             <div class="breadcrumb-wrapper col-12">
                                 <ol class="breadcrumb">
@@ -23,14 +23,13 @@
                                         </a>
                                     </li>
                                     <li class="breadcrumb-item">
-                                        <a href="{!! route('dashboard.roles.index') !!}">
-                                            {!! __('roles.roles') !!}
-
+                                        <a href="{!! route('dashboard.faqs.index') !!}">
+                                            {!! __('faqs.faqs') !!}
                                         </a>
                                     </li>
                                     <li class="breadcrumb-item active">
                                         <a href="#">
-                                            {!! __('roles.update_role') !!}
+                                            {!! __('faqs.create_new_faq') !!}
                                         </a>
                                     </li>
                                 </ol>
@@ -44,12 +43,13 @@
                         <div class="dropdown float-md-right">
                             <button class="btn btn-info round btn-glow px-2" type="submit">
                                 <i class="la la-save"></i>
-                                {!! __('general.update') !!}
+                                {!! __('general.save') !!}
                             </button>
 
                         </div>
                     </div>
                     <!-- end: content header right-->
+
 
                 </div> <!-- end :content header -->
 
@@ -63,14 +63,14 @@
                                     <!-- begin: card header -->
                                     <div class="card-header">
                                         <h4 class="card-title" id="basic-layout-colored-form-control">
-                                            {!! __('roles.update_role') !!}
+                                            {!! __('faqs.create_new_faq') !!}
                                         </h4>
                                         <a class="heading-elements-toggle"><i
                                                 class="la la-ellipsis-v font-medium-3"></i></a>
                                         <div class="heading-elements">
                                             <ul class="list-inline mb-0">
                                                 <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                                <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                                <li><a data-action="reload-form"><i class="ft-rotate-cw"></i></a></li>
                                                 <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
                                                 <li><a data-action="close"><i class="ft-x"></i></a></li>
                                             </ul>
@@ -82,82 +82,97 @@
                                     <div class="card-content collapse show">
                                         <div class="card-body">
 
-
                                             <div class="form-body">
+
                                                 <!-- begin: row -->
-                                                <div class="row d-none">
-                                                    <input type="hidden" id='id' , name="id"
-                                                        value="{!! $role->id !!}">
+                                                <div class="row">
+                                                    <!-- begin: input -->
+                                                    <div class="col-md-5">
+                                                        <div class="form-group">
+                                                            <label for="question">{!! __('faqs.question_ar') !!}</label>
+                                                            <input type="text" id="question" name="question[ar]"
+                                                                value="{!! old('question.ar') !!}"
+                                                                class="form-control round border-primary" autocomplete="off"
+                                                                placeholder="{!! __('faqs.enter_question_ar') !!}">
+                                                            @error('question.ar')
+                                                                <span class="text text-danger">
+                                                                    <strong>{!! $message !!}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <!-- end: input -->
+
+                                                    <!-- begin: input -->
+                                                    <div class="col-md-5">
+                                                        <div class="form-group">
+                                                            <label for="question">{!! __('faqs.question_en') !!}</label>
+                                                            <input type="text" id="question" name="question[en]"
+                                                                value="{!! old('question.en') !!}"
+                                                                class="form-control round border-primary "
+                                                                autocomplete="off" placeholder="{!! __('faqs.enter_question_en') !!}">
+                                                            @error('question.en')
+                                                                <span class="text text-danger">
+                                                                    <strong>{!! $message !!}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <!-- end: input -->
+
+                                                    <!-- begin: input -->
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label id="statusLabel">
+                                                                <input type="checkbox" name="status" class="checkbox"
+                                                                    @checked(old('status') == 'on')>
+                                                                <span>{!! __('faqs.status') !!}</span>
+                                                            </label>
+                                                        </div>
+                                                        @error('status')
+                                                            <span class="text text-danger">
+                                                                <strong>{!! $message !!}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <!-- end: input -->
                                                 </div>
                                                 <!-- end: row -->
 
 
                                                 <!-- begin: row -->
                                                 <div class="row">
-
                                                     <!-- begin: input -->
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-5">
                                                         <div class="form-group">
-                                                            <label for="role_name">{!! __('roles.role_ar') !!}</label>
-                                                            <input type="text" id="role" name="role[ar]"
-                                                                value="{!! old('role.ar', $role->getTranslation('role', 'ar')) !!}"
-                                                                class="form-control round border-primary" autocomplete="off"
-                                                                placeholder="{!! __('roles.enter_role_ar') !!}">
-                                                            @error('role.ar')
+                                                            <label for="answer">{!! __('faqs.answer_ar') !!}</label>
+                                                            <textarea rows="5" id="answer" name="answer[ar]" class="form-control round border-primary "
+                                                                placeholder="{!! __('faqs.enter_answer_ar') !!}">{!! old('answer.ar') !!}</textarea>
+                                                            @error('answer.ar')
                                                                 <span class="text text-danger">
                                                                     <strong>{!! $message !!}</strong>
                                                                 </span>
                                                             @enderror
                                                         </div>
-
                                                     </div>
                                                     <!-- end: input -->
 
                                                     <!-- begin: input -->
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-5">
                                                         <div class="form-group">
-                                                            <label for="role_name">{!! __('roles.role_en') !!}</label>
-                                                            <input type="text" id="role" name="role[en]"
-                                                                value="{!! old('role.en', $role->getTranslation('role', 'en')) !!}"
-                                                                class="form-control round border-primary" autocomplete="off"
-                                                                placeholder="{!! __('roles.enter_role_en') !!}">
-                                                            @error('role.en')
+                                                            <label for="answer">{!! __('faqs.answer_en') !!}</label>
+                                                            <textarea rows="5" id="answer" name="answer[en]" class="form-control round border-primary "
+                                                                placeholder="{!! __('faqs.enter_answer_en') !!}">{!! old('answer.en') !!}</textarea>
+                                                            @error('answer.en')
                                                                 <span class="text text-danger">
                                                                     <strong>{!! $message !!}</strong>
                                                                 </span>
                                                             @enderror
                                                         </div>
-
                                                     </div>
                                                     <!-- end: input -->
 
-                                                </div>
-                                                <!-- end: row -->
 
-
-                                                <!-- begin: row -->
-                                                <div class="row mt-2">
-                                                    <!-- begin: input -->
-                                                    @foreach (Config('global.permissions') as $key => $value)
-                                                        <div class="col-md-3">
-                                                            <fieldset class="checkboxsas">
-                                                                <label>
-                                                                    <input type="checkbox" value="{!! $key !!}"
-                                                                        name="permissions[]" class="checkbox"
-                                                                        @checked(in_array($key, $role->permissions))>
-                                                                    {{ __(config('global.permissions.', $value)) }}
-                                                                </label>
-                                                            </fieldset>
-                                                        </div>
-                                                    @endforeach
-                                                    @error('permissions')
-                                                        <div class="col-md-12">
-                                                            <span class="text text-danger">
-                                                                <strong>{!! $message !!}</strong>
-                                                            </span>
-                                                        </div>
-                                                    @enderror
-                                                    <!-- end: input -->
                                                 </div>
                                                 <!-- end: row -->
 
@@ -173,3 +188,5 @@
         </form>
     </div><!-- end: content app  -->
 @endsection
+@push('scripts')
+@endpush

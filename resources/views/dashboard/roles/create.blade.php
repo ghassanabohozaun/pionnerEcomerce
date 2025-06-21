@@ -91,23 +91,6 @@
                                                     <!-- begin: input -->
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="role_name">{!! __('roles.role_en') !!}</label>
-                                                            <input type="text" id="role" name="role[en]"
-                                                                value="{!! old('role.en') !!}"
-                                                                class="form-control round border-primary" autocomplete="off"
-                                                                placeholder="{!! __('roles.enter_role_en') !!}">
-                                                            @error('role.en')
-                                                                <span class="text text-danger">
-                                                                    <strong>{!! $message !!}</strong>
-                                                                </span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                    <!-- end: input -->
-
-                                                    <!-- begin: input -->
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
                                                             <label for="role_name">{!! __('roles.role_ar') !!}</label>
                                                             <input type="text" id="role" name="role[ar]"
                                                                 value="{!! old('role.ar') !!}"
@@ -122,6 +105,22 @@
                                                     </div>
                                                     <!-- end: input -->
 
+                                                    <!-- begin: input -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="role_name">{!! __('roles.role_en') !!}</label>
+                                                            <input type="text" id="role" name="role[en]"
+                                                                value="{!! old('role.en') !!}"
+                                                                class="form-control round border-primary" autocomplete="off"
+                                                                placeholder="{!! __('roles.enter_role_en') !!}">
+                                                            @error('role.en')
+                                                                <span class="text text-danger">
+                                                                    <strong>{!! $message !!}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <!-- end: input -->
                                                 </div>
                                                 <!-- end: row -->
 

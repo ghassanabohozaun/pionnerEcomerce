@@ -17,6 +17,7 @@ return [
     'brands' => 'Brands',
     'categories' => 'Categories',
     'world' => 'World',
+    'faqs' => 'Faqs',
 
     // login
     'login' => 'Login',

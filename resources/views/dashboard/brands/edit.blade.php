@@ -108,11 +108,11 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group">
                                                             <label for="name">{!! __('brands.brand_ar') !!}</label>
-                                                            <input type="text" id="name" name="name[en]"
-                                                                value="{!! old('name.en', $brand->getTranslation('name', 'en')) !!}"
+                                                            <input type="text" id="name" name="name[ar]"
+                                                                value="{!! old('name.ar', $brand->getTranslation('name', 'ar')) !!}"
                                                                 class="form-control round border-primary" autocomplete="off"
                                                                 placeholder="{!! __('brands.enter_brand_ar') !!}">
-                                                            @error('name.en')
+                                                            @error('name.ar')
                                                                 <span class="text text-danger">
                                                                     <strong>{!! $message !!}</strong>
                                                                 </span>
@@ -124,12 +124,12 @@
                                                     <!-- begin: input -->
                                                     <div class="col-md-5">
                                                         <div class="form-group">
-                                                            <label for="name">{!! __('brands.brand_ar') !!}</label>
-                                                            <input type="text" id="name" name="name[ar]"
-                                                                value="{!! old('name.ar', $brand->getTranslation('name', 'en')) !!}"
+                                                            <label for="name">{!! __('brands.brand_en') !!}</label>
+                                                            <input type="text" id="name" name="name[en]"
+                                                                value="{!! old('name.en', $brand->getTranslation('name', 'en')) !!}"
                                                                 class="form-control round border-primary "
-                                                                autocomplete="off" placeholder="{!! __('brands.enter_brand_ar') !!}">
-                                                            @error('name.ar')
+                                                                autocomplete="off" placeholder="{!! __('brands.enter_brand_en') !!}">
+                                                            @error('name.en')
                                                                 <span class="text text-danger">
                                                                     <strong>{!! $message !!}</strong>
                                                                 </span>

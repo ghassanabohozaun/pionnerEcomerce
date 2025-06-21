@@ -30,7 +30,7 @@
                                     </li>
                                     <li class="breadcrumb-item active">
                                         <a href="#">
-                                            {!! __('categories.update_brand') !!}
+                                            {!! __('categories.update_category') !!}
                                         </a>
                                     </li>
                                 </ol>
@@ -64,7 +64,7 @@
                                     <!-- begin: card header -->
                                     <div class="card-header">
                                         <h4 class="card-title" id="basic-layout-colored-form-control">
-                                            {!! __('categories.update_brand') !!}
+                                            {!! __('categories.update_category') !!}
                                         </h4>
                                         <a class="heading-elements-toggle"><i
                                                 class="la la-ellipsis-v font-medium-3"></i></a>
@@ -103,12 +103,12 @@
                                                     <!-- begin: input -->
                                                     <div class="col-md-5">
                                                         <div class="form-group">
-                                                            <label for="name">{!! __('categories.name_en') !!}</label>
-                                                            <input type="text" id="name" name="name[en]"
-                                                                value="{!! old('name.en', $category->getTranslation('name', 'en')) !!}"
+                                                            <label for="name">{!! __('categories.name_ar') !!}</label>
+                                                            <input type="text" id="name" name="name[ar]"
+                                                                value="{!! old('name.ar', $category->getTranslation('name', 'ar')) !!}"
                                                                 class="form-control round border-primary" autocomplete="off"
-                                                                placeholder="{!! __('categories.enter_name_en') !!}">
-                                                            @error('name.en')
+                                                                placeholder="{!! __('categories.enter_name_ar') !!}">
+                                                            @error('name.ar')
                                                                 <span class="text text-danger">
                                                                     <strong>{!! $message !!}</strong>
                                                                 </span>
@@ -120,12 +120,12 @@
                                                     <!-- begin: input -->
                                                     <div class="col-md-5">
                                                         <div class="form-group">
-                                                            <label for="name">{!! __('categories.name_ar') !!}</label>
-                                                            <input type="text" id="name" name="name[ar]"
-                                                                value="{!! old('name.ar', $category->getTranslation('name', 'en')) !!}"
+                                                            <label for="name">{!! __('categories.name_en') !!}</label>
+                                                            <input type="text" id="name" name="name[en]"
+                                                                value="{!! old('name.en', $category->getTranslation('name', 'en')) !!}"
                                                                 class="form-control round border-primary "
-                                                                autocomplete="off" placeholder="{!! __('categories.enter_name_ar') !!}">
-                                                            @error('name.ar')
+                                                                autocomplete="off" placeholder="{!! __('categories.enter_name_en') !!}">
+                                                            @error('name.en')
                                                                 <span class="text text-danger">
                                                                     <strong>{!! $message !!}</strong>
                                                                 </span>

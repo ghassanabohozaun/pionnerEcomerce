@@ -90,11 +90,11 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group">
                                                             <label for="name">{!! __('categories.name_ar') !!}</label>
-                                                            <input type="text" id="name" name="name[en]"
-                                                                value="{!! old('name.en') !!}"
+                                                            <input type="text" id="name" name="name[ar]"
+                                                                value="{!! old('name.ar') !!}"
                                                                 class="form-control round border-primary" autocomplete="off"
                                                                 placeholder="{!! __('categories.enter_name_ar') !!}">
-                                                            @error('name.en')
+                                                            @error('name.ar')
                                                                 <span class="text text-danger">
                                                                     <strong>{!! $message !!}</strong>
                                                                 </span>
@@ -107,11 +107,11 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group">
                                                             <label for="name">{!! __('categories.name_en') !!}</label>
-                                                            <input type="text" id="name" name="name[ar]"
-                                                                value="{!! old('name.ar') !!}"
+                                                            <input type="text" id="name" name="name[en]"
+                                                                value="{!! old('name.en') !!}"
                                                                 class="form-control round border-primary "
-                                                                autocomplete="off" placeholder="{!! __('categories.enter_name_ar') !!}">
-                                                            @error('name.ar')
+                                                                autocomplete="off" placeholder="{!! __('categories.enter_name_en') !!}">
+                                                            @error('name.en')
                                                                 <span class="text text-danger">
                                                                     <strong>{!! $message !!}</strong>
                                                                 </span>

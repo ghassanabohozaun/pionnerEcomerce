@@ -201,5 +201,9 @@ return [
         'role_id' => 'Role ',
         'phone_code' => 'Phone Code',
         'country_id' => 'Country',
+        'question.ar' => 'Arabic Question',
+        'question.en' => 'English Question',
+        'answer.ar' => 'Arabic Answer',
+        'answer.en' => 'English Answer',
     ],
 ];

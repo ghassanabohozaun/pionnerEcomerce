@@ -92,23 +92,6 @@
                                                     <!-- begin: input -->
                                                     <div class="col-md-5">
                                                         <div class="form-group">
-                                                            <label for="name">{!! __('admins.name_en') !!}</label>
-                                                            <input type="text" id="name" name="name[en]"
-                                                                value="{!! $admin->getTranslation('name', 'en') !!}"
-                                                                class="form-control round border-primary" autocomplete="off"
-                                                                placeholder="{!! __('admins.enter_name_ar') !!}">
-                                                            @error('name.en')
-                                                                <span class="text text-danger">
-                                                                    <strong>{!! $message !!}</strong>
-                                                                </span>
-                                                            @enderror
-                                                        </div>
-                                                        <!-- end: input -->
-                                                    </div>
-
-                                                    <!-- begin: input -->
-                                                    <div class="col-md-5">
-                                                        <div class="form-group">
                                                             <label for="name">{!! __('admins.name_ar') !!}</label>
                                                             <input type="text" id="name" name="name[ar]"
                                                                 value="{!! $admin->getTranslation('name', 'ar') !!}"
@@ -120,13 +103,30 @@
                                                                 </span>
                                                             @enderror
                                                         </div>
+                                                        <!-- end: input -->
+                                                    </div>
+
+                                                    <!-- begin: input -->
+                                                    <div class="col-md-5">
+                                                        <div class="form-group">
+                                                            <label for="name">{!! __('admins.name_en') !!}</label>
+                                                            <input type="text" id="name" name="name[en]"
+                                                                value="{!! $admin->getTranslation('name', 'en') !!}"
+                                                                class="form-control round border-primary" autocomplete="off"
+                                                                placeholder="{!! __('admins.enter_name_en') !!}">
+                                                            @error('name.en')
+                                                                <span class="text text-danger">
+                                                                    <strong>{!! $message !!}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
 
                                                     </div>
                                                     <!-- end: input -->
                                                     <!-- begin: input -->
                                                     <div class="col-md-2">
                                                         <div class="form-group">
-                                                             <label id="statusLabel">
+                                                            <label id="statusLabel">
                                                                 <input type="checkbox" name="status" class="checkbox"
                                                                     @checked(old('status', $admin->status) == 'on')>
                                                                 <span>{!! __('admins.status') !!}</span>

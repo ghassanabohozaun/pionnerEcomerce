@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\BrandsController;
 use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\CitiesController;
 use App\Http\Controllers\Dashboard\CountriesController;
+use App\Http\Controllers\dashboard\FaqsController;
 use App\Http\Controllers\Dashboard\GovernoratiesController;
 use App\Http\Controllers\Dashboard\RolesController;
 use App\Http\Controllers\Dashboard\WelcomeController;
@@ -70,7 +71,7 @@ Route::group(
                 Route::post('/categories/status', [CategoriesController::class, 'changeStatus'])->name('categories.change.status');
             });
 
-            ########################################### countries routes  ######################################################################
+            ########################################### world routes  ######################################################################
             Route::group(['middleware' => 'can:world'], function () {
                 // countries routes
                 Route::resource('countries', CountriesController::class);
@@ -85,6 +86,13 @@ Route::group(
                 // cities routes
                 Route::resource('cities', CitiesController::class);
                 Route::post('/cities/destroy', [CitiesController::class, 'destroy'])->name('cities.destroy');
+            });
+
+            ########################################### faqs routes  ######################################################################
+            Route::group(['middleware', 'can:faqs'], function () {
+                Route::resource('faqs', FaqsController::class);
+                Route::post('/faqs/destroy', [FaqsController::class, 'destroy'])->name('faqs.destroy');
+                Route::post('/faqs/status', [FaqsController::class, 'changeStatus'])->name('faqs.change.status');
             });
         });
     },

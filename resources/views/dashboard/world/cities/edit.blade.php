@@ -94,15 +94,16 @@
 
                                                 <!-- begin: row -->
                                                 <div class="row">
+
                                                     <!-- begin: input -->
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="name">{!! __('world.city_name_ar') !!}</label>
-                                                            <input type="text" id="name" name="name[en]"
-                                                                value="{!! old('name.en', $city->getTranslation('name', 'en')) !!}"
-                                                                class="form-control round border-primary" autocomplete="off"
-                                                                placeholder="{!! __('world.enter_city_name_ar') !!}">
-                                                            @error('name.en')
+                                                            <input type="text" id="name" name="name[ar]"
+                                                                value="{!! old('name.ar', $city->getTranslation('name', 'ar')) !!}"
+                                                                class="form-control round border-primary "
+                                                                autocomplete="off" placeholder="{!! __('world.enter_city_name_ar') !!}">
+                                                            @error('name.ar')
                                                                 <span class="text text-danger">
                                                                     <strong>{!! $message !!}</strong>
                                                                 </span>
@@ -115,11 +116,11 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="name">{!! __('world.city_name_en') !!}</label>
-                                                            <input type="text" id="name" name="name[ar]"
-                                                                value="{!! old('name.ar', $city->getTranslation('name', 'ar')) !!}"
-                                                                class="form-control round border-primary "
-                                                                autocomplete="off" placeholder="{!! __('world.enter_city_name_en') !!}">
-                                                            @error('name.ar')
+                                                            <input type="text" id="name" name="name[en]"
+                                                                value="{!! old('name.en', $city->getTranslation('name', 'en')) !!}"
+                                                                class="form-control round border-primary" autocomplete="off"
+                                                                placeholder="{!! __('world.enter_city_name_en') !!}">
+                                                            @error('name.en')
                                                                 <span class="text text-danger">
                                                                     <strong>{!! $message !!}</strong>
                                                                 </span>
@@ -127,6 +128,7 @@
                                                         </div>
                                                     </div>
                                                     <!-- end: input -->
+
                                                 </div>
                                                 <!-- end: row -->
 

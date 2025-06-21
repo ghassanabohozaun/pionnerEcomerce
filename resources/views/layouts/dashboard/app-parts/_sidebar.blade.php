@@ -157,5 +157,29 @@
                 </ul>
             @endcan
             <!-- end: roles -->
+
+            <!-- begin: faqs -->
+            @can('faqs')
+                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li class=" nav-item">
+                        <a href="#">
+                            <i class="la la-question"></i>
+                            <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.faqs') !!}</span>
+                            {{-- <span class="badge badge badge-info badge-pill float-right mr-2">3</span> --}}
+                        </a>
+                        <!-- begin: faqs -->
+                        <ul class="menu-content">
+                            <li class="@if (str_contains(url()->current(), 'faqs')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.faqs.index') !!}" data-i18n="nav.dash.faqs">
+                                    {!! __('faqs.faqs') !!}
+                                </a>
+
+                            </li>
+                        </ul>
+                        <!-- end: faqs -->
+                    </li>
+                </ul>
+            @endcan
+            <!-- end: roles -->
         </div>
     </div>
