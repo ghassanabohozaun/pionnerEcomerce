@@ -200,6 +200,7 @@ return [
         'password' => 'Password ',
         'role_id' => 'Role ',
         'phone_code' => 'Phone Code',
+        'flag_code' => 'Flag Code',
         'country_id' => 'Country',
         'question.ar' => 'Arabic Question',
         'question.en' => 'English Question',

@@ -35,7 +35,12 @@
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
                     <div class="float-md-right">
-                        <a href="{{ route('dashboard.countries.create') }}" class="btn btn-info round btn-glow px-2" i>
+                        <a href="{!! asset('assets/dashbaord/Countries_Flags_SVG.pdf') !!}" class="btn btn-primary round btn-glow px-2">
+                            <i class="la la-download"></i>
+                            {!! __('world.download_countries_flags') !!}
+                        </a>
+
+                        <a href="{{ route('dashboard.countries.create') }}" class="btn btn-info round btn-glow px-2">
                             {!! __('world.create_new_country') !!}</a>
 
                     </div>
@@ -78,28 +83,39 @@
                                                         <th>#</th>
                                                         <th>{!! __('world.country_name') !!}</th>
                                                         <th>{!! __('world.phone_code') !!}</th>
-                                                        <th>{!! __('world.country_status') !!}</th>
-                                                        <th style="text-align: center">{!! __('general.actions') !!}</th>
+                                                        <th class="text-center">{!! __('world.governorates_count') !!}</th>
+                                                        <th class="text-center">{!! __('world.users_count') !!}</th>
+
+                                                        <th class="text-center">{!! __('world.country_status') !!}</th>
+                                                        <th class="text-center">{!! __('general.actions') !!}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @forelse ($countries as $country)
                                                         <tr>
                                                             <th class="col-lg-1">{!! $loop->iteration !!} </th>
-                                                            <td class="col-lg-4">{!! $country->name !!}</td>
-                                                            <td class="col-lg-3">{!! $country->phone_code !!}</td>
-                                                            <td class="col-lg-2">
+                                                            <td class="col-lg-3"><i
+                                                                    class="flag-icon flag-icon-{!! $country->flag_code !!}"></i>
+                                                                &nbsp; {!! $country->name !!}</td>
+                                                            <td class="col-lg-3">
+                                                                @include('dashboard.world.countries.parts.phone_code')
+                                                            </td>
+                                                            <td class="col-lg-2 text-center">
+                                                                @include('dashboard.world.countries.parts.countries_count')
+                                                            </td>
+                                                            <td>
+                                                                @include('dashboard.world.countries.parts.users_count')
+                                                            </td>
+                                                            <td class="col-lg-1 text-center">
                                                                 @include('dashboard.world.countries.parts.status')
                                                             </td>
                                                             <td class="col-lg-2">
                                                                 @include('dashboard.world.countries.parts.actions')
                                                             </td>
                                                         </tr>
-
-
                                                     @empty
                                                         <tr>
-                                                            <td colspan="5" class="text-center">
+                                                            <td colspan="7" class="text-center">
                                                                 {!! __('world.no_countries_found') !!}
                                                             </td>
                                                         </tr>
@@ -259,11 +275,8 @@
                 },
                 method: 'get',
                 dataType: 'json',
-
                 success: function(data) {
-
                     console.log(data.data);
-
                     trHTML = "";
                     if (!$.trim(data.data)) {
                         $("#governoraties_tbody").empty();
@@ -291,14 +304,11 @@
                             }
                         });
                     }
-
                     $('#governoraties_tbody').append(trHTML);
                     $('#governoraties_modal').modal('show');
                 }
 
             });
         });
-
-        // get all governorate
     </script>
 @endpush

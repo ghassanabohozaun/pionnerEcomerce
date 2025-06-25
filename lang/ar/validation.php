@@ -190,6 +190,7 @@ return [
         'password' => 'كلمة المرور',
         'role_id' => 'الصلاحية ',
         'phone_code' => 'كود الدولة',
+        'flag_code' => 'علم الدولة',
         'country_id' => 'الدولة',
         'question.ar' => 'السؤال بالعربي',
         'question.en' => 'السؤال بالانجليزي',

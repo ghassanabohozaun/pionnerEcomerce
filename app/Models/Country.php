@@ -10,7 +10,7 @@ class Country extends Model
 {
     use SoftDeletes, HasTranslations;
     protected $table = 'countries';
-    protected $fillable = ['name', 'phone_code', 'status'];
+    protected $fillable = ['name', 'phone_code', 'flag_code', 'status'];
 
     public $timestamps = false;
 
@@ -20,6 +20,10 @@ class Country extends Model
     public function governorates()
     {
         return $this->hasMany(Governorate::class, 'country_id', 'id');
+    }
+
+    public function users(){
+        return $this->hasMany(User::class);
     }
 
     // accessories

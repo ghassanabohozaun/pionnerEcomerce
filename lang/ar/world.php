@@ -5,16 +5,21 @@ return [
     'update_country' => 'تعديل الدولة',
     'countries' => 'الدول',
     'show_all_countries' => 'عرض جميع الدول',
+    'download_countries_flags'=>'تحميل ملف أعلام الدول',
+    'users_count'=>'عدد المتسخدمين',
+
 
     'country_name' => 'اسم الدولة',
     'country_name_ar' => 'اسم الدولة بالعربي',
     'country_name_en' => 'اسم الدولة بالانجليزي',
     'country_status' => 'حالة الدولة ',
     'phone_code' => 'كود الدولة',
+    'flag_code' => 'كود العلم',
 
     'enter_country_name_ar' => 'ادخل اسم الدولة بالعربي',
     'enter_country_name_en' => 'ادخل اسم الدولة بالانجليزي',
     'enter_phone_code' => 'ادخل كود الدولة',
+    'enter_flag_code' => 'ادخل كود العلم',
 
     'no_countries_found' => 'لا يوجد دول حالياً !',
 
@@ -23,6 +28,7 @@ return [
     'update_governorate' => 'تعديل المحافظة',
     'governorates' => 'المحافظات',
     'show_all_governorates' => 'عرض جميع المحافظات',
+    'governorates_count'=>'عدد المحافظات',
 
     'governorate_name' => 'اسم المحافظة',
     'governorate_name_ar' => 'اسم المحافظة بالعربي',

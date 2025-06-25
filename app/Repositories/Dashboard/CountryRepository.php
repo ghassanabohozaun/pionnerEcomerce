@@ -24,7 +24,7 @@ class CountryRepository
     // get countries
     public function getCountries()
     {
-        return Country::orderByDesc('id')->select('id','name', 'phone_code', 'status')->paginate(10);
+        return Country::orderByDesc('id')->select('id', 'name', 'phone_code', 'flag_code', 'status')->paginate(10);
     }
 
     // get all governorates by country
@@ -44,6 +44,7 @@ class CountryRepository
             ],
             'status' => $request->has('status') ? 1 : 0,
             'phone_code' => $request->phone_code,
+            'flag_code' => $request->flag_code,
         ]);
         return $country;
     }
@@ -59,13 +60,15 @@ class CountryRepository
             ],
             'status' => $request->has('status') ? 1 : 0,
             'phone_code' => $request->phone_code,
+            'flag_code' => $request->flag_code,
         ]);
 
         return $country;
     }
 
     // destory country
-    public function destroyCountry($country){
+    public function destroyCountry($country)
+    {
         $country = $country->forceDelete();
         return $country;
     }

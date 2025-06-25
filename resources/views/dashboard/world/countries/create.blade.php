@@ -87,7 +87,7 @@
                                                 <!-- begin: row -->
                                                 <div class="row">
                                                     <!-- begin: input -->
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="name">{!! __('world.country_name_ar') !!}</label>
                                                             <input type="text" id="name" name="name[ar]"
@@ -104,7 +104,7 @@
                                                     <!-- end: input -->
 
                                                     <!-- begin: input -->
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="name">{!! __('world.country_name_en') !!}</label>
                                                             <input type="text" id="name" name="name[en]"
@@ -130,6 +130,23 @@
                                                                 class="form-control round border-primary "
                                                                 autocomplete="off" placeholder="{!! __('world.enter_phone_code') !!}">
                                                             @error('phone_code')
+                                                                <span class="text text-danger">
+                                                                    <strong>{!! $message !!}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <!-- end: input -->
+
+                                                    <!-- begin: input -->
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label for="name">{!! __('world.flag_code') !!}</label>
+                                                            <input type="text" id="flag_code" name="flag_code"
+                                                                value="{!! old('flag_code') !!}"
+                                                                class="form-control round border-primary "
+                                                                autocomplete="off" placeholder="{!! __('world.enter_flag_code') !!}">
+                                                            @error('flag_code')
                                                                 <span class="text text-danger">
                                                                     <strong>{!! $message !!}</strong>
                                                                 </span>

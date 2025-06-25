@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Country;
- use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +14,6 @@ class CountrySeeder extends Seeder
      */
     public function run(): void
     {
-
         // DB::table('countries')->truncate() ;
 
         $countries = [
@@ -25,6 +24,7 @@ class CountrySeeder extends Seeder
                     'en' => 'Saudi Arabia',
                     'ar' => 'المملكة العربية السعودية',
                 ],
+                'flag_code' => 'sa',
             ],
 
             [
@@ -34,13 +34,42 @@ class CountrySeeder extends Seeder
                     'en' => 'Eqypt',
                     'ar' => 'جمهورية مصر العربية  ',
                 ],
+                'flag_code' => 'eg',
+            ],
+
+            [
+                'id' => 3,
+                'phone_code' => '971',
+                'name' => [
+                    'en' => 'United Arabic Emirates',
+                    'ar' => 'الإمارات العربية المتحدة ',
+                ],
+                'flag_code' => 'ae',
+            ],
+
+            [
+                'id' => 4,
+                'phone_code' => '962',
+                'name' => [
+                    'en' => 'Jordan',
+                    'ar' => 'الأردن',
+                ],
+                'flag_code' => 'jo',
+            ],
+
+            [
+                'id' => 5,
+                'phone_code' => '961',
+                'name' => [
+                    'en' => 'Lebanon',
+                    'ar' => 'لبنان',
+                ],
+                'flag_code' => 'lb',
             ],
         ];
 
-
-        foreach($countries as $country){
+        foreach ($countries as $country) {
             Country::create($country);
         }
-
     }
 }

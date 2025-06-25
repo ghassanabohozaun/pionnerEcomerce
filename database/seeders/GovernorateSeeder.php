@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Governorate;
+ use App\Models\ShippingGovernorate;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -293,10 +294,97 @@ class GovernorateSeeder extends Seeder
                 ],
                 'country_id' => 1,
             ],
+
+            /// United Arabic Emirates
+            [
+                'name' => [
+                    'en' => 'Dubai',
+                    'ar' => 'دبي',
+                ],
+                'country_id' => 3,
+            ],
+            [
+                'name' => [
+                    'en' => 'Umm al-Quwain',
+                    'ar' => 'أم القيوين',
+                ],
+                'country_id' => 3,
+            ],
+            [
+                'name' => [
+                    'en' => 'Fujairah',
+                    'ar' => 'الفجيرة',
+                ],
+                'country_id' => 3,
+            ],
+            [
+                'name' => [
+                    'en' => 'Ras al-Khaimah',
+                    'ar' => 'رأس الخيمة',
+                ],
+                'country_id' => 3,
+            ],
+            [
+                'name' => [
+                    'en' => 'Ajman Emirate',
+                    'ar' => 'إمارة عجمان',
+                ],
+                'country_id' => 3,
+            ],
+            [
+                'name' => [
+                    'en' => 'Abu Dhabi Emirate',
+                    'ar' => 'إمارة ابو ظبي',
+                ],
+                'country_id' => 3,
+            ],
+
+            [
+                'name' => [
+                    'en' => 'Omman',
+                    'ar' => 'عمان',
+                ],
+                'country_id' => 4,
+            ],
+
+            [
+                'name' => [
+                    'en' => 'Irbid',
+                    'ar' => 'إربد',
+                ],
+                'country_id' => 4,
+            ],
+            [
+                'name' => [
+                    'en' => 'Zarqa',
+                    'ar' => 'الزرقاء',
+                ],
+                'country_id' => 4,
+            ],
+            [
+                'name' => [
+                    'en' => 'Karak',
+                    'ar' => 'الكرك',
+                ],
+                'country_id' => 4,
+            ],
+            [
+                'name' => [
+                    'en' => 'Jerash',
+                    'ar' => 'جرش',
+                ],
+                'country_id' => 4,
+            ],
         ];
 
-        foreach($governorates as $governorate){
-            Governorate::create($governorate);
+        foreach ($governorates as $governorate) {
+           $gov =   Governorate::create($governorate);
+
+           // create associated shipping governorate
+            ShippingGovernorate::create([
+                'governorate_id' => $gov->id,
+                'price' => 100,
+            ]);
         }
     }
 }
