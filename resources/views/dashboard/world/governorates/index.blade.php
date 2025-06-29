@@ -34,7 +34,7 @@
 
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
-                    <div class="float-md-right">
+                    <div class="float-md-right mb-2">
                         <a href="{{ route('dashboard.governorates.create') }}" class="btn btn-info round btn-glow px-2" i>
                             {!! __('world.create_new_governorate') !!}</a>
 
@@ -71,6 +71,9 @@
                                 <!-- begin: card content -->
                                 <div class="card-content collapse show">
                                     <div class="card-body">
+                                        <!-- begin: seach form -->
+                                        @include('dashboard.includes.search')
+                                        <!-- end: search -->
                                         <div class="table-responsive">
                                             <table class="table" id='myTable'>
                                                 <thead>
@@ -78,16 +81,37 @@
                                                         <th>#</th>
                                                         <th>{!! __('world.governorate_name') !!}</th>
                                                         <th>{!! __('world.country_id') !!}</th>
-                                                        <th style="text-align: center">{!! __('general.actions') !!}</th>
+                                                        <th>{!! __('world.shipping_price') !!}</th>
+                                                        <th class="text-center">{!! __('world.cites_count') !!}</th>
+                                                        <th class="text-center">{!! __('world.users_count') !!}</th>
+                                                        <th class="text-center">{!! __('world.status') !!}</th>
+                                                        <th class="text-center">{!! __('world.manage_status') !!}</th>
+                                                        <th class="text-center">{!! __('general.actions') !!}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @forelse ($governorates as $governorate)
-                                                        <tr>
+                                                        <tr class="row_{!! $governorate->id !!}">
                                                             <th class="col-lg-1">{!! $loop->iteration !!} </th>
-                                                            <td class="col-lg-4">{!! $governorate->name !!}</td>
-                                                            <td class="col-lg-3">
-                                                                {!! $governorate->country->name !!}
+                                                            <td class="col-lg-2">{!! $governorate->name !!}</td>
+                                                            <td class="col-lg-2">
+                                                                <i class="flag-icon flag-icon-{!! $governorate->country->flag_code !!}"></i>
+                                                                &nbsp;{!! $governorate->country->name !!}
+                                                            </td>
+                                                            <td class="col-lg-1">
+                                                                @include('dashboard.world.governorates.parts.price')
+                                                            </td>
+                                                            <td class="col-lg-1 text-center">
+                                                                @include('dashboard.world.governorates.parts.cites_count')
+                                                            </td>
+                                                            <td class="col-lg-1 text-center">
+                                                                @include('dashboard.world.governorates.parts.users_count')
+                                                            </td>
+                                                            <td class="col-lg-1 text-center">
+                                                                @include('dashboard.world.governorates.parts.status')
+                                                            </td>
+                                                            <td class="col-lg-1 text-center">
+                                                                @include('dashboard.world.governorates.parts.manage_status')
                                                             </td>
                                                             <td class="col-lg-2">
                                                                 @include('dashboard.world.governorates.parts.actions')
@@ -95,7 +119,7 @@
                                                         </tr>
                                                     @empty
                                                         <tr>
-                                                            <td colspan="4" class="text-center">
+                                                            <td colspan="9" class="text-center">
                                                                 {!! __('world.no_governorates_found') !!}
                                                             </td>
                                                         </tr>
@@ -118,10 +142,21 @@
         </div> <!-- end: content wrapper  -->
     </div><!-- end: content app  -->
 
-    @include('dashboard.world.governorates.modals.cities')
+    @include('dashboard.world.governorates.modals.change_shipping_price')
 @endsection
 @push('scripts')
     <script type="text/javascript">
+        // show shipping price modal
+        $('body').on('click', '.show_shipping_price_modal', function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            var price = parseFloat($('#shipping_price_' + id).text()).toFixed(2);
+
+            $('#governorate_id').val(id);
+            $('#shipping_price').val(price);
+            $('#price_modal').modal('show');
+        })
+
         // delete governorate
         $('body').on('click', '.delete_governorate_btn', function(e) {
             e.preventDefault();
@@ -157,8 +192,10 @@
                         type: 'post',
                         dataType: 'json',
                         success: function(data) {
+
                             $('#myTable').load(location.href + (' #myTable'));
                             if (data.status == true) {
+
                                 swal({
                                     title: "{!! __('general.deleted') !!} ",
                                     text: "{!! __('general.delete_success_message') !!} ",
@@ -171,6 +208,7 @@
                                         }
                                     }
                                 });
+                                // $('.row_' + id).remove();
                             } else if (data.status == false) {
                                 swal({
                                     title: "{!! __('general.warning') !!} ",
@@ -205,56 +243,95 @@
             });
         });
 
-        // get all cities by governorate
-        $('body').on('click', '.get_all_cities_by_governorate_btn', function(e) {
-
-            e.preventDefault();
+        // change status
+        $(document).on('change', '.change_status', function(e) {
+            // e.preventDefault();
             var id = $(this).data('id');
 
+            if ($(this).is(':checked')) {
+                statusSwitch = 1;
+            } else {
+                statusSwitch = 0;
+            }
+
+            var url = '{!! route('dashboard.governorates.change.status', ':id') !!}',
+                url = url.replace(':id', id);
+
             $.ajax({
-                url: '{!! route('dashboard.governorates.get.all.cities') !!}',
-                data: {
-                    id,
-                    id
-                },
-                method: 'get',
-                dataType: 'json',
-
+                url: url,
+                type: 'get',
                 success: function(data) {
-
-                    trHTML = "";
-                    if (!$.trim(data.data)) {
-                        $("#cities_tbody").empty();
-                        trHTML += '<tr class="notfound" id="notfound">' +
-                            '<td colspan="10">' + '{{ __('general.no_record_found') }}' + '</td>' +
-                            '</tr>';
-                    } else {
-                        $("#cities_tbody").empty();
-                        $.each(data.data, function(i, item) {
-                            var lang = '{!! Config::get('app.locale') !!}';
-
-                            var itration = i + 1;
-                            if (lang === 'en') {
-                                trHTML += '<tr id="row_' + item.id +
-                                    '">' +
-                                    '<td class="col-1">' + itration + '</td>' +
-                                    '<td class="col-6">' + item.name.en + '</td>' +
-                                    '</tr>';
-                            } else {
-                                trHTML += '<tr id="row_' + item.id +
-                                    '">' +
-                                    '<td class="col-1">' + itration + '</td>' +
-                                    '<td class="col-6">' + item.name.ar + '</td>' +
-                                    '</tr>';
-                            }
-                        });
+                    $('.governorate_status_' + data.data.id).empty();
+                    $('.governorate_status_' + data.data.id).removeClass('badge-danger');
+                    $('.governorate_status_' + data.data.id).removeClass('badge-success');
+                    if (data.data.status == 'on') {
+                        $('.governorate_status_' + data.data.id).addClass('badge-success');
+                        $('.governorate_status_' + data.data.id).text("{!! __('general.enable') !!}");
+                    } else if (data.data.status == '') {
+                        $('.governorate_status_' + data.data.id).addClass('badge-danger');
+                        $('.governorate_status_' + data.data.id).text("{!! __('general.disabled') !!}");
                     }
 
-                    $('#cities_tbody').append(trHTML);
-                    $('#cities_modal').modal('show');
+                    if (data.status === true) {
+                        flasher.success("{!! __('general.change_status_success_message') !!}");
+                    } else {
+                        flasher.error("{!! __('general.change_status_error_message') !!}");
+                    }
                 }
-
             });
+
         });
+
+        // get all cities by governorate
+        // $('body').on('click', '.get_all_cities_by_governorate_btn', function(e) {
+
+        //     e.preventDefault();
+        //     var id = $(this).data('id');
+
+        //     $.ajax({
+        //         url: '{!! route('dashboard.governorates.get.all.cities') !!}',
+        //         data: {
+        //             id,
+        //             id
+        //         },
+        //         method: 'get',
+        //         dataType: 'json',
+
+        //         success: function(data) {
+
+        //             trHTML = "";
+        //             if (!$.trim(data.data)) {
+        //                 $("#cities_tbody").empty();
+        //                 trHTML += '<tr class="notfound" id="notfound">' +
+        //                     '<td colspan="10">' + '{{ __('general.no_record_found') }}' + '</td>' +
+        //                     '</tr>';
+        //             } else {
+        //                 $("#cities_tbody").empty();
+        //                 $.each(data.data, function(i, item) {
+        //                     var lang = '{!! Config::get('app.locale') !!}';
+
+        //                     var itration = i + 1;
+        //                     if (lang === 'en') {
+        //                         trHTML += '<tr id="row_' + item.id +
+        //                             '">' +
+        //                             '<td class="col-1">' + itration + '</td>' +
+        //                             '<td class="col-6">' + item.name.en + '</td>' +
+        //                             '</tr>';
+        //                     } else {
+        //                         trHTML += '<tr id="row_' + item.id +
+        //                             '">' +
+        //                             '<td class="col-1">' + itration + '</td>' +
+        //                             '<td class="col-6">' + item.name.ar + '</td>' +
+        //                             '</tr>';
+        //                     }
+        //                 });
+        //             }
+
+        //             $('#cities_tbody').append(trHTML);
+        //             $('#cities_modal').modal('show');
+        //         }
+
+        //     });
+        // });
     </script>
 @endpush

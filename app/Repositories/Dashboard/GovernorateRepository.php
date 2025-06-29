@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Dashboard;
 use App\Models\Governorate;
+use App\Models\ShippingGovernorate;
 
 class GovernorateRepository
 {
@@ -22,13 +23,20 @@ class GovernorateRepository
     // get governorates
     public function getgovernoraties()
     {
-        return Governorate::orderByDesc('id')->select('id', 'name', 'country_id')->paginate(10);
+        $governorates = Governorate::when(!empty(request()->keyword), function ($q) {
+            $q->where('name', 'like', '%' . request()->keyword . '%');
+        })
+            ->orderByDesc('id')
+            ->select('id', 'name', 'country_id', 'status')
+            ->paginate(10);
+
+        return $governorates;
     }
 
     // get all cities by governorate
     public function getAllCitiesbyGovernorate($governorate)
     {
-        $cities = $governorate->cities;
+        $cities = $governorate->cities()->paginate(5);
         return $cities;
     }
 
@@ -42,6 +50,12 @@ class GovernorateRepository
             ],
             'country_id' => $request->country_id,
         ]);
+
+        ShippingGovernorate::create([
+            'price' => $request->shipping_price,
+            'governorate_id' => $governorate->id,
+        ]);
+
         return $governorate;
     }
 
@@ -49,7 +63,7 @@ class GovernorateRepository
     public function updateGovernorate($request, $id)
     {
         $governorate = self::getGovernorate($id);
-        $governorate = $governorate->update([
+        $governorateUpdate = $governorate->update([
             'name' => [
                 'en' => $request->name['en'],
                 'ar' => $request->name['ar'],
@@ -57,9 +71,22 @@ class GovernorateRepository
             'country_id' => $request->country_id,
         ]);
 
-        return $governorate;
+        $governorate->shippingPrice()->update([
+            'price' => $request->shipping_price,
+            'governorate_id' => $governorate->id,
+        ]);
+
+        return $governorateUpdate;
     }
 
+    // change status
+    public function changeStatus($governorate)
+    {
+        $governorate = $governorate->update([
+            'status' => $governorate->status == 'on' ? 0 : 1,
+        ]);
+        return $governorate;
+    }
     // destory governorate
     public function destroyGovernorate($governorate)
     {
@@ -67,5 +94,28 @@ class GovernorateRepository
         return $governorate;
     }
 
+    // get shipping governorate
 
+    public function getShippingGovernoreate($id)
+    {
+        return ShippingGovernorate::where('governorate_id', $id)->first();
+    }
+    // store shipping price
+    public function storeShippingPrice($shippingGovernorate, $price)
+    {
+        $shippingGovernorate = shippingGovernorate::create([
+            'price' => $price,
+            'governorate_id' => $shippingGovernorate,
+        ]);
+        return $shippingGovernorate;
+    }
+
+    // update shipping price
+    public function updateShippingPrice($shippingGovernorate, $price)
+    {
+        $shippingGovernorate = $shippingGovernorate->update([
+            'price' => $price,
+        ]);
+        return $shippingGovernorate;
+    }
 }

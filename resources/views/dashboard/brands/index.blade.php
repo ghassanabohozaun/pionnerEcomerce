@@ -34,7 +34,7 @@
 
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
-                    <div class="float-md-right">
+                    <div class="float-md-right mb-2">
                         <a href="{{ route('dashboard.brands.create') }}" class="btn btn-info round btn-glow px-2" i>
                             {!! __('brands.create_new_brand') !!}</a>
 
@@ -78,8 +78,8 @@
                                                         <th>#</th>
                                                         <th>{!! __('brands.logo') !!}</th>
                                                         <th>{!! __('brands.brand_name') !!}</th>
-                                                        <th>{!! __('brands.status') !!}</th>
-                                                        <th style="text-align: center">{!! __('general.actions') !!}</th>
+                                                        <th class="text-center">{!! __('brands.status') !!}</th>
+                                                        <th class="text-center">{!! __('general.actions') !!}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -88,10 +88,10 @@
                                                             <th class="col-lg-1">{!! $loop->iteration !!} </th>
                                                             <td class="col-lg-2">@include('dashboard.brands.parts.logo')</td>
                                                             <td class="col-lg-2">{!! $brand->name !!}</td>
-                                                            <td class="col-lg-1">
+                                                            <td class="col-lg-1 text-center">
                                                                 @include('dashboard.brands.parts.status')
                                                             </td>
-                                                            <td class="col-lg-2">
+                                                            <td class="col-lg-2 text-center">
                                                                 @include('dashboard.brands.parts.actions')
                                                             </td>
                                                         </tr>
@@ -227,13 +227,9 @@
                 dataType: 'JSON',
                 success: function(data) {
                     if (data.status == true) {
-                        swal("{!! __('general.yes') !!}", "{!! __('general.change_status_success_message') !!}",
-                            "success");
-                        $('#myTable').load(location.href + (' #myTable'));
+                        flasher.success("{!! __('general.change_status_success_message') !!}");
                     } else {
-                        swal("{!! __('general.no') !!}", "{!! __('general.change_status_error_message') !!}",
-                            "error");
-                        $('#myTable').load(location.href + (' #myTable'));
+                        flasher.error("{!! __('general.change_status_error_message') !!}");
                     }
                 }, //end success
             })

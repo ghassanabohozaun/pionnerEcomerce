@@ -41,7 +41,7 @@
 
                     <!-- begin: content header right-->
                     <div class="content-header-right col-md-6 col-12">
-                        <div class="dropdown float-md-right">
+                        <div class="float-md-right mb-2">
                             <button class="btn btn-info round btn-glow px-2" type="submit">
                                 <i class="la la-save"></i>
                                 {!! __('general.save') !!}
@@ -101,7 +101,7 @@
                                                 <!-- begin: row -->
                                                 <div class="row">
                                                     <!-- begin: input -->
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="name">{!! __('world.governorate_name_ar') !!}</label>
                                                             <input type="text" id="name" name="name[ar]"
@@ -118,7 +118,7 @@
                                                     <!-- end: input -->
 
                                                     <!-- begin: input -->
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="name">{!! __('world.governorate_name_en') !!}</label>
                                                             <input type="text" id="name" name="name[en]"
@@ -133,6 +133,25 @@
                                                         </div>
                                                     </div>
                                                     <!-- end: input -->
+
+                                                    <!-- begin: input -->
+                                                    <div class="col-md-4">
+
+                                                        <div class="form-group">
+                                                            <label for="name">{!! __('world.shipping_price') !!}</label>
+                                                            <input type="text" id="shipping_price" name="shipping_price"
+                                                                value="{!! old('shipping_price', $governorate->shippingPrice->price) !!}"
+                                                                class="form-control round border-primary "
+                                                                autocomplete="off" placeholder="{!! __('world.enter_shipping_price') !!}">
+                                                            @error('shipping_price')
+                                                                <span class="text text-danger">
+                                                                    <strong>{!! $message !!}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <!-- end: input -->
+
                                                 </div>
                                                 <!-- end: row -->
 

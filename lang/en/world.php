@@ -4,8 +4,10 @@ return [
     'update_country' => 'Update Country',
     'countries' => 'Countries',
     'show_all_countries' => 'Show All Countries',
-    'download_countries_flags'=>'Download Countries Flags',
-    'users_count'=>'Users Count',
+    'download_countries_flags' => 'Download Countries Flags',
+    'users_count' => 'Users Count',
+    'status' => 'Status',
+    'manage_status' => 'Manage Status',
 
     'country_name' => 'Country Name',
     'country_name_ar' => 'Arabic Country Name',
@@ -27,7 +29,7 @@ return [
     'update_governorate' => 'Update Governorate',
     'governorates' => 'Governorates',
     'show_all_governorates' => 'Show All Governorates',
-    'governorates_count' => 'Governoeates Count',
+    'governorates_count' => 'Governorates Count',
 
     'governorate_name' => 'Governorate Name',
     'governorate_name_ar' => 'Arabic Governorate Name',
@@ -37,11 +39,14 @@ return [
     'enter_governorate_name_ar' => 'Enter Arabic Governorate Name',
     'enter_governorate_name_en' => 'Enter English Governorate Name',
 
+    'no_governorates_found' => 'No Governorates Found !',
+
     // city
     'create_new_city' => 'Create New City',
     'update_city' => 'Update City',
     'cities' => 'Cities',
     'show_all_cities' => 'Show All Cities',
+    'cites_count' => 'Cities Count',
 
     'city_name' => 'City Name',
     'city_name_ar' => 'Arabic City Name',
@@ -50,4 +55,9 @@ return [
 
     'enter_city_name_ar' => 'Enter Arabic City Name',
     'enter_city_name_en' => 'Enter English City Name',
+    'no_cities_found' => 'No Cities Found !',
+
+    // govnorate shipping
+    'shipping_price' => 'Shipping Price',
+    'enter_shipping_price' => 'Enter Shipping Price',
 ];

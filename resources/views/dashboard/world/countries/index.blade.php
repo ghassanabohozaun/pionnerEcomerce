@@ -3,6 +3,8 @@
     {!! $title !!}
 @endsection
 
+
+
 @section('content')
     <div class="app-content content">
         <div class="content-wrapper">
@@ -34,7 +36,7 @@
 
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
-                    <div class="float-md-right">
+                    <div class="float-md-right mb-2">
                         <a href="{!! asset('assets/dashbaord/Countries_Flags_SVG.pdf') !!}" class="btn btn-primary round btn-glow px-2">
                             <i class="la la-download"></i>
                             {!! __('world.download_countries_flags') !!}
@@ -76,6 +78,9 @@
                                 <!-- begin: card content -->
                                 <div class="card-content collapse show">
                                     <div class="card-body">
+                                        <!-- begin: seach form -->
+                                        @include('dashboard.includes.search')
+                                        <!-- end: search -->
                                         <div class="table-responsive">
                                             <table class="table" id='myTable'>
                                                 <thead>
@@ -85,8 +90,9 @@
                                                         <th>{!! __('world.phone_code') !!}</th>
                                                         <th class="text-center">{!! __('world.governorates_count') !!}</th>
                                                         <th class="text-center">{!! __('world.users_count') !!}</th>
+                                                        <th class="text-center">{!! __('world.status') !!}</th>
+                                                        <th class="text-center">{!! __('world.manage_status') !!}</th>
 
-                                                        <th class="text-center">{!! __('world.country_status') !!}</th>
                                                         <th class="text-center">{!! __('general.actions') !!}</th>
                                                     </tr>
                                                 </thead>
@@ -94,20 +100,24 @@
                                                     @forelse ($countries as $country)
                                                         <tr>
                                                             <th class="col-lg-1">{!! $loop->iteration !!} </th>
-                                                            <td class="col-lg-3"><i
-                                                                    class="flag-icon flag-icon-{!! $country->flag_code !!}"></i>
-                                                                &nbsp; {!! $country->name !!}</td>
+                                                            <td class="col-lg-2">
+                                                                <i class="flag-icon flag-icon-{!! $country->flag_code !!}"></i>
+                                                                &nbsp; {!! $country->name !!}
+                                                            </td>
                                                             <td class="col-lg-3">
                                                                 @include('dashboard.world.countries.parts.phone_code')
                                                             </td>
                                                             <td class="col-lg-2 text-center">
-                                                                @include('dashboard.world.countries.parts.countries_count')
+                                                                @include('dashboard.world.countries.parts.governorates_count')
                                                             </td>
                                                             <td>
                                                                 @include('dashboard.world.countries.parts.users_count')
                                                             </td>
                                                             <td class="col-lg-1 text-center">
                                                                 @include('dashboard.world.countries.parts.status')
+                                                            </td>
+                                                            <td class="col-lg-1 text-center">
+                                                                @include('dashboard.world.countries.parts.manage_status')
                                                             </td>
                                                             <td class="col-lg-2">
                                                                 @include('dashboard.world.countries.parts.actions')
@@ -246,14 +256,22 @@
                 type: 'post',
                 dataType: 'JSON',
                 success: function(data) {
-                    $('#myTable').load(location.href + (' #myTable'));
+                    //$('#myTable').load(location.href + (' #myTable'));
+                    $('.country_status_' + data.data.id).empty();
+                    $('.country_status_' + data.data.id).removeClass('badge-danger');
+                    $('.country_status_' + data.data.id).removeClass('badge-success');
+                    if (data.data.status == 'on') {
+                        $('.country_status_' + data.data.id).addClass('badge-success');
+                        $('.country_status_' + data.data.id).text("{!! __('general.enable') !!}");
+                    } else if (data.data.status == '') {
+                        $('.country_status_' + data.data.id).addClass('badge-danger');
+                        $('.country_status_' + data.data.id).text("{!! __('general.disabled') !!}");
+                    }
                     console.log(data);
                     if (data.status === true) {
-                        swal("{!! __('general.yes') !!}", "{!! __('general.change_status_success_message') !!}",
-                            "success");
+                        flasher.success("{!! __('general.change_status_success_message') !!}");
                     } else {
-                        swal("{!! __('general.no') !!}", "{!! __('general.change_status_error_message') !!}",
-                            "error");
+                        flasher.error("{!! __('general.change_status_error_message') !!}");
                     }
                 }, //end success
             })
@@ -261,54 +279,54 @@
 
 
         // get all governorate by country
-        $('body').on('click', '.get_all_governorate_by_country_btn', function(e) {
+        // $('body').on('click', '.get_all_governorate_by_country_btn', function(e) {
 
-            e.preventDefault();
-            var id = $(this).data('id');
-            console.log(id);
+        //     e.preventDefault();
+        //     var id = $(this).data('id');
+        //     console.log(id);
 
-            $.ajax({
-                url: '{!! route('dashboard.countries.get.all.governoraties') !!}',
-                data: {
-                    id,
-                    id
-                },
-                method: 'get',
-                dataType: 'json',
-                success: function(data) {
-                    console.log(data.data);
-                    trHTML = "";
-                    if (!$.trim(data.data)) {
-                        $("#governoraties_tbody").empty();
-                        trHTML += '<tr class="notfound" id="notfound">' +
-                            '<td colspan="10">' + '{{ __('general.no_record_found') }}' + '</td>' +
-                            '</tr>';
-                    } else {
-                        $("#governoraties_tbody").empty();
-                        $.each(data.data, function(i, item) {
-                            var lang = '{!! Config::get('app.locale') !!}';
+        //     $.ajax({
+        //         url: '',
+        //         data: {
+        //             id,
+        //             id
+        //         },
+        //         method: 'get',
+        //         dataType: 'json',
+        //         success: function(data) {
+        //             console.log(data.data);
+        //             trHTML = "";
+        //             if (!$.trim(data.data)) {
+        //                 $("#governoraties_tbody").empty();
+        //                 trHTML += '<tr class="notfound" id="notfound">' +
+        //                     '<td colspan="10">' + '{{ __('general.no_record_found') }}' + '</td>' +
+        //                     '</tr>';
+        //             } else {
+        //                 $("#governoraties_tbody").empty();
+        //                 $.each(data.data, function(i, item) {
+        //                     var lang = '{!! Config::get('app.locale') !!}';
 
-                            var itration = i + 1;
-                            if (lang === 'en') {
-                                trHTML += '<tr id="row_' + item.id +
-                                    '">' +
-                                    '<td class="col-1">' + itration + '</td>' +
-                                    '<td class="col-6">' + item.name.en + '</td>' +
-                                    '</tr>';
-                            } else {
-                                trHTML += '<tr id="row_' + item.id +
-                                    '">' +
-                                    '<td class="col-1">' + itration + '</td>' +
-                                    '<td class="col-6">' + item.name.ar + '</td>' +
-                                    '</tr>';
-                            }
-                        });
-                    }
-                    $('#governoraties_tbody').append(trHTML);
-                    $('#governoraties_modal').modal('show');
-                }
+        //                     var itration = i + 1;
+        //                     if (lang === 'en') {
+        //                         trHTML += '<tr id="row_' + item.id +
+        //                             '">' +
+        //                             '<td class="col-1">' + itration + '</td>' +
+        //                             '<td class="col-6">' + item.name.en + '</td>' +
+        //                             '</tr>';
+        //                     } else {
+        //                         trHTML += '<tr id="row_' + item.id +
+        //                             '">' +
+        //                             '<td class="col-1">' + itration + '</td>' +
+        //                             '<td class="col-6">' + item.name.ar + '</td>' +
+        //                             '</tr>';
+        //                     }
+        //                 });
+        //             }
+        //             $('#governoraties_tbody').append(trHTML);
+        //             $('#governoraties_modal').modal('show');
+        //         }
 
-            });
-        });
+        //     });
+        // });
     </script>
 @endpush

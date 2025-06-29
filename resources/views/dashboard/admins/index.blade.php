@@ -37,7 +37,7 @@
 
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
-                    <div class="float-md-right">
+                    <div class="float-md-right mb-2">
                         <a href="{{ route('dashboard.admins.create') }}" class="btn btn-info round btn-glow px-2" i>
                             {!! __('admins.create_new_admin') !!}</a>
 
@@ -82,10 +82,10 @@
                                                         <th>{!! __('admins.name') !!}</th>
                                                         <th>{!! __('admins.email') !!}</th>
                                                         <th>{!! __('admins.role_id') !!}</th>
-                                                        <th>{!! __('admins.status') !!}
-                                                        <th>{!! __('admins.created_at') !!}
+                                                        <th class="text-center">{!! __('admins.status') !!}
+                                                        <th class="text-center">{!! __('admins.created_at') !!}
 
-                                                        <th style="text-align: center">{!! __('general.actions') !!}</th>
+                                                        <th class="text-center">{!! __('general.actions') !!}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -95,10 +95,10 @@
                                                             <td class="col-lg-2">{!! $admin->name !!}</td>
                                                             <td class="col-lg-2">{!! $admin->email !!}</td>
                                                             <td class="col-lg-2">{!! $admin->role->role !!}</td>
-                                                            <td class="col-lg-1">
+                                                            <td class="col-lg-1 text-center">
                                                                 @include('dashboard.admins.parts.status')</td>
-                                                            <td class="col-lg-1">{!! $admin->created_at->format('Y-m-d') !!}</td>
-                                                            <td class="col-lg-2">
+                                                            <td class="col-lg-1 text-center">{!! $admin->created_at->format('Y-m-d') !!}</td>
+                                                            <td class="col-lg-2 text-center">
                                                                 @include('dashboard.admins.parts.actions')
                                                             </td>
                                                         </tr>
@@ -215,46 +215,31 @@
         //  change status
         var statusSwitch = false;
         $('body').on('change', '.change_status', function(e) {
-                    e.preventDefault();
-                    var id = $(this).data('id');
+            e.preventDefault();
+            var id = $(this).data('id');
 
-                    if ($(this).is(':checked')) {
-                        statusSwitch = 1;
+            if ($(this).is(':checked')) {
+                statusSwitch = 1;
+            } else {
+                statusSwitch = 0;
+            }
+
+            $.ajax({
+                url: "{{ route('dashboard.admins.change.status') }}",
+                data: {
+                    statusSwitch: statusSwitch,
+                    id: id
+                },
+                type: 'post',
+                dataType: 'JSON',
+                success: function(data) {
+                    if (data.status === true) {
+                        flasher.success("{!! __('general.change_status_success_message') !!}");
                     } else {
-                        statusSwitch = 0;
+                        flasher.error("{!! __('general.change_status_error_message') !!}");
                     }
-
-                    $.ajax({
-                            url: "{{ route('dashboard.admins.change.status') }}",
-                            data: {
-                                statusSwitch: statusSwitch,
-                                id: id
-                            },
-                            type: 'post',
-                            dataType: 'JSON',
-                            success: function(data) {
-                                <<
-                                << << < HEAD
-                                if (data.status == true) {
-                                    ===
-                                    === =
-                                    $('#myTable').load(location.href + (' #myTable'));
-                                    console.log(data);
-                                    if (data.status === true) {
-                                        // flasher.success("Data has been saved successfully!");
-
-                                        >>>
-                                        >>> > world
-                                        swal("{!! __('general.yes') !!}", "{!! __('general.change_status_success_message') !!}",
-                                            "success");
-                                        $('#myTable').load(location.href + (' #myTable'));
-                                    } else {
-                                        swal("{!! __('general.no') !!}", "{!! __('general.change_status_error_message') !!}",
-                                            "error");
-                                        $('#myTable').load(location.href + (' #myTable'));
-                                    }
-                                }, //end success
-                            })
-                    });
+                }, //end success
+            })
+        });
     </script>
 @endpush

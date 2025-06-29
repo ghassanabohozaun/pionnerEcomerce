@@ -22,7 +22,7 @@
  <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/vendors/css/charts/chartist-plugin-tooltip.css">
  <link rel="stylesheet" type="text/css" href="{!! asset(path: 'assets/dashbaord') !!}/fonts/simple-line-icons/style.css">
  <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/my-style.css">
-
+ <link href="{!! asset('vendor/flasher/flasher.min.css') !!}" rel="stylesheet">
 
  @if (Config::get('app.locale') == 'ar')
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css-rtl/vendors.css">

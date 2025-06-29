@@ -41,7 +41,7 @@
 
                     <!-- begin: content header right-->
                     <div class="content-header-right col-md-6 col-12">
-                        <div class="dropdown float-md-right">
+                        <div class="float-md-right mb-2">
                             <button class="btn btn-info round btn-glow px-2" type="submit">
                                 <i class="la la-save"></i>
                                 {!! __('general.save') !!}

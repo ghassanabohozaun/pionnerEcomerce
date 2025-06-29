@@ -34,7 +34,7 @@
 
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
-                    <div class="float-md-right">
+                    <div class="float-md-right mb-2">
                         <a href="{{ route('dashboard.faqs.create') }}" class="btn btn-info round btn-glow px-2" i>
                             {!! __('faqs.create_new_faq') !!}</a>
 
@@ -222,14 +222,10 @@
                 type: 'post',
                 dataType: 'JSON',
                 success: function(data) {
-                    if (data.status == true) {
-                        swal("{!! __('general.yes') !!}", "{!! __('general.change_status_success_message') !!}",
-                            "success");
-                        $('#myTable').load(location.href + (' #myTable'));
+                    if (data.status === true) {
+                        flasher.success("{!! __('general.change_status_success_message') !!}");
                     } else {
-                        swal("{!! __('general.no') !!}", "{!! __('general.change_status_error_message') !!}",
-                            "error");
-                        $('#myTable').load(location.href + (' #myTable'));
+                        flasher.error("{!! __('general.change_status_error_message') !!}");
                     }
                 }, //end success
             })

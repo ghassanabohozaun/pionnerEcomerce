@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests\Dashboard;
 
-use CodeZero\UniqueTranslation\UniqueTranslationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class GovernorateRequest extends FormRequest
+class UpdateShippingPriceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +22,8 @@ class GovernorateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name.*' => ['required', 'string', 'max:100', UniqueTranslationRule::for('countries')->ignore($this->id)],
-            'country_id' => ['required', 'exists:countries,id'],
-            'shipping_price'=>['required' ,'numeric'],
+            'shipping_price' => ['required', 'numeric'],
+            'governorate_id'=>['required', 'exists:governorates,id']
         ];
     }
 }

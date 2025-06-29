@@ -29,6 +29,14 @@ class CountriesController extends Controller
         return view('dashboard.world.countries.index', compact('title', 'countries'));
     }
 
+    // get governorate by country id
+    public function getGovrnoratesByCountryID($country_id)
+    {
+        $title = __('world.governorates');
+        $governorates = $this->countryService->getAllGovernoratiesByCountry($country_id);
+        return view('dashboard.world.governorates.index', compact('title', 'governorates'));
+    }
+
     // create
     public function create()
     {
@@ -106,7 +114,9 @@ class CountriesController extends Controller
             if (!$country) {
                 return response()->json(['status' => false]);
             }
-            return response()->json(['status' => true]);
+
+            $country = $this->countryService->getCountry($request->id);
+            return response()->json(['status' => true,'data'=>$country]);
         }
     }
 
@@ -118,5 +128,4 @@ class CountriesController extends Controller
             return response()->json(['data' => $governoraties]);
         }
     }
-
 }

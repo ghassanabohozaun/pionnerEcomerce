@@ -34,7 +34,7 @@
 
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
-                    <div class="float-md-right">
+                    <div class="float-md-right mb-2">
                         <a href="{{ route('dashboard.categories.create') }}" class="btn btn-info round btn-glow px-2" i>
                             {!! __('categories.create_new_category') !!}</a>
 
@@ -80,8 +80,8 @@
                                                         <th>{!! __('categories.slug') !!}</th>
                                                         <th>{!! __('categories.parent') !!}</th>
 
-                                                        <th>{!! __('categories.status') !!}</th>
-                                                        <th style="text-align: center">{!! __('general.actions') !!}</th>
+                                                        <th class="text-center">{!! __('categories.status') !!}</th>
+                                                        <th class="text-center">{!! __('general.actions') !!}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -92,10 +92,10 @@
                                                             <td class="col-lg-2">{!! $category->name !!}</td>
                                                             <td class="col-lg-2">{!! $category->slug !!}</td>
                                                             <th class="col-lg-2">{!! $category->parent !!}</th>
-                                                            <td class="col-lg-2">
+                                                            <td class="col-lg-2 text-center">
                                                                 @include('dashboard.categories.parts.status')
                                                             </td>
-                                                            <td class="col-lg-2">
+                                                            <td class="col-lg-2 text-center">
                                                                 @include('dashboard.categories.parts.actions')
                                                             </td>
                                                         </tr>
@@ -231,13 +231,9 @@
                 dataType: 'JSON',
                 success: function(data) {
                     if (data.status == true) {
-                        swal("{!! __('general.yes') !!}", "{!! __('general.change_status_success_message') !!}",
-                            "success");
-                        $('#myTable').load(location.href + (' #myTable'));
+                        flasher.success("{!! __('general.change_status_success_message') !!}");
                     } else {
-                        swal("{!! __('general.no') !!}", "{!! __('general.change_status_error_message') !!}",
-                            "error");
-                        $('#myTable').load(location.href + (' #myTable'));
+                        flasher.error("{!! __('general.change_status_error_message') !!}");
                     }
                 }, //end success
             })

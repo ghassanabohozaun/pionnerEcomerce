@@ -23,7 +23,13 @@ class CityRepository
     // get countries
     public function getCities()
     {
-        return City::orderByDesc('id')->select('id', 'name', 'governorate_id')->paginate(10);
+        $cities = City::when(!empty(request()->keyword), function ($query) {
+            $query->where('name', 'like', '%' . request()->keyword . '%');
+        })
+            ->orderByDesc('id')
+            ->select('id', 'name', 'governorate_id')
+            ->paginate(10);
+        return $cities;
     }
 
     // store city

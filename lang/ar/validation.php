@@ -192,6 +192,8 @@ return [
         'phone_code' => 'كود الدولة',
         'flag_code' => 'علم الدولة',
         'country_id' => 'الدولة',
+        'price' => 'السعر',
+         'shipping_price' => 'سعر الشحن',
         'question.ar' => 'السؤال بالعربي',
         'question.en' => 'السؤال بالانجليزي',
         'answer.ar' => 'الإجابة بالعربي',

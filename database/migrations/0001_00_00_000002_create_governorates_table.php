@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('governorates', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->boolean('status')->default(1);
             $table->foreignId('country_id')->constrained('countries')->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();

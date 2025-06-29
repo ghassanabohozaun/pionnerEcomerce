@@ -34,7 +34,7 @@
 
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
-                    <div class="float-md-right">
+                    <div class="float-md-right mb-2">
                         <a href="{{ route('dashboard.cities.create') }}" class="btn btn-info round btn-glow px-2" i>
                             {!! __('world.create_new_city') !!}</a>
 
@@ -71,13 +71,16 @@
                                 <!-- begin: card content -->
                                 <div class="card-content collapse show">
                                     <div class="card-body">
+                                        <!-- begin: seach form -->
+                                        @include('dashboard.includes.search')
+                                        <!-- end: search -->
                                         <div class="table-responsive">
                                             <table class="table" id='myTable'>
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>{!! __('world.governorate_name') !!}</th>
                                                         <th>{!! __('world.city_name') !!}</th>
+                                                        <th>{!! __('world.governorate_name') !!}</th>
                                                         <th style="text-align: center">{!! __('general.actions') !!}</th>
                                                     </tr>
                                                 </thead>
@@ -85,8 +88,8 @@
                                                     @forelse ($cities as $city)
                                                         <tr>
                                                             <th class="col-lg-1">{!! $loop->iteration !!} </th>
-                                                            <td class="col-lg-4">{!! $city->governorate->name !!}</td>
                                                             <td class="col-lg-4">{!! $city->name !!}</td>
+                                                            <td class="col-lg-4">{!! $city->governorate->name !!}</td>
                                                             <td class="col-lg-2">
                                                                 @include('dashboard.world.cities.parts.actions')
                                                             </td>

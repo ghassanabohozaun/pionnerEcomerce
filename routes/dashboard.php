@@ -77,12 +77,15 @@ Route::group(
                 Route::resource('countries', CountriesController::class);
                 Route::post('/countries/destroy', [CountriesController::class, 'destroy'])->name('countries.destroy');
                 Route::post('/countries/status', [CountriesController::class, 'changeStatus'])->name('countries.change.status');
-                Route::get('/countries/get/all/governoraties', [CountriesController::class, 'getAllGovernoratiesByCountry'])->name('countries.get.all.governoraties');
+                Route::get('/country/{country_id?}/governorates', [CountriesController::class, 'getGovrnoratesByCountryID'])->name('countries.get.govnernorates.by.country.id');
+
                 // governorates routes
                 Route::resource('governorates', GovernoratiesController::class);
                 Route::post('/governorates/destroy', [GovernoratiesController::class, 'destroy'])->name('governorates.destroy');
+                Route::get('/governorates/status/{id?}', [GovernoratiesController::class, 'changeStatus'])->name('governorates.change.status');
                 Route::get('/governorates/get/all/cities', [GovernoratiesController::class, 'getAllCitiesByGovernorate'])->name('governorates.get.all.cities');
-
+                Route::get('/governorate/{governorate_id?}/cities', [GovernoratiesController::class, 'getCitesByGovernrateID'])->name('governorates.get.cities.by.governorate.id');
+                Route::post('/govnerorates/update/price', [GovernoratiesController::class, 'updateShippingPrice'])->name('governorates.update.shipping.price');
                 // cities routes
                 Route::resource('cities', CitiesController::class);
                 Route::post('/cities/destroy', [CitiesController::class, 'destroy'])->name('cities.destroy');

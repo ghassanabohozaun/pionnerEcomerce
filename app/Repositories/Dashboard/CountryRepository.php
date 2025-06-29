@@ -24,13 +24,18 @@ class CountryRepository
     // get countries
     public function getCountries()
     {
-        return Country::orderByDesc('id')->select('id', 'name', 'phone_code', 'flag_code', 'status')->paginate(10);
+        return Country::when(!empty(request()->keyword), function ($query) {
+            $query->where('name', 'like', '%' . request()->keyword . '%');
+        })
+            ->orderByDesc('id')
+            ->select('id', 'name', 'phone_code', 'flag_code', 'status')
+            ->paginate(10);
     }
 
     // get all governorates by country
     public function getAllGovernoratiesByCountry($country)
     {
-        $governorates = $country->governorates;
+        $governorates = $country->governorates()->paginate(5);
         return $governorates;
     }
 

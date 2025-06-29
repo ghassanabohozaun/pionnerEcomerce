@@ -2,6 +2,7 @@
 
 namespace App\Services\Dashboard;
 
+use App\Models\ShippingGovernorate;
 use App\Repositories\Dashboard\GovernorateRepository;
 
 class GovernorateService
@@ -60,15 +61,54 @@ class GovernorateService
         return $governorate;
     }
 
-       // destory governorate
+    // change status
+    public function changeStatus($id)
+    {
+        $governorate = self::getGovernorate($id);
+        if (!$governorate) {
+            return false;
+        }
+        $governorate = $this->governorateRepository->changeStatus($governorate);
+        if (!$governorate) {
+            return false;
+        }
+        return $governorate;
+    }
+
+    // destory governorate
     public function destroyGovernorate($id)
     {
         $governorate = self::getGovernorate($id);
-        if ($governorate->cities->count() > 0 ||   !$governorate) {
+        if ($governorate->cities->count() > 0 || !$governorate) {
             return false;
         }
 
         $governorate = $this->governorateRepository->destroyGovernorate($governorate);
+        if (!$governorate) {
+            return false;
+        }
+        return $governorate;
+    }
+
+    // get shipping governorate
+    public function getShippingGovernoreate($id)
+    {
+        $shippingGovernorate = $this->governorateRepository->getShippingGovernoreate($id);
+        if (!$shippingGovernorate) {
+            return false;
+        }
+        return $shippingGovernorate;
+    }
+    // update shipping price
+    public function updateShippingPrice($id, $price)
+    {
+        $shippingGovernorate = $this->governorateRepository->getShippingGovernoreate($id);
+
+        if (!$shippingGovernorate) {
+            $shippingGovernorate = $this->governorateRepository->storeShippingPrice($id, $price);
+        }
+
+        $governorate = $this->governorateRepository->updateShippingPrice($shippingGovernorate, $price);
         if (!$governorate) {
             return false;
         }

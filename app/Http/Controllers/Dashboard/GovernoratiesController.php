@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\GovernorateRequest;
+use App\Http\Requests\Dashboard\UpdateShippingPriceRequest;
 use App\Services\Dashboard\CountryService;
 use App\Services\Dashboard\GovernorateService;
 use Illuminate\Http\Request;
@@ -26,13 +27,19 @@ class GovernoratiesController extends Controller
         return view('dashboard.world.governorates.index', compact('title', 'governorates'));
     }
 
+    // get cities by governorate id
+    public function getCitesByGovernrateID($governorate_id)
+    {
+        $title = __('world.cities');
+        $cities = $this->governorateService->getAllCitiesbyGovernorate($governorate_id);
+        return view('dashboard.world.cities.index', compact('title', 'cities'));
+    }
+
     //create
     public function create()
     {
         $title = __('world.create_new_governorate');
-
         $countries = $this->countryService->getCountries();
-
         return view('dashboard.world.governorates.create', compact('title', 'countries'));
     }
 
@@ -66,9 +73,7 @@ class GovernoratiesController extends Controller
             return redirect()->back();
         }
 
-
         $countries = $this->countryService->getCountries();
-
 
         return view('dashboard.world.governorates.edit', compact('title', 'governorate', 'countries'));
     }
@@ -92,6 +97,17 @@ class GovernoratiesController extends Controller
         return redirect()->back();
     }
 
+    // change status
+    public function changeStatus($id)
+    {
+        $governorate = $this->governorateService->changeStatus($id);
+        if (!$governorate) {
+            return response()->json(['status' => false]);
+        }
+        $governorate = $this->governorateService->getGovernorate($id);
+        return response()->json(['status' => true, 'data' => $governorate]);
+    }
+
     // destroy
     public function destroy(Request $request)
     {
@@ -113,4 +129,18 @@ class GovernoratiesController extends Controller
         }
     }
 
+    public function updateShippingPrice(UpdateShippingPriceRequest $request)
+    {
+        if ($request->json()) {
+            $shippingPrice = $this->governorateService->updateShippingPrice($request->governorate_id, $request->shipping_price);
+
+            if (!$shippingPrice) {
+                return response()->json(['status' => false]);
+            }
+
+            $shippingGovernorate = $this->governorateService->getShippingGovernoreate($request->governorate_id);
+
+            return response()->json(['status' => true, 'data' => $shippingGovernorate]);
+        }
+    }
 }

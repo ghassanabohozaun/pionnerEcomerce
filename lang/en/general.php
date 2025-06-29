@@ -15,7 +15,9 @@ return [
     'edit' => 'Edit',
     'hide' => 'Hide',
     'enable' => 'Enable',
-    'disable' => 'Disable',
+    'disabled' => 'Disabled',
+    'active' => '',
+    'inactive' => '',
     'pending' => 'Pending',
     'yes' => 'Yes',
     'no' => 'No',
@@ -65,7 +67,6 @@ return [
     'file_format_allow' => 'Allowed file types pdf',
     'certification_format_allow' => 'Allowed file types pdf,jpg,jpeg,png',
     'word_format_allow' => 'Allowed file types Word',
-
 
     'login_succsss' => 'Login Successfully',
     'prevent_delete' => 'Prevent Delete',

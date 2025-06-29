@@ -202,6 +202,7 @@ return [
         'phone_code' => 'Phone Code',
         'flag_code' => 'Flag Code',
         'country_id' => 'Country',
+        'shipping_price' => 'Shipping Price',
         'question.ar' => 'Arabic Question',
         'question.en' => 'English Question',
         'answer.ar' => 'Arabic Answer',
