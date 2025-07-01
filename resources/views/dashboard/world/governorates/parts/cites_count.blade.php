@@ -8,6 +8,6 @@
 
 <div class="badge badge-pill badge-info badge-md">
     <a href="{!! route('dashboard.governorates.get.cities.by.governorate.id', $governorate->id) !!}" title="{!! __('world.show_all_cities') !!}">
-        {!! $governorate->cities->count() !!}
+        {!! $governorate->cities_count !!}
     </a>
 </div>

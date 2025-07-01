@@ -22,9 +22,27 @@
  <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/vendors/css/charts/chartist-plugin-tooltip.css">
  <link rel="stylesheet" type="text/css" href="{!! asset(path: 'assets/dashbaord') !!}/fonts/simple-line-icons/style.css">
  <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css/my-style.css">
- <link href="{!! asset('vendor/flasher/flasher.min.css') !!}" rel="stylesheet">
+ <link rel="stylesheet" href="{!! asset('vendor/flasher/flasher.min.css') !!}" rel="stylesheet">
 
- @if (Config::get('app.locale') == 'ar')
+ {{-- begin dataTables --}}
+ <link rel="stylesheet" href="{!! asset(path: 'vendor/datatables/css/dataTables.bootstrap5.min.css') !!}">
+ {{-- buttons --}}
+ <link rel="stylesheet" href="{!! asset(path: 'vendor/datatables/css/buttons.bootstrap5.min.css') !!}">
+ {{-- responsive --}}
+ <link rel="stylesheet" href="{!! asset(path: 'vendor/datatables/css/responsive.bootstrap5.min.css') !!}">
+ {{-- colReorder --}}
+ <link rel="stylesheet" href="{!! asset(path: 'vendor/datatables/css/colReorder.bootstrap5.min.css') !!}">
+ {{-- rowReorder --}}
+ <link rel="stylesheet" href="{!! asset(path: 'vendor/datatables/css/rowReorder.bootstrap5.min.css') !!}">
+ {{-- select --}}
+ <link rel="stylesheet" href="{!! asset(path: 'vendor/datatables/css/select.bootstrap5.min.css') !!}">
+ {{-- fixedHeader --}}
+ <link rel="stylesheet" href="{!! asset(path: 'vendor/datatables/css/fixedHeader.bootstrap5.min.css') !!}">
+ {{-- scroller --}}
+ <link rel="stylesheet" href="{!! asset(path: 'vendor/datatables/css/scroller.bootstrap5.min.css') !!}">
+ {{-- end dataTables --}}
+
+ @if (Lang() == 'ar')
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css-rtl/vendors.css">
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css-rtl/app.css">
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/css-rtl/custom-rtl.css">

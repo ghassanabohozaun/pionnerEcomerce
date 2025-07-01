@@ -16,8 +16,8 @@ class Brand extends Model
     public array $translatable = ['name'];
 
     // accessories
-    public function getStatusAttribute($status)
-    {
-        return $status == 1 ? 'on' : '';
-    }
+    // public function getStatusAttribute($status)
+    // {
+    //     return $status == 1 ? 'on' : '';
+    // }
 }

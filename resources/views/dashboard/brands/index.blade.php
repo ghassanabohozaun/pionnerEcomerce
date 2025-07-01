@@ -72,42 +72,32 @@
                                 <div class="card-content collapse show">
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table" id='myTable'>
+                                            <table id="yajra-datatable" class="table table-striped table-bordered">
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
                                                         <th>{!! __('brands.logo') !!}</th>
-                                                        <th>{!! __('brands.brand_name') !!}</th>
-                                                        <th class="text-center">{!! __('brands.status') !!}</th>
+                                                        <th>{!! __('brands.name') !!}</th>
+                                                        <th>{!! __('brands.status') !!}</th>
+                                                        <th>{!! __('brands.manage_status') !!}</th>
                                                         <th class="text-center">{!! __('general.actions') !!}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @forelse ($brands as $brand)
-                                                        <tr>
-                                                            <th class="col-lg-1">{!! $loop->iteration !!} </th>
-                                                            <td class="col-lg-2">@include('dashboard.brands.parts.logo')</td>
-                                                            <td class="col-lg-2">{!! $brand->name !!}</td>
-                                                            <td class="col-lg-1 text-center">
-                                                                @include('dashboard.brands.parts.status')
-                                                            </td>
-                                                            <td class="col-lg-2 text-center">
-                                                                @include('dashboard.brands.parts.actions')
-                                                            </td>
-                                                        </tr>
-                                                    @empty
-                                                        <tr>
-                                                            <td colspan="5" class="text-center">
-                                                                {!! __('brands.no_brands_found') !!}
-                                                            </td>
-                                                        </tr>
-                                                    @endforelse
                                                 </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>{!! __('brands.logo') !!}</th>
+                                                        <th>{!! __('brands.name') !!}</th>
+                                                        <th>{!! __('brands.status') !!}</th>
+                                                        <th>{!! __('brands.manage_status') !!}</th>
+                                                        <th>{!! __('general.actions') !!}</th>
+                                                    </tr>
+                                                </tfoot>
 
                                             </table>
-                                            <div class="float-right">
-                                                {!! $brands->links() !!}
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -122,6 +112,121 @@
 @endsection
 @push('scripts')
     <script type="text/javascript">
+        // yajra datatable
+
+        var lang = "{!! Lang() !!}";
+
+        $('#yajra-datatable').DataTable({
+            dom: 'Bfrtip',
+            processing: true,
+            serverSide: true,
+            colReorder: true,
+            fixedHeader: true,
+            responsive: {
+                details: {
+                    display: DataTable.Responsive.display.modal({
+                        header: function(row) {
+                            var data = row.data();
+                            return '{!! __('general.detalis_for') !!} ' + data['name'];
+                        }
+                    }),
+                    renderer: DataTable.Responsive.renderer.tableAll({
+                        tableClass: 'table'
+                    })
+                }
+            },
+            ajax: "{!! route('dashboard.brands.get.all') !!}",
+
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    searchable: false,
+                    orderable: false,
+                },
+                {
+                    data: 'logo',
+                    name: 'logo',
+                    searchable: false,
+                    orderable: false,
+                },
+                {
+                    data: 'name',
+                    name: 'name',
+                },
+
+                {
+                    data: 'status',
+                    name: 'status',
+                },
+                {
+                    data: 'manage_status',
+                    name: 'manage_status',
+                    searchable: false,
+                    orderable: false,
+                },
+                {
+                    data: 'actions',
+                    name: 'actions',
+                    searchable: false,
+                    orderable: false,
+                },
+            ],
+
+            layout: {
+                topStart: {
+                    buttons: ['colvis', 'copy', 'print', 'excel', 'pdf']
+                }
+            },
+
+            language: lang === 'ar' ? {
+                url: '{!! asset('vendor/datatables/ar.json') !!}',
+            } : {},
+
+            buttons: [{
+                    extend: 'colvis',
+                    className: 'btn btn-default',
+                    exportOptions: {
+                        // columns: [0, 1, 2],
+                        columns: ':not(:last-child)',
+                    }
+                },
+                {
+                    extend: 'copy',
+                    className: 'btn btn-default',
+                    exportOptions: {
+                        // columns: [0, 1, 2],
+                        columns: ':not(:last-child)',
+                    }
+                },
+                {
+                    extend: 'print',
+                    className: 'btn btn-default',
+                    exportOptions: {
+                        // columns: [0, 1, 2],
+                        columns: ':not(:last-child)',
+                    }
+                },
+                {
+                    extend: 'excel',
+                    className: 'btn btn-default',
+                    exportOptions: {
+                        // columns: [0, 1, 2],
+                        columns: ':not(:last-child)',
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    className: 'btn btn-default',
+                    exportOptions: {
+                        // columns: [0, 1, 2],
+                        columns: ':not(:last-child)',
+                    }
+                },
+
+            ]
+
+        });
+
         // delete brand
         $('body').on('click', '.delete_brand_btn', function(e) {
             e.preventDefault();
@@ -157,7 +262,7 @@
                         type: 'post',
                         dataType: 'json',
                         success: function(data) {
-                            $('#myTable').load(location.href + (' #myTable'));
+                            $('#yajra-datatable').DataTable().ajax.reload();
                             if (data.status == true) {
                                 swal({
                                     title: "{!! __('general.deleted') !!} ",
@@ -226,6 +331,7 @@
                 type: 'post',
                 dataType: 'JSON',
                 success: function(data) {
+                    $('#yajra-datatable').DataTable().ajax.reload();
                     if (data.status == true) {
                         flasher.success("{!! __('general.change_status_success_message') !!}");
                     } else {

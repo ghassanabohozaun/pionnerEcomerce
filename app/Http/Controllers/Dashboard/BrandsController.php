@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\BrandRequest;
-use App\Services\Dashboard\BrandService;
+ use App\Services\Dashboard\BrandService;
 use Illuminate\Http\Request;
 
 class BrandsController extends Controller
@@ -22,6 +22,13 @@ class BrandsController extends Controller
         return view('dashboard.brands.index', compact('title', 'brands'));
     }
 
+    // get all
+    public function getAll(){
+        $brands = $this->brandService->getAll();
+        return $brands;
+    }
+
+
     //create brand
     public function create()
     {
@@ -32,9 +39,6 @@ class BrandsController extends Controller
     //store brand
     public function store(BrandRequest $request)
     {
-
-
-
         $brand = $this->brandService->storeBrand($request);
 
         if (!$brand) {

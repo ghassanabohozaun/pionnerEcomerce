@@ -23,23 +23,25 @@ class CategoryRepository
     //  get categories
     public function getCategories()
     {
-        return Category::orderByDesc('created_at')->select('id', 'name', 'slug', 'status', 'parent')->paginate(5);
+        return Category::with('parentRelation')->get();
     }
 
     // get parent category
-    public function getParentCategories(){
-
-        return Category::orderByDesc('created_at')->whereNull('parent')->select('id','name')->get();
+    public function getParentCategories()
+    {
+        return Category::orderByDesc('created_at')->whereNull('parent')->select('id', 'name')->get();
     }
+    // get categories without childern
+    public function getCategoreisWithoutChildren($id)
+    {
+        return Category::orderByDesc('created_at')->where('id', '!=', $id)->whereNull('parent')->select('id', 'name')->get();
+    }
+
     // store category
     public function storeCategory($request)
     {
         $category = Category::create([
             'name' => [
-                'en' => $request->name['en'],
-                'ar' => $request->name['ar'],
-            ],
-            'slug' => [
                 'en' => $request->name['en'],
                 'ar' => $request->name['ar'],
             ],
@@ -56,10 +58,6 @@ class CategoryRepository
         $category = self::getCategory($id);
         $category = $category->update([
             'name' => [
-                'en' => $request->name['en'],
-                'ar' => $request->name['ar'],
-            ],
-            'slug' => [
                 'en' => $request->name['en'],
                 'ar' => $request->name['ar'],
             ],

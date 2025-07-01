@@ -5,6 +5,8 @@ namespace App\Services\Dashboard;
 use App\Repositories\Dashboard\BrandRepository;
 use App\Traits\GeneralTrait;
 use File;
+use Yajra\DataTables\Facades\DataTables;
+
 class BrandService
 {
     use GeneralTrait;
@@ -29,6 +31,31 @@ class BrandService
     public function getBrands()
     {
         return $this->brandRepository->getBrands();
+    }
+
+    // get all
+    public function getAll()
+    {
+        $brands = $this->brandRepository->getBrands();
+        $brands = DataTables::of($brands)
+            ->addIndexColumn()
+            ->addColumn('name', function ($brand) {
+                return $brand->getTranslation('name', Lang());
+            })
+            ->addColumn('status', function ($brand) {
+                return $brand->status == 1 ? __('general.active') : __('general.inactive');
+            })
+            ->addColumn('logo', function ($brand) {
+                return view('dashboard.brands.parts.logo', compact('brand'));
+            })
+            ->addColumn('actions', function ($brand) {
+                return view('dashboard.brands.parts.actions', compact('brand'));
+            })
+            ->addColumn('manage_status', function ($brand) {
+                return view('dashboard.brands.parts.status', compact('brand'));
+            })
+            ->make(true);
+        return $brands;
     }
 
     // store brand

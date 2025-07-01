@@ -125,7 +125,7 @@
                                                         <div class="form-group">
                                                             <label id="statusLabel">
                                                                 <input type="checkbox" name="status" class="checkbox"
-                                                                    @checked(old('status') == 'on')>
+                                                                    @checked(old('status') == 1)>
                                                                 <span>{!! __('categories.status') !!}</span>
                                                             </label>
                                                         </div>

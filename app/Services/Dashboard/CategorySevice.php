@@ -3,6 +3,7 @@
 namespace App\Services\Dashboard;
 
 use App\Repositories\Dashboard\CategoryRepository;
+use Yajra\DataTables\Facades\DataTables;
 
 class CategorySevice
 {
@@ -27,7 +28,28 @@ class CategorySevice
     //  get categories
     public function getCategories()
     {
-        return $this->categoryRepository->getCategories();
+        $categories = $this->categoryRepository->getCategories();
+
+        $DataTables = DataTables::of($categories)
+            ->addIndexColumn()
+            ->addColumn('name', function ($category) {
+                return $category->getTranslation('name', Lang());
+            })
+            ->addColumn('parentRelation', function ($category) {
+                return $category->parentRelation->name ?? '';
+            })
+            ->addColumn('status', function ($category) {
+                return $category->status == 1 ? __('general.active') : __('general.inactive');
+            })
+            ->addColumn('manage_status', function ($category) {
+                return view('dashboard.categories.parts.status', compact('category'));
+            })
+            ->addColumn('actions', function ($category) {
+                return view('dashboard.categories.parts.actions', compact('category'));
+            })
+            ->make(true);
+
+        return $DataTables;
     }
 
     //  get parent categories
@@ -35,7 +57,13 @@ class CategorySevice
     {
         return $this->categoryRepository->getParentCategories();
     }
+    // get categories without childern
 
+    public function getCategoreisWithoutChildren($id)
+    {
+        $category = $this->categoryRepository->getCategoreisWithoutChildren($id);
+        return $category;
+    }
     // store category
     public function storeCategory($request)
     {

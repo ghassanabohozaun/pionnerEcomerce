@@ -685,9 +685,9 @@ footer.footer-dark {
 }
 
 .navigation {
-  font-size : 1.1rem;
+  font-size : 0.9rem;
   letter-spacing : 0.2px;
-  font-family : 'Quicksand', Georgia, 'Times New Roman', Times, serif;
+  font-family: "Poppins", "ArbFONTSBEINNormalAR", sans-serif;
   font-weight : 400;
   overflow-y : hidden;
   padding-bottom : 20px;
@@ -4740,13 +4740,13 @@ table.dataTable {
 }
 
 .content-wrapper table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before, .content-wrapper table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
-  background-color : #666EE8;
-  border-radius : 0;
+  /* background-color : #666EE8; */
+  /* border-radius : 0; */
   top : 10px;
   right : 10px;
-  -webkit-box-shadow : 0 0 2px #444444;
+  /* -webkit-box-shadow : 0 0 2px #444444;
           box-shadow : 0 0 2px #444444;
-}
+} */
 
 .content-wrapper table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child:before, .content-wrapper table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th:first-child:before {
   background-color : #FF4961;

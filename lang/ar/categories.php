@@ -1,19 +1,22 @@
 <?php
 return [
-    'create_new_category' => 'انشاء مجموعة جديدة',
-    'update_category' => 'تعديل المجموعة',
-    'categories' => 'المجموعات',
-    'show_all_categories' => 'عرض جميع المجموعات',
+    'create_new_category' => 'انشاء قسم جديدة',
+    'update_category' => 'تعديل القسم',
+    'categories' => 'الأقسام',
+    'show_all_categories' => 'عرض جميع الأقسام',
 
-    'category_name' => 'اسم المجموعة',
-    'name_ar' => 'اسم المجموعة بالعربي',
-    'name_en' => 'اسم المجموعة بالانجليزي',
-    'status' => 'حالة المجموعة ',
+    'category_name' => 'اسم القسم',
+    'name_ar' => 'اسم القسم بالعربي',
+    'name_en' => 'اسم القسم بالانجليزي',
+    'status' => 'حالة القسم ',
+    'manage_status' => ' إدارة الحالة  ',
     'slug' => 'Category Slug ',
-    'parent' => 'أب المجموعة ',
-    'enter_name_ar' => 'ادخل اسم المجموعة بالعربي',
-    'enter_name_en' => 'ادخل اسم المجموعة بالانجليزي',
-    'enter_parent' => 'ادخل أب المجموعة ',
+    'parent' => 'أب القسم ',
+    'created_at' => 'أنشأ في ',
 
-    'no_categories_found' => 'لا يوجد المجموعات حالياً !',
+    'enter_name_ar' => 'ادخل اسم القسم بالعربي',
+    'enter_name_en' => 'ادخل اسم القسم بالانجليزي',
+    'enter_parent' => 'ادخل أب القسم ',
+
+    'no_categories_found' => 'لا يوجد أقسام حالياً !',
 ];

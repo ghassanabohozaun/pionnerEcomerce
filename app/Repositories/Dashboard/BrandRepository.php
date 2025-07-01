@@ -24,7 +24,7 @@ class BrandRepository
     // get brands
     public function getBrands()
     {
-        $brands = Brand::orderByDesc('created_at')->select('id', 'name', 'logo', 'status')->paginate(5);
+        $brands = Brand::all();
         return $brands;
     }
 

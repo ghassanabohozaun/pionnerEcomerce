@@ -45,92 +45,204 @@
             </div> <!-- end :content header -->
 
             <!-- begin: content body -->
-            <div class="content-body">
+            <div class="row" style="display: flex ; justify-content: center;">
+                <div class="col-md-12">
+                    <div class="content-body">
 
-                <section id="basic-form-layouts">
-                    <div class="row match-height">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <!-- begin: card header -->
-                                <div class="card-header">
-                                    <h4 class="card-title" id="basic-layout-colored-form-control">
-                                        {!! __('categories.show_all_categories') !!}
-                                    </h4>
-                                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                                    <div class="heading-elements">
-                                        <ul class="list-inline mb-0">
-                                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                            <li><a data-action="close"><i class="ft-x"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- end: card header -->
-
-                                <!-- begin: card content -->
-                                <div class="card-content collapse show">
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table" id='myTable'>
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>{!! __('categories.category_name') !!}</th>
-                                                        <th>{!! __('categories.slug') !!}</th>
-                                                        <th>{!! __('categories.parent') !!}</th>
-
-                                                        <th class="text-center">{!! __('categories.status') !!}</th>
-                                                        <th class="text-center">{!! __('general.actions') !!}</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @forelse ($categories as $category)
-                                                        <tr>
-                                                            <th class="col-lg-2">{!! $loop->iteration !!} |
-                                                                {!! $category->id !!}</th>
-                                                            <td class="col-lg-2">{!! $category->name !!}</td>
-                                                            <td class="col-lg-2">{!! $category->slug !!}</td>
-                                                            <th class="col-lg-2">{!! $category->parent !!}</th>
-                                                            <td class="col-lg-2 text-center">
-                                                                @include('dashboard.categories.parts.status')
-                                                            </td>
-                                                            <td class="col-lg-2 text-center">
-                                                                @include('dashboard.categories.parts.actions')
-                                                            </td>
-                                                        </tr>
-                                                    @empty
-                                                        <tr>
-                                                            <td colspan="6" class="text-center">
-                                                                {!! __('categories.no_categories_found') !!}
-                                                            </td>
-                                                        </tr>
-                                                    @endforelse
-                                                </tbody>
-
-                                            </table>
-                                            <div class="float-right">
-                                                {!! $categories->links() !!}
+                        <section id="basic-form-layouts">
+                            <div class="row match-height">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <!-- begin: card header -->
+                                        <div class="card-header">
+                                            <h4 class="card-title" id="basic-layout-colored-form-control">
+                                                {!! __('categories.show_all_categories') !!}
+                                            </h4>
+                                            <a class="heading-elements-toggle"><i
+                                                    class="la la-ellipsis-v font-medium-3"></i></a>
+                                            <div class="heading-elements">
+                                                <ul class="list-inline mb-0">
+                                                    <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                                    <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                                    <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                                    <li><a data-action="close"><i class="ft-x"></i></a></li>
+                                                </ul>
                                             </div>
                                         </div>
+                                        <!-- end: card header -->
+
+                                        <!-- begin: card content -->
+                                        <div class="card-content collapse show">
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table id="yajra-datatable" class="table table-striped table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>{!! __('categories.category_name') !!}</th>
+                                                                <th>{!! __('categories.parent') !!}</th>
+                                                                <th>{!! __('categories.status') !!}</th>
+                                                                <th>{!! __('categories.manage_status') !!}</th>
+                                                                <th>{!! __('categories.created_at') !!}</th>
+                                                                <th>{!! __('general.actions') !!}</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>{!! __('categories.category_name') !!}</th>
+                                                                <th>{!! __('categories.parent') !!}</th>
+                                                                <th>{!! __('categories.status') !!}</th>
+                                                                <th>{!! __('categories.manage_status') !!}</th>
+                                                                <th>{!! __('categories.created_at') !!}</th>
+                                                                <th>{!! __('general.actions') !!}</th>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end: card content -->
                                     </div>
-                                </div>
-                                <!-- end: card content -->
-                            </div>
-                        </div> <!-- end: card  -->
-                    </div><!-- end: row  -->
-                </section><!-- end: sections  -->
-            </div><!-- end: content body  -->
+                                </div> <!-- end: card  -->
+                            </div><!-- end: row  -->
+                        </section><!-- end: sections  -->
+                    </div>
+                </div>
+            </div>
+            <!-- end: content body  -->
         </div> <!-- end: content wrapper  -->
     </div><!-- end: content app  -->
 @endsection
+
+
 @push('scripts')
     <script type="text/javascript">
+        var lang = '{{ Lang() }}';
+        // yajra tables
+        $('#yajra-datatable').DataTable({
+            dom: 'Bfrtip',
+            processing: true,
+            serverSide: true,
+            colReorder: true,
+            fixedHeader: true,
+
+            // rowReorder: true,
+            // select: true,
+            // responsive: true,
+            // scrollCollapse: true,
+            // scroller: true,
+            // scrollY: 900,
+            responsive: {
+                details: {
+                    display: DataTable.Responsive.display.modal({
+                        header: function(row) {
+                            var data = row.data();
+                            return 'Details for ' + data[0] + ' ' + data[1];
+                        }
+                    }),
+                    renderer: DataTable.Responsive.renderer.tableAll({
+                        tableClass: 'table'
+                    })
+                }
+            },
+
+
+            ajax: '{!! route('dashboard.categories.all') !!}',
+
+            columns: [{
+                    data: 'DT_RowIndex',
+                    searchable: false,
+                    orderable: false,
+                },
+                {
+                    data: 'name',
+                    name: 'name',
+                },
+                {
+                    data: 'parentRelation',
+                    name: 'parentRelation',
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'manage_status',
+                    name: 'manage_status'
+                },
+                {
+                    data: 'created_at',
+                    name: 'created_at',
+                },
+                {
+                    data: 'actions',
+                    searchable: false,
+                    orderable: false,
+                }
+            ],
+
+            layout: {
+                // 'colvis',
+                topStart: {
+                    buttons: ['copy', 'print', 'excel', 'pdf']
+                }
+            },
+            language: lang === 'ar' ? {
+                url: '{!! asset('vendor/datatables/ar.json') !!}',
+            } : {},
+
+            buttons: [{
+                    extend: 'colvis',
+                    className: 'btn btn-default',
+                    exportOptions: {
+                        // columns: [0, 1, 2],
+                        columns: ':not(:last-child)',
+                    }
+                },
+                {
+                    extend: 'copy',
+                    className: 'btn btn-default',
+                    exportOptions: {
+                        // columns: [0, 1, 2],
+                        columns: ':not(:last-child)',
+                    }
+                },
+                {
+                    extend: 'print',
+                    className: 'btn btn-default',
+                    exportOptions: {
+                        // columns: [0, 1, 2],
+                        columns: ':not(:last-child)',
+                    }
+                },
+                {
+                    extend: 'excel',
+                    className: 'btn btn-default',
+                    exportOptions: {
+                        // columns: [0, 1, 2],
+                        columns: ':not(:last-child)',
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    className: 'btn btn-default',
+                    exportOptions: {
+                        // columns: [0, 1, 2],
+                        columns: ':not(:last-child)',
+                    }
+                },
+
+            ]
+
+        });
+
         // delete category
         $('body').on('click', '.delete_category_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
-
             swal({
                 title: "{{ __('general.ask_delete_record') }}",
                 icon: "warning",
@@ -161,7 +273,7 @@
                         type: 'post',
                         dataType: 'json',
                         success: function(data) {
-                            $('#myTable').load(location.href + (' #myTable'));
+                            $('#yajra-datatable').DataTable().ajax.reload();
                             if (data.status == true) {
                                 swal({
                                     title: "{!! __('general.deleted') !!} ",
@@ -207,6 +319,63 @@
                     });
                 }
             });
+
+
+            // const swalWithBootstrapButtons = Swal.mixin({
+            //     customClass: {
+            //         confirmButton: "btn btn-success",
+            //         cancelButton: "btn btn-danger"
+            //     },
+            //     buttonsStyling: true
+            // });
+
+            // swalWithBootstrapButtons.fire({
+            //     title: "{{ __('general.ask_delete_record') }}",
+            //     text: "",
+            //     icon: "warning",
+            //     showCancelButton: true,
+            //     confirmButtonText: "{{ __('general.yes_delete_it') }}",
+            //     cancelButtonText: "{{ __('general.no_cancel') }}",
+            //     reverseButtons: true
+            // }).then((result) => {
+            //     if (result.isConfirmed) {
+            //         $.ajax({
+            //             url: '{!! route('dashboard.categories.destroy') !!}',
+            //             data: {
+            //                 id,
+            //                 id
+            //             },
+            //             type: 'post',
+            //             dataType: 'json',
+            //             success: function(data) {
+            //                 $('#yajra-datatable').DataTable().ajax.reload();
+            //                 if (data.status == true) {
+            //                     swalWithBootstrapButtons.fire({
+            //                         title: "{!! __('general.deleted') !!}",
+            //                         text: "{{ __('general.delete_success_message') }}",
+            //                         icon: "success"
+            //                     });
+            //                 } else if (data.status == false) {
+            //                     swalWithBootstrapButtons.fire({
+            //                         title: "{!! __('general.deleted') !!}",
+            //                         text: "{{ __('general.delete_error_message') }}",
+            //                         icon: "error"
+            //                     });
+            //                 }
+            //             }
+            //         });
+
+            //     } else if (
+            //         /* Read more about handling dismissals below */
+            //         result.dismiss === Swal.DismissReason.cancel
+            //     ) {
+            //         swalWithBootstrapButtons.fire({
+            //             title: "{!! __('general.cancelled') !!}",
+            //             text: "{!! __('general.you_recored_is_safe') !!} :)",
+            //             icon: "error"
+            //         });
+            //     }
+            // });
         });
 
         //  change status
@@ -230,6 +399,7 @@
                 type: 'post',
                 dataType: 'JSON',
                 success: function(data) {
+                    $('#yajra-datatable').DataTable().ajax.reload();
                     if (data.status == true) {
                         flasher.success("{!! __('general.change_status_success_message') !!}");
                     } else {

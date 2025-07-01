@@ -24,18 +24,19 @@ class CountryRepository
     // get countries
     public function getCountries()
     {
-        return Country::when(!empty(request()->keyword), function ($query) {
-            $query->where('name', 'like', '%' . request()->keyword . '%');
-        })
+        $conuntries = Country::withCount(['governorates', 'users'])
+            ->when(!empty(request()->keyword), function ($query) {
+                $query->where('name', 'like', '%' . request()->keyword . '%');
+            })
             ->orderByDesc('id')
-            ->select('id', 'name', 'phone_code', 'flag_code', 'status')
             ->paginate(10);
+        return $conuntries;
     }
 
     // get all governorates by country
     public function getAllGovernoratiesByCountry($country)
     {
-        $governorates = $country->governorates()->paginate(5);
+        $governorates = $country->governorates()->withCount(['cities', 'users'])->with(['country' ,'shippingPrice'])->paginate(5);
         return $governorates;
     }
 

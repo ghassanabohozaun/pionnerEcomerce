@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\CategoryRequest;
+use App\Models\Category;
 use App\Services\Dashboard\CategorySevice;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class CategoriesController extends Controller
 {
@@ -23,12 +25,18 @@ class CategoriesController extends Controller
         return view('dashboard.categories.index', compact('title', 'categories'));
     }
 
+    // get all categories
+    public function getAll()
+    {
+        $categories = $this->categorySevice->getCategories();
+        return $categories;
+    }
     // create
     public function create()
     {
         $title = __('categories.create_new_category');
         $parentCategoires = $this->categorySevice->getParentCategories();
-        return view('dashboard.categories.create', compact('title', 'parentCategoires'));
+        return view('dashboard.categories.create', compact('title', 'parentCategoires', 'category'));
     }
 
     // store
@@ -57,7 +65,7 @@ class CategoriesController extends Controller
             return redirect()->route('dashboard.categories.index');
         }
 
-        $parentCategoires = $this->categorySevice->getParentCategories();
+        $parentCategoires = $this->categorySevice->getCategoreisWithoutChildren($id);
 
         return view('dashboard.categories.edit', compact('title', 'category', 'parentCategoires'));
     }

@@ -24,7 +24,7 @@ class BrandRequest extends FormRequest
     {
         return [
             'name.*' => ['required', 'string', 'max:100', UniqueTranslationRule::for('brands')->ignore($this->id)],
-            'status' => ['in:on,off,1,0'],
+            'status' => ['in:1,0'],
             'logo' => ['required_without:hidden_photo' , 'mimes:png,jpg,jpeg'],
         ];
     }

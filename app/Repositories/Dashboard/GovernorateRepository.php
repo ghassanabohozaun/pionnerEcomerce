@@ -23,12 +23,13 @@ class GovernorateRepository
     // get governorates
     public function getgovernoraties()
     {
-        $governorates = Governorate::when(!empty(request()->keyword), function ($q) {
-            $q->where('name', 'like', '%' . request()->keyword . '%');
-        })
+        $governorates = Governorate::withCount(['cities', 'users'])->with(['country' ,'shippingPrice'])
+            ->when(!empty(request()->keyword), function ($q) {
+                $q->where('name', 'like', '%' . request()->keyword . '%');
+            })
             ->orderByDesc('id')
-            ->select('id', 'name', 'country_id', 'status')
             ->paginate(10);
+
 
         return $governorates;
     }
