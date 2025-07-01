@@ -4,8 +4,8 @@ use App\Http\Controllers\Dashboard\AdminsController;
 use App\Http\Controllers\Dashboard\Auth\AuthController;
 use App\Http\Controllers\Dashboard\Auth\Passowrd\ForgetPasswordController;
 use App\Http\Controllers\Dashboard\Auth\Passowrd\ResetPasswordController;
-use App\Http\Controllers\Dashboard\BrandsController;
 use App\Http\Controllers\Dashboard\CategoriesController;
+use App\Http\Controllers\Dashboard\BrandsController;
 use App\Http\Controllers\Dashboard\CitiesController;
 use App\Http\Controllers\Dashboard\CountriesController;
 use App\Http\Controllers\dashboard\FaqsController;
@@ -86,13 +86,10 @@ Route::group(
                 Route::post('/categories/destroy', [CategoriesController::class, 'destroy'])->name('categories.destroy');
                 Route::post('/categories/status', [CategoriesController::class, 'changeStatus'])->name('categories.change.status');
             });
-
             ########################################### brands routes  ######################################################################
-            Route::group(['middleware' => 'can:brands'], function () {
+
+            Route::group(['middleware' => 'brands'], function () {
                 Route::resource('brands', BrandsController::class);
-                Route::get('/brands-all', [BrandsController::class, 'getAll'])->name('brands.get.all');
-                Route::post('/brands/destroy', [BrandsController::class, 'destroy'])->name('brands.destroy');
-                Route::post('/brands/status', [BrandsController::class, 'changeStatus'])->name('brands.change.status');
             });
 
             ########################################### faqs routes  ######################################################################

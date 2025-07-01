@@ -92,29 +92,6 @@
             @endcan
             <!-- end: categories -->
 
-            <!-- begin: brands -->
-            @can('brands')
-                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                    <li class=" nav-item">
-                        <a href="#">
-                            <i class="la la-navicon"></i>
-                            <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.brands') !!}</span>
-                            <span class="badge badge badge-info badge-pill float-right mr-2">3</span>
-                        </a>
-                        <!-- begin: brands -->
-                        <ul class="menu-content">
-                            <li class="@if (str_contains(url()->current(), 'brands')) active @endif">
-                                <a class="menu-item" href="{!! route('dashboard.brands.index') !!}" data-i18n="nav.dash.brands">
-                                    {!! __('brands.brands') !!}
-                                </a>
-                            </li>
-                        </ul>
-                        <!-- end: brands -->
-                    </li>
-                </ul>
-            @endcan
-            <!-- end: brands -->
-
             <!-- begin: world -->
             @can('world')
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">

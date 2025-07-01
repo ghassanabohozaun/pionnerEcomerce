@@ -2,73 +2,34 @@
 
 namespace App\Services\Dashboard;
 
-use App\Repositories\Dashboard\BrandRepository;
-use App\Traits\GeneralTrait;
-use File;
-use Yajra\DataTables\Facades\DataTables;
+use App\Repositories\Dashboard\BrandRepositroy;
 
 class BrandService
 {
-    use GeneralTrait;
-    protected $brandRepository;
+    protected $brandRepositroy;
+
     //__construct
-    public function __construct(BrandRepository $brandRepository)
+    public function __construct(BrandRepositroy $brandRepositroy)
     {
-        $this->brandRepository = $brandRepository;
+        $this->brandRepositroy = $brandRepositroy;
     }
 
     // get brand
     public function getBrand($id)
     {
-        $brand = $this->brandRepository->getBrand($id);
-        if (!$brand) {
-            return false;
-        }
-        return $brand;
+        return $this->brandRepositroy->getBrand($id);
     }
 
     // get brands
     public function getBrands()
     {
-        return $this->brandRepository->getBrands();
-    }
-
-    // get all
-    public function getAll()
-    {
-        $brands = $this->brandRepository->getBrands();
-        $brands = DataTables::of($brands)
-            ->addIndexColumn()
-            ->addColumn('name', function ($brand) {
-                return $brand->getTranslation('name', Lang());
-            })
-            ->addColumn('status', function ($brand) {
-                return $brand->status == 1 ? __('general.active') : __('general.inactive');
-            })
-            ->addColumn('logo', function ($brand) {
-                return view('dashboard.brands.parts.logo', compact('brand'));
-            })
-            ->addColumn('actions', function ($brand) {
-                return view('dashboard.brands.parts.actions', compact('brand'));
-            })
-            ->addColumn('manage_status', function ($brand) {
-                return view('dashboard.brands.parts.status', compact('brand'));
-            })
-            ->make(true);
-        return $brands;
+        return $this->brandRepositroy->getBrands();
     }
 
     // store brand
-    public function storeBrand($request)
+    public function store($data)
     {
-        if ($request->has('logo')) {
-            $file_name = $request->file('logo');
-            $public_path = public_path('assets/dashbaord/uploadImages/brands');
-            $logo = $this->saveImage($file_name, $public_path);
-        }
-
-        $brand = $this->brandRepository->storeBrand($request, $logo);
-
+        $brand = $this->brandRepositroy->store($data);
         if (!$brand) {
             return false;
         }
@@ -76,71 +37,41 @@ class BrandService
     }
 
     // update brand
-    public function updateBrand($request, $id)
+    public function update($data)
     {
-        $brand = $this->brandRepository->getBrand($id);
+        $brand = $this->brandRepositroy->getBrand($data['id']);
         if (!$brand) {
             return false;
         }
-
-        if ($request->has('logo')) {
-            if (!empty($brand->logo)) {
-                $old_logo = public_path('assets/dashbaord/uploadImages/brands/') . $brand->logo;
-                if (File::exists($old_logo)) {
-                    File::delete($old_logo);
-                }
-                $file_name = $request->file('logo');
-                $public_path = public_path('assets/dashbaord/uploadImages/brands');
-                $logo = $this->saveImage($file_name, $public_path);
-            } else {
-                $file_name = $request->file('logo');
-                $public_path = public_path('assets/dashbaord/uploadImages/brands');
-                $logo = $this->saveImage($file_name, $public_path);
-            }
-        } else {
-            if (!empty($brand->logo)) {
-                $logo = $brand->logo;
-            } else {
-                $logo = '';
-            }
-        }
-
-        $brand = $this->brandRepository->updateBrand($request, $id, $logo);
+        $brand = $this->brandRepositroy->update($brand, $data);
         if (!$brand) {
             return false;
         }
         return $brand;
     }
 
-    // destory brand
-    public function destroyBrand($id)
+    // destroy brand
+    public function destroy($id)
     {
-        $brand = $this->brandRepository->getBrand($id);
+        $brand = $this->brandRepositroy->getBrand($id);
         if (!$brand) {
             return false;
         }
-
-        // delete old logo
-        $logo_path = public_path('assets/dashbaord/uploadImages/brands/') . $brand->logo;
-        if (File::exists($logo_path)) {
-            File::delete($logo_path);
-        }
-
-        $brand = $this->brandRepository->destroyBrand($brand);
+        $brand = $this->brandRepositroy->destroy($brand);
         if (!$brand) {
             return false;
         }
         return $brand;
     }
 
-    // brand change status
-    public function changeStatusBrand($id, $status)
+    // change status
+    public function changeStatus($id, $status)
     {
-        $brand = $this->brandRepository->getBrand($id);
+        $brand = $this->brandRepositroy->getBrand($id);
         if (!$brand) {
             return false;
         }
-        $brand = $this->brandRepository->changeStatusBrand($brand, $status);
+        $brand = $this->brandRepositroy->changeStatus($brand, $status);
         if (!$brand) {
             return false;
         }
