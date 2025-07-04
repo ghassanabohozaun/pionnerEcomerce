@@ -21,13 +21,18 @@ class BrandRepositroy
     // get brands
     public function getBrands()
     {
-        return Brand::all();
+        $brand =  Brand::withCount('products')->latest()->get();
+        return $brand;
     }
 
     // store brand
     public function store($data)
     {
-        return Brand::create($data);
+        return Brand::create([
+            'name' => $data['name'],
+            'status' => $data['status'],
+            'logo' => $data['logo'],
+        ]);
     }
 
     // update brand

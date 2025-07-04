@@ -35,9 +35,13 @@
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
                     <div class="float-md-right mb-2">
-                        <a href="{{ route('dashboard.categories.create') }}" class="btn btn-info round btn-glow px-2" i>
-                            {!! __('categories.create_new_category') !!}</a>
-
+                        {{-- <a href="{{ route('dashboard.categories.create') }}" class="btn btn-info round btn-glow px-2" i>
+                            {!! __('categories.create_new_category') !!}</a> --}}
+                        <button type="button" class="btn btn-info round btn-glow px-2" data-toggle="modal"
+                            data-target="#createCategoryModal">
+                            {!! __('categories.create_new_category') !!}
+                        </button>
+                        @include('dashboard.categories.modal.create')
                     </div>
                 </div>
                 <!-- end: content header right-->
@@ -81,6 +85,7 @@
                                                                 <th>#</th>
                                                                 <th>{!! __('categories.category_name') !!}</th>
                                                                 <th>{!! __('categories.parent') !!}</th>
+                                                                <th>{!! __('brands.products_count') !!}</th>
                                                                 <th>{!! __('categories.status') !!}</th>
                                                                 <th>{!! __('categories.manage_status') !!}</th>
                                                                 <th>{!! __('categories.created_at') !!}</th>
@@ -94,6 +99,7 @@
                                                                 <th>#</th>
                                                                 <th>{!! __('categories.category_name') !!}</th>
                                                                 <th>{!! __('categories.parent') !!}</th>
+                                                                <th>{!! __('brands.products_count') !!}</th>
                                                                 <th>{!! __('categories.status') !!}</th>
                                                                 <th>{!! __('categories.manage_status') !!}</th>
                                                                 <th>{!! __('categories.created_at') !!}</th>
@@ -123,7 +129,7 @@
         var lang = '{{ Lang() }}';
         // yajra tables
         $('#yajra-datatable').DataTable({
-            dom: 'Bfrtip',
+            // dom: 'Bfrtip',
             processing: true,
             serverSide: true,
             colReorder: true,
@@ -140,7 +146,8 @@
                     display: DataTable.Responsive.display.modal({
                         header: function(row) {
                             var data = row.data();
-                            return 'Details for ' + data[0] + ' ' + data[1];
+                            return '{!! __('general.detalis_for') !!} : ' + data['name'];
+
                         }
                     }),
                     renderer: DataTable.Responsive.renderer.tableAll({
@@ -164,6 +171,10 @@
                 {
                     data: 'parentRelation',
                     name: 'parentRelation',
+                },
+                {
+                    data: 'products_count',
+                    name: 'products_count',
                 },
                 {
                     data: 'status',
@@ -194,48 +205,48 @@
                 url: '{!! asset('vendor/datatables/ar.json') !!}',
             } : {},
 
-            buttons: [{
-                    extend: 'colvis',
-                    className: 'btn btn-default',
-                    exportOptions: {
-                        // columns: [0, 1, 2],
-                        columns: ':not(:last-child)',
-                    }
-                },
-                {
-                    extend: 'copy',
-                    className: 'btn btn-default',
-                    exportOptions: {
-                        // columns: [0, 1, 2],
-                        columns: ':not(:last-child)',
-                    }
-                },
-                {
-                    extend: 'print',
-                    className: 'btn btn-default',
-                    exportOptions: {
-                        // columns: [0, 1, 2],
-                        columns: ':not(:last-child)',
-                    }
-                },
-                {
-                    extend: 'excel',
-                    className: 'btn btn-default',
-                    exportOptions: {
-                        // columns: [0, 1, 2],
-                        columns: ':not(:last-child)',
-                    }
-                },
-                {
-                    extend: 'pdf',
-                    className: 'btn btn-default',
-                    exportOptions: {
-                        // columns: [0, 1, 2],
-                        columns: ':not(:last-child)',
-                    }
-                },
+            // buttons: [{
+            //         extend: 'colvis',
+            //         className: 'btn btn-default',
+            //         exportOptions: {
+            //             // columns: [0, 1, 2],
+            //             columns: ':not(:last-child)',
+            //         }
+            //     },
+            //     {
+            //         extend: 'copy',
+            //         className: 'btn btn-default',
+            //         exportOptions: {
+            //             // columns: [0, 1, 2],
+            //             columns: ':not(:last-child)',
+            //         }
+            //     },
+            //     {
+            //         extend: 'print',
+            //         className: 'btn btn-default',
+            //         exportOptions: {
+            //             // columns: [0, 1, 2],
+            //             columns: ':not(:last-child)',
+            //         }
+            //     },
+            //     {
+            //         extend: 'excel',
+            //         className: 'btn btn-default',
+            //         exportOptions: {
+            //             // columns: [0, 1, 2],
+            //             columns: ':not(:last-child)',
+            //         }
+            //     },
+            //     {
+            //         extend: 'pdf',
+            //         className: 'btn btn-default',
+            //         exportOptions: {
+            //             // columns: [0, 1, 2],
+            //             columns: ':not(:last-child)',
+            //         }
+            //     },
 
-            ]
+            // ]
 
         });
 

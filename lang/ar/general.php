@@ -64,7 +64,7 @@ return [
     'submit' => 'إرسال',
     'download' => 'التحميل',
     'flag' => 'علم',
-
+    'created_at' => 'انشأ في',
     'user' => 'المستخدم',
     'admin' => 'المدير',
     'user_update' => 'تعديل المستخدم',

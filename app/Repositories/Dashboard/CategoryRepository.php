@@ -23,7 +23,7 @@ class CategoryRepository
     //  get categories
     public function getCategories()
     {
-        return Category::with('parentRelation')->get();
+        return Category::withCount('products')->with('parentRelation')->latest()->get();
     }
 
     // get parent category
@@ -45,7 +45,7 @@ class CategoryRepository
                 'en' => $request->name['en'],
                 'ar' => $request->name['ar'],
             ],
-            'status' => $request->has('status') ? 1 : 0,
+            'status' => $request->status,
             'parent' => $request->parent,
         ]);
 
@@ -61,7 +61,7 @@ class CategoryRepository
                 'en' => $request->name['en'],
                 'ar' => $request->name['ar'],
             ],
-            'status' => $request->has('status') ? 1 : 0,
+            'status' => $request->status,
             'parent' => $request->parent,
         ]);
 

@@ -36,13 +36,16 @@ class CategorySevice
                 return $category->getTranslation('name', Lang());
             })
             ->addColumn('parentRelation', function ($category) {
-                return $category->parentRelation->name ?? '';
+                return empty($category->parentRelation->name) ?  '-': $category->parentRelation->name  ;
             })
             ->addColumn('status', function ($category) {
                 return $category->status == 1 ? __('general.active') : __('general.inactive');
             })
             ->addColumn('manage_status', function ($category) {
                 return view('dashboard.categories.parts.status', compact('category'));
+            })
+            ->addColumn('products_count', function ($category) {
+                return $category->products_count == 0 ? __('general.not_found') : $category->products_count;
             })
             ->addColumn('actions', function ($category) {
                 return view('dashboard.categories.parts.actions', compact('category'));
@@ -79,9 +82,7 @@ class CategorySevice
     public function updateCategory($request, $id)
     {
         $category = $this->categoryRepository->getCategory($id);
-        if (!$category) {
-            return false;
-        }
+
         $category = $this->categoryRepository->updateCategory($request, $id);
         if (!$category) {
             return false;
@@ -93,9 +94,7 @@ class CategorySevice
     public function destroyCategory($id)
     {
         $category = $this->categoryRepository->getCategory($id);
-        if (!$category) {
-            return false;
-        }
+
         $category = $this->categoryRepository->destroyCategory($category);
         if (!$category) {
             return false;
@@ -107,9 +106,6 @@ class CategorySevice
     public function changeStatusCategory($id, $status)
     {
         $category = $this->categoryRepository->getCategory($id);
-        if (!$category) {
-            return false;
-        }
 
         $category = $this->categoryRepository->changeStatusCategory($category, $status);
         if (!$category) {

@@ -4,6 +4,7 @@ return [
     'update_brand' => 'Update Brand',
     'brands' => 'Brands',
     'show_all_brands' => 'Show All Brands',
+    'products_count'=>'Products Count',
 
     'name' => 'Brand Name',
     'brand_ar' => 'Arabic Brand Name',

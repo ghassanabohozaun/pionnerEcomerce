@@ -22,7 +22,8 @@ class CategoriesController extends Controller
     {
         $title = __('categories.categories');
         $categories = $this->categorySevice->getCategories();
-        return view('dashboard.categories.index', compact('title', 'categories'));
+        $parentCategoires = $this->categorySevice->getParentCategories();
+        return view('dashboard.categories.index', compact('title', 'categories', 'parentCategoires'));
     }
 
     // get all categories
@@ -36,7 +37,7 @@ class CategoriesController extends Controller
     {
         $title = __('categories.create_new_category');
         $parentCategoires = $this->categorySevice->getParentCategories();
-        return view('dashboard.categories.create', compact('title', 'parentCategoires', 'category'));
+        return view('dashboard.categories.create', compact('title', 'parentCategoires'));
     }
 
     // store

@@ -59,7 +59,7 @@ return [
     'submit' => 'Submit',
     'download' => 'Download',
     'flag' => 'Flag',
-
+    'created_at' => 'Created At',
     'user' => 'User',
     'admin' => 'Admin',
     'user_update' => 'User Update',

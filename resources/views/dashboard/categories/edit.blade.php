@@ -101,7 +101,7 @@
                                                 <!-- begin: row -->
                                                 <div class="row">
                                                     <!-- begin: input -->
-                                                    <div class="col-md-5">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="name">{!! __('categories.name_ar') !!}</label>
                                                             <input type="text" id="name" name="name[ar]"
@@ -118,7 +118,7 @@
                                                     <!-- end: input -->
 
                                                     <!-- begin: input -->
-                                                    <div class="col-md-5">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="name">{!! __('categories.name_en') !!}</label>
                                                             <input type="text" id="name" name="name[en]"
@@ -133,22 +133,7 @@
                                                         </div>
                                                     </div>
                                                     <!-- end: input -->
-                                                    <!-- begin: input -->
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <label id="statusLabel">
-                                                                <input type="checkbox" name="status" class="checkbox"
-                                                                    @checked(old('status', $category->status) == 1)>
-                                                                <span>{!! __('categories.status') !!}</span>
-                                                            </label>
-                                                        </div>
-                                                        @error('status')
-                                                            <span class="text text-danger">
-                                                                <strong>{!! $message !!}</strong>
-                                                            </span>
-                                                        @enderror
-                                                    </div>
-                                                    <!-- end: input -->
+
                                                 </div>
                                                 <!-- end: row -->
 
@@ -172,6 +157,45 @@
                                                                 @endforeach
                                                             </select>
                                                             @error('parent')
+                                                                <span class="text text-danger">
+                                                                    <strong>{!! $message !!}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <!-- end: input -->
+                                                </div>
+                                                <!-- end: row -->
+
+                                                <!-- begin: row -->
+                                                <div class="row">
+                                                    <!-- begin: input -->
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="logo">{!! __('categories.status') !!}</label>
+                                                            <div class="input-group">
+                                                                <div
+                                                                    class="d-inline-block custom-control custom-radio mr-1">
+                                                                    <input type="radio"
+                                                                        class="custom-control-input bg-success"
+                                                                        name="status" id="colorRadio1" value="1"
+                                                                        @checked($category->status == 1)>
+                                                                    <label class="custom-control-label"
+                                                                        for="colorRadio1">{!! __('general.active') !!}
+                                                                    </label>
+                                                                </div>
+                                                                <div
+                                                                    class="d-inline-block custom-control custom-radio mr-1">
+                                                                    <input type="radio"
+                                                                        class="custom-control-input bg-danger"
+                                                                        name="status" id="colorRadio2" value="0"
+                                                                        @checked($category->status == 0)>
+                                                                    <label class="custom-control-label"
+                                                                        for="colorRadio2">{!! __('general.inactive') !!}
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            @error('status')
                                                                 <span class="text text-danger">
                                                                     <strong>{!! $message !!}</strong>
                                                                 </span>

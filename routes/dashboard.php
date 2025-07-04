@@ -81,15 +81,18 @@ Route::group(
 
             ########################################### categories routes  ######################################################################
             Route::group(['middleware' => 'can:categories'], function () {
-                Route::resource('categories', CategoriesController::class);
+                Route::resource('categories', CategoriesController::class)->except('show');
                 Route::get('/categories-all', [CategoriesController::class, 'getAll'])->name('categories.all');
                 Route::post('/categories/destroy', [CategoriesController::class, 'destroy'])->name('categories.destroy');
                 Route::post('/categories/status', [CategoriesController::class, 'changeStatus'])->name('categories.change.status');
             });
             ########################################### brands routes  ######################################################################
 
-            Route::group(['middleware' => 'brands'], function () {
+            Route::group(['middleware' => 'can:brands'], function () {
                 Route::resource('brands', BrandsController::class);
+                Route::get('/brands-all', [BrandsController::class, 'getAll'])->name('brands.get.all');
+                Route::post('/brands/destroy', [BrandsController::class, 'destroy'])->name('brands.destroy');
+                Route::post('/brands/chnage-status', [BrandsController::class, 'changeStatus'])->name('brands.change.status');
             });
 
             ########################################### faqs routes  ######################################################################

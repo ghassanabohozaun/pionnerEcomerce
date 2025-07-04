@@ -4,6 +4,8 @@ return [
     'update_category' => 'Update Category',
     'categories' => 'Categories',
     'show_all_categories' => 'Show All Categories',
+    'products_count'=>'Products Count',
+
 
     'category_name' => 'Category Name',
     'name_ar' => 'Arabic Category Name',

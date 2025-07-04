@@ -57,6 +57,15 @@
     <script src="{!! asset('vendor/datatables/js/scroller.bootstrap5.min.js') !!}" type="text/javascript"></script>
     {{-- end dataTables --}}
 
+    {{--  file input --}}
+    <script src="{!! asset('vendor/fileInput/js/fileinput.min.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('vendor/fileInput/themes/fa5/theme.min.js') !!}" type="text/javascript"></script>
+
+    @if (Lang() == 'ar')
+        <script src="{!! asset('vendor/fileInput/js/locales/LANG.js') !!}" type="text/javascript"></script>
+        <script src="{!! asset('vendor/fileInput/js/locales/ar.js') !!}" type="text/javascript"></script>
+    @endif
+    {{-- end dataTables --}}
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
