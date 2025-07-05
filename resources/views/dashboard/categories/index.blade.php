@@ -284,7 +284,8 @@
                         type: 'post',
                         dataType: 'json',
                         success: function(data) {
-                            $('#yajra-datatable').DataTable().ajax.reload();
+
+                            //$('#yajra-datatable').DataTable().ajax.reload();
                             if (data.status == true) {
                                 swal({
                                     title: "{!! __('general.deleted') !!} ",
@@ -294,10 +295,13 @@
                                         confirm: {
                                             text: "{!! __('general.yes') !!}",
                                             visible: true,
-                                            closeModal: true
+                                            closeModal: true,
                                         }
                                     }
                                 });
+                                setTimeout(function() {
+                                    window.location.reload();
+                                }, 2000)
                             } else if (data.status == false) {
                                 swal({
                                     title: "{!! __('general.warning') !!} ",
@@ -359,13 +363,15 @@
             //             type: 'post',
             //             dataType: 'json',
             //             success: function(data) {
-            //                 $('#yajra-datatable').DataTable().ajax.reload();
+
             //                 if (data.status == true) {
             //                     swalWithBootstrapButtons.fire({
             //                         title: "{!! __('general.deleted') !!}",
             //                         text: "{{ __('general.delete_success_message') }}",
             //                         icon: "success"
             //                     });
+            //                     $('#yajra-datatable').DataTable().ajax.reload();
+            //                     window.location.reload();
             //                 } else if (data.status == false) {
             //                     swalWithBootstrapButtons.fire({
             //                         title: "{!! __('general.deleted') !!}",

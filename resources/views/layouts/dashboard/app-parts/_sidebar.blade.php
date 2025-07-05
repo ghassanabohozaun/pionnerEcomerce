@@ -7,7 +7,7 @@
                     <a href="index.html">
                         <i class="la la-home"></i>
                         <span class="menu-title" data-i18n="nav.dash.main">{!! __('dashboard.dashboard') !!}</span>
-                        <span class="badge badge badge-info badge-pill float-right mr-2">3</span>
+                        {{-- <span class="badge badge badge-info badge-pill float-right mr-2">3</span> --}}
                     </a>
 
                     <ul class="menu-content">
@@ -51,7 +51,7 @@
                         <a href="#">
                             <i class="la la-user"></i>
                             <span class="menu-title" data-i18n="nav.dash.admins">{!! __('dashboard.admins') !!}</span>
-                            {{-- <span class="badge badge badge-info badge-pill float-right mr-2">3</span> --}}
+                            <span class="badge badge badge-info badge-pill float-right mr-2">{!! $admins_count !!}</span>
                         </a>
                         <!-- begin: admins -->
                         <ul class="menu-content">
@@ -118,7 +118,7 @@
                         <a href="#">
                             <i class="la la-list-alt"></i>
                             <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.categories') !!}</span>
-                            <span class="badge badge badge-info badge-pill float-right mr-2">3</span>
+                            <span class="badge badge badge-info badge-pill float-right mr-2">{!! $categories_count !!}</span>
                         </a>
                         <!-- begin: categories -->
                         <ul class="menu-content">
@@ -143,7 +143,7 @@
                         <a href="#">
                             <i class="la la-list-alt"></i>
                             <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.brands') !!}</span>
-                            <span class="badge badge badge-info badge-pill float-right mr-2">3</span>
+                            <span class="badge badge badge-info badge-pill float-right mr-2">{!! $brands_count !!}</span>
                         </a>
                         <!-- begin: brands -->
                         <ul class="menu-content">

@@ -3,6 +3,7 @@
 namespace App\Services\Dashboard;
 
 use App\Repositories\Dashboard\CategoryRepository;
+use Illuminate\Support\Facades\Cache;
 use Yajra\DataTables\Facades\DataTables;
 
 class CategorySevice
@@ -36,7 +37,7 @@ class CategorySevice
                 return $category->getTranslation('name', Lang());
             })
             ->addColumn('parentRelation', function ($category) {
-                return empty($category->parentRelation->name) ?  '-': $category->parentRelation->name  ;
+                return empty($category->parentRelation->name) ? '-' : $category->parentRelation->name;
             })
             ->addColumn('status', function ($category) {
                 return $category->status == 1 ? __('general.active') : __('general.inactive');
@@ -75,6 +76,7 @@ class CategorySevice
             return false;
         }
 
+        $this->categoryCache();
         return $category;
     }
 
@@ -99,6 +101,7 @@ class CategorySevice
         if (!$category) {
             return false;
         }
+        $this->categoryCache();
         return $category;
     }
 
@@ -112,5 +115,11 @@ class CategorySevice
             return false;
         }
         return $category;
+    }
+
+    // category cache
+    public function categoryCache()
+    {
+        Cache::forget('categories_count');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Services\Dashboard;
 
 use App\Repositories\Dashboard\AdminReporitoy;
+use Illuminate\Support\Facades\Cache;
 
 class AdminService
 {
@@ -23,7 +24,7 @@ class AdminService
     {
         $admin = $this->adminReporitoy->getAdmin($id);
         if (!$admin) {
-             return false;
+            return false;
             //abort(404);
         }
         return $admin;
@@ -42,6 +43,7 @@ class AdminService
         if (!$admin) {
             return false;
         }
+        $this->adminCache();
         return $admin;
     }
 
@@ -70,6 +72,7 @@ class AdminService
         if (!$admin) {
             return false;
         }
+        $this->adminCache();
         return $admin;
     }
 
@@ -86,5 +89,11 @@ class AdminService
             return false;
         }
         return $admin;
+    }
+
+    // admin cache
+    public function adminCache(){
+        Cache::forget('admins_count');
+
     }
 }

@@ -7,6 +7,8 @@ use App\Traits\GeneralTrait;
 use App\Utils\ImageManager;
 use Yajra\DataTables\Facades\DataTables;
 use File;
+use Illuminate\Support\Facades\Cache;
+
 class BrandService
 {
     use GeneralTrait;
@@ -81,6 +83,7 @@ class BrandService
         if (!$brand) {
             return false;
         }
+        $this->brandCache();
         return $brand;
     }
 
@@ -106,7 +109,7 @@ class BrandService
     // destroy brand
     public function destroy($id)
     {
-        $brand = $this->brandRepositroy->getBrand($id);
+        $brand = self::getBrand($id);
 
         // remove old logo
         if (!empty($brand->logo)) {
@@ -117,18 +120,26 @@ class BrandService
         if (!$brand) {
             return false;
         }
+
+        $this->brandCache();
         return $brand;
     }
 
     // change status
     public function changeStatus($id, $status)
     {
-        $brand = $this->brandRepositroy->getBrand($id);
+        $brand = self::getBrand($id);
 
         $brand = $this->brandRepositroy->changeStatus($brand, $status);
         if (!$brand) {
             return false;
         }
         return $brand;
+    }
+
+    // brand cache
+    public function brandCache()
+    {
+        Cache::forget('brands_count');
     }
 }

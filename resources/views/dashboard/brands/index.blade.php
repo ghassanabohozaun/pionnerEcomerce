@@ -287,7 +287,7 @@
                         type: 'post',
                         dataType: 'json',
                         success: function(data) {
-                            $('#yajra-datatable').DataTable().ajax.reload();
+                            // $('#yajra-datatable').DataTable().ajax.reload();
                             if (data.status == true) {
                                 swal({
                                     title: "{!! __('general.deleted') !!} ",
@@ -301,6 +301,9 @@
                                         }
                                     }
                                 });
+                                setTimeout(function() {
+                                    window.location.reload();
+                                }, 2000)
                             } else if (data.status == false) {
                                 swal({
                                     title: "{!! __('general.warning') !!} ",

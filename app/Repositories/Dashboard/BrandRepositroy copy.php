@@ -21,7 +21,7 @@ class BrandRepositroy
     // get brands
     public function getBrands()
     {
-        $brand =  Brand::withCount('products')->orderByDesc('created_at')->get();
+        $brand =  Brand::withCount('products')->latest()->get();
         return $brand;
     }
 

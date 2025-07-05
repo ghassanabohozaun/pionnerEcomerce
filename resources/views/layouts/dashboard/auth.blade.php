@@ -47,8 +47,8 @@
     @endif
 </head>
 
-<body class="vertical-layout vertical-menu-modern 1-column  bg-cyan bg-lighten-2 menu-expanded fixed-navbar"
-    data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
+<body class="vertical-layout vertical-menu-modern 1-column bg-lighten-2 menu-expanded fixed-navbar" data-open="click"
+    data-menu="vertical-menu-modern" data-col="1-column">
     <!-- fixed-top ////////////////////////////////////////////////////////////////////////////-->
 
     <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-light navbar-border navbar-shadow"
