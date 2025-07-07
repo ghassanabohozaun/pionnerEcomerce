@@ -11,7 +11,7 @@
 
                 <!-- begin: content header left-->
                 <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
-                    <h3 class="content-header-title mb-0 d-inline-block">{!! __('brands.brands') !!}</h3>
+                    <h3 class="content-header-title mb-0 d-inline-block">{!! __('coupons.coupons') !!}</h3>
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
@@ -21,8 +21,8 @@
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="{!! route('dashboard.brands.index') !!}">
-                                        {!! __('brands.brands') !!}
+                                    <a href="{!! route('dashboard.coupons.index') !!}">
+                                        {!! __('coupons.coupons') !!}
                                     </a>
                                 </li>
 
@@ -35,10 +35,10 @@
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
                     <div class="float-md-right mb-2">
-                        <a href="#" class="btn btn-info round btn-glow px-2 create_brand_show_modal">
-                            {!! __('brands.create_new_brand') !!}
-                        </a>
-
+                        <button type="button" class="btn btn-info round btn-glow px-2" data-toggle="modal"
+                            data-target="#createCouponModal">
+                            {!! __('coupons.create_new_coupon') !!}
+                        </button>
                     </div>
                 </div>
                 <!-- end: content header right-->
@@ -57,7 +57,7 @@
                                         <!-- begin: card header -->
                                         <div class="card-header">
                                             <h4 class="card-title" id="basic-layout-colored-form-control">
-                                                {!! __('brands.show_all_brands') !!}
+                                                {!! __('coupons.show_all_coupons') !!}
                                             </h4>
                                             <a class="heading-elements-toggle"><i
                                                     class="la la-ellipsis-v font-medium-3"></i></a>
@@ -80,29 +80,20 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>#</th>
-                                                                <th>{!! __('brands.logo') !!}</th>
-                                                                <th>{!! __('brands.name') !!}</th>
-                                                                <th>{!! __('brands.products_count') !!}</th>
-                                                                <th>{!! __('brands.status') !!}</th>
-                                                                <th>{!! __('brands.manage_status') !!}</th>
+                                                                <th>{!! __('coupons.code') !!}</th>
+                                                                <th>{!! __('coupons.discount_percentage') !!}</th>
+                                                                <th>{!! __('coupons.limit') !!}</th>
+                                                                <th>{!! __('coupons.time_used') !!}</th>
+                                                                <th>{!! __('coupons.start_date') !!}</th>
+                                                                <th>{!! __('coupons.end_date') !!}</th>
                                                                 <th>{!! __('general.created_at') !!}</th>
+                                                                <th>{!! __('coupons.is_active') !!}</th>
+                                                                <th>{!! __('coupons.manage_is_active') !!}</th>
                                                                 <th>{!! __('general.actions') !!}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                         </tbody>
-                                                        <tfoot>
-                                                            <tr>
-                                                                <th>#</th>
-                                                                <th>{!! __('brands.logo') !!}</th>
-                                                                <th>{!! __('brands.name') !!}</th>
-                                                                <th>{!! __('brands.products_count') !!}</th>
-                                                                <th>{!! __('brands.status') !!}</th>
-                                                                <th>{!! __('brands.manage_status') !!}</th>
-                                                                <th>{!! __('general.created_at') !!}</th>
-                                                                <th>{!! __('general.actions') !!}</th>
-                                                            </tr>
-                                                        </tfoot>
                                                     </table>
                                                 </div>
                                             </div>
@@ -119,8 +110,10 @@
         </div> <!-- end: content wrapper  -->
     </div><!-- end: content app  -->
 
-    @include('dashboard.brands.modals.create')
-    @include('dashboard.brands.modals.update')
+    {{-- include modals --}}
+    @include('dashboard.coupons.modals.create')
+    @include('dashboard.coupons.modals.edit')
+    {{-- include modals --}}
 @endsection
 
 
@@ -128,14 +121,16 @@
     <script type="text/javascript">
         var lang = '{{ Lang() }}';
         // yajra tables
-        $('#yajra-datatable').DataTable({
+        var table = $('#yajra-datatable').DataTable({
             // dom: 'Bfrtip',
             processing: true,
             serverSide: true,
             colReorder: true,
             fixedHeader: true,
-
-            // rowReorder: true,
+            rowReorder: {
+                update: false,
+                // selector: 'tr',
+            },
             // select: true,
             // responsive: true,
             // scrollCollapse: true,
@@ -146,7 +141,8 @@
                     display: DataTable.Responsive.display.modal({
                         header: function(row) {
                             var data = row.data();
-                            return 'Details for ' + data[0] + ' ' + data[1];
+                            console.log(data);
+                            return '{!! __('general.detalis_for') !!} : ' + data['code'];
                         }
                     }),
                     renderer: DataTable.Responsive.renderer.tableAll({
@@ -156,7 +152,7 @@
             },
 
 
-            ajax: '{!! route('dashboard.brands.get.all') !!}',
+            ajax: '{!! route('dashboard.coupons.get.all') !!}',
 
             columns: [{
                     data: 'DT_RowIndex',
@@ -164,22 +160,37 @@
                     orderable: false,
                 },
                 {
-                    data: 'logo',
-                    name: 'logo',
-                    searchable: false,
-                    orderable: false,
+                    data: 'code',
+                    name: 'code',
+                },
+
+                {
+                    data: 'discount_percentage',
+                    name: 'discount_percentage',
                 },
                 {
-                    data: 'name',
-                    name: 'name',
+                    data: 'limit',
+                    name: 'limit',
                 },
                 {
-                    data: 'products_count',
-                    name: 'products_count',
+                    data: 'time_used',
+                    name: 'time_used',
                 },
                 {
-                    data: 'status',
-                    name: 'status'
+                    data: 'start_date',
+                    name: 'start_date',
+                },
+                {
+                    data: 'end_date',
+                    name: 'end_date',
+                },
+                {
+                    data: 'end_date',
+                    name: 'end_date',
+                },
+                {
+                    data: 'is_active',
+                    name: 'is_active'
                 },
                 {
                     data: 'manage_status',
@@ -187,10 +198,7 @@
                     searchable: false,
                     orderable: false,
                 },
-                {
-                    data: 'created_at',
-                    name: 'created_at',
-                },
+
                 {
                     data: 'actions',
                     searchable: false,
@@ -253,9 +261,21 @@
 
         });
 
-        // delete brand
-        $('body').on('click', '.delete_brand_btn', function(e) {
+
+        // // disable button when mouse down
+        // $('table').on('mousedown', 'button', function(e) {
+        //     table.rowReorder.disable();
+        // })
+
+        // // enable button when mouse up
+        // $('table').on('mouseup', 'button', function(e) {
+        //     table.rowReorder.enable();
+        // })
+
+        // delete
+        $('body').on('click', '.delete_coupon_btn', function(e) {
             e.preventDefault();
+            var currentPage = $('#yajra-datatable').DataTable().page();
             var id = $(this).data('id');
             swal({
                 title: "{{ __('general.ask_delete_record') }}",
@@ -279,15 +299,14 @@
             }).then(isConfirm => {
                 if (isConfirm) {
                     $.ajax({
-                        url: '{!! route('dashboard.brands.destroy') !!}',
+                        url: '{!! route('dashboard.coupons.destroy', 'id') !!}'.replace('id', id),
                         data: {
-                            id,
-                            id
+                            '_token': "{!! csrf_token() !!}"
                         },
-                        type: 'post',
+                        type: 'DELETE',
                         dataType: 'json',
                         success: function(data) {
-                            $('#yajra-datatable').DataTable().ajax.reload();
+                            $('#yajra-datatable').DataTable().page(currentPage).draw(false);
                             if (data.status == true) {
                                 swal({
                                     title: "{!! __('general.deleted') !!} ",
@@ -301,6 +320,9 @@
                                         }
                                     }
                                 });
+                                // setTimeout(function() {
+                                //     window.location.reload();
+                                // }, 1000)
                             } else if (data.status == false) {
                                 swal({
                                     title: "{!! __('general.warning') !!} ",
@@ -341,6 +363,7 @@
         var statusSwitch = false;
         $('body').on('change', '.change_status', function(e) {
             e.preventDefault();
+            var currentPage = $('#yajra-datatable').DataTable().page();
             var id = $(this).data('id');
 
             if ($(this).is(':checked')) {
@@ -350,7 +373,7 @@
             }
 
             $.ajax({
-                url: "{{ route('dashboard.brands.change.status') }}",
+                url: "{{ route('dashboard.coupons.change.status') }}",
                 data: {
                     statusSwitch: statusSwitch,
                     id: id
@@ -358,7 +381,7 @@
                 type: 'post',
                 dataType: 'JSON',
                 success: function(data) {
-                    $('#yajra-datatable').DataTable().ajax.reload();
+                    $('#yajra-datatable').DataTable().page(currentPage).draw(false);
                     if (data.status == true) {
                         flasher.success("{!! __('general.change_status_success_message') !!}");
                     } else {

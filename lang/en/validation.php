@@ -207,5 +207,13 @@ return [
         'question.en' => 'English Question',
         'answer.ar' => 'Arabic Answer',
         'answer.en' => 'English Answer',
+        'code' => 'Code',
+        'discount' => 'Discount',
+        'discount_percentage' => 'Discount Percentage',
+        'start_date' => 'Start Date',
+        'end_date' => 'End Date',
+        'limit' => 'Limit',
+        'time_used' => 'Time Used',
+        'is_active' => 'Is Active',
     ],
 ];

@@ -3,6 +3,7 @@
         <a href="{!! route('dashboard.categories.edit', $category->id) !!}" class="btn btn-sm btn-outline-primary" title="{!! __('general.edit') !!}">
             <i class="la la-edit"></i>
         </a>
+
         <div class="btn-group" role="group">
             <a href="#" id="btnGroupDrop2" type="button" class="btn btn-outline-danger dropdown-toggle  btn-sm"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="  {!! __('general.delete') !!}">

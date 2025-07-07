@@ -133,8 +133,10 @@
             serverSide: true,
             colReorder: true,
             fixedHeader: true,
-
-            // rowReorder: true,
+            rowReorder: {
+                update: false,
+                // selector: 'tr',
+            },
             // select: true,
             // responsive: true,
             // scrollCollapse: true,
@@ -253,9 +255,19 @@
 
         });
 
+        // // disable button when mouse down
+        // $('table').on('mousedown', 'button', function(e) {
+        //     table.rowReorder.disable();
+        // })
+
+        // // enable button when mouse up
+        // $('table').on('mouseup', 'button', function(e) {
+        //     table.rowReorder.enable();
+        // })
         // delete brand
         $('body').on('click', '.delete_brand_btn', function(e) {
             e.preventDefault();
+            var currentPage = $('#yajra-datatable').DataTable().page();
             var id = $(this).data('id');
             swal({
                 title: "{{ __('general.ask_delete_record') }}",
@@ -287,7 +299,7 @@
                         type: 'post',
                         dataType: 'json',
                         success: function(data) {
-                            // $('#yajra-datatable').DataTable().ajax.reload();
+                            $('#yajra-datatable').DataTable().page(currentPage).draw(false);
                             if (data.status == true) {
                                 swal({
                                     title: "{!! __('general.deleted') !!} ",
@@ -301,9 +313,9 @@
                                         }
                                     }
                                 });
-                                setTimeout(function() {
-                                    window.location.reload();
-                                }, 2000)
+                                // setTimeout(function() {
+                                //     window.location.reload();
+                                // }, 1000)
                             } else if (data.status == false) {
                                 swal({
                                     title: "{!! __('general.warning') !!} ",
@@ -344,6 +356,7 @@
         var statusSwitch = false;
         $('body').on('change', '.change_status', function(e) {
             e.preventDefault();
+            var currentPage = $('#yajra-datatable').DataTable().page();
             var id = $(this).data('id');
 
             if ($(this).is(':checked')) {
@@ -361,7 +374,7 @@
                 type: 'post',
                 dataType: 'JSON',
                 success: function(data) {
-                    $('#yajra-datatable').DataTable().ajax.reload();
+                    $('#yajra-datatable').DataTable().page(currentPage).draw(false);
                     if (data.status == true) {
                         flasher.success("{!! __('general.change_status_success_message') !!}");
                     } else {

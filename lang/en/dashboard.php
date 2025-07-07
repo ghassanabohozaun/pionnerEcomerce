@@ -18,6 +18,7 @@ return [
     'categories' => 'Categories',
     'world' => 'World',
     'faqs' => 'Faqs',
+    'coupons' => 'Coupons',
 
     // login
     'login' => 'Login',

@@ -41,14 +41,14 @@ class CouponRepository
     // destory coupon
     public function destroy($coupon)
     {
-        return $coupon->forceDelete();
+        return $coupon->delete();
     }
 
     // change status
     public function changeStatus($coupon, $status)
     {
         return $coupon->update([
-            'status' => $status,
+            'is_active' => $status,
         ]);
     }
 }

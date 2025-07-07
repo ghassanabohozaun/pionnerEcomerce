@@ -86,13 +86,21 @@
                                             <div class="form-body">
                                                 <!-- begin: row -->
                                                 <div class="row d-none">
-                                                    <input type="hidden" id='id' name="id"
-                                                        value="{!! $brand->id !!}"
-                                                        class="form-control round border-primary">
-                                                    <input type="hidden" id='hidden_photo' name="hidden_photo"
-                                                        value="hidden_photo" class="form-control round border-primary">
+                                                    <!-- begin: input -->
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <input type="hidden" id='id' name="id"
+                                                                value="{!! $brand->id !!}"
+                                                                class="form-control  border-primary">
+                                                            <input type="hidden" id='hidden_photo' name="hidden_photo"
+                                                                value="hidden_photo"
+                                                                class="form-control round border-primary">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <!-- end: row -->
+
+
 
                                                 <!-- begin: row -->
                                                 <div class="row">

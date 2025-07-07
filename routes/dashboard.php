@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\BrandsController;
 use App\Http\Controllers\Dashboard\CitiesController;
 use App\Http\Controllers\Dashboard\CountriesController;
+use App\Http\Controllers\Dashboard\CouponsController;
 use App\Http\Controllers\dashboard\FaqsController;
 use App\Http\Controllers\Dashboard\GovernoratiesController;
 use App\Http\Controllers\Dashboard\RolesController;
@@ -46,8 +47,7 @@ Route::group(
         Route::group(['middleware' => 'auth:admin'], function () {
             ########################################### welcome  ##########################################################################
             Route::get('welcome', [WelcomeController::class, 'index'])->name('welcome');
-
-            ########################################### roles routes ######################################################################
+             ########################################### roles routes ######################################################################
             Route::group(['middleware' => 'can:roles'], function () {
                 Route::resource('roles', RolesController::class);
                 Route::post('/roles/destroy', [RolesController::class, 'destroy'])->name('roles.destroy');
@@ -95,6 +95,12 @@ Route::group(
                 Route::post('/brands/chnage-status', [BrandsController::class, 'changeStatus'])->name('brands.change.status');
             });
 
+            ########################################### coupons routes  ######################################################################
+            Route::group(['middleware' => 'can:coupons'], function () {
+                Route::resource('coupons', CouponsController::class);
+                Route::get('/coupons-all', [CouponsController::class, 'getAll'])->name('coupons.get.all');
+                Route::post('/coupons/chnage-status', [CouponsController::class, 'changeStatus'])->name('coupons.change.status');
+            });
             ########################################### faqs routes  ######################################################################
             Route::group(['middleware', 'can:faqs'], function () {
                 Route::resource('faqs', FaqsController::class);

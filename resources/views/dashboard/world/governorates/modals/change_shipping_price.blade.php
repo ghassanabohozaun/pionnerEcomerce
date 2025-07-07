@@ -103,6 +103,7 @@
         });
     </script>
 @endpush
+
 @push('css')
     <style>
         .table-wrapper {

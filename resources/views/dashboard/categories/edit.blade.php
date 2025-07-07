@@ -88,15 +88,16 @@
                                                 <!-- begin: row -->
                                                 <div class="row d-none">
                                                     <!-- begin: input -->
-                                                    <div class="col-md-5">
+                                                    <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <input type="hidden" id="id" name="id"
+                                                            <label for="name">ID</label>
+                                                            <input type="hidden" id='id' name="id"
                                                                 value="{!! $category->id !!}"
-                                                                class="form-control round border-primary">
+                                                                class="form-control  border-primary">
                                                         </div>
                                                     </div>
-                                                    <!-- end: input -->
                                                 </div>
+                                                <!-- end: row -->
 
                                                 <!-- begin: row -->
                                                 <div class="row">

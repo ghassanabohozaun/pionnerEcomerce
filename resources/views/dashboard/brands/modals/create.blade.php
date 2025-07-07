@@ -2,19 +2,20 @@
     aria-hidden="true">
 
     <div class="modal-dialog modal-md" role="document">
-        <div class="modal-content">
+        <form class="form" action="{!! route('dashboard.brands.store') !!}" method="POST" enctype="multipart/form-data"
+            id='create_brand_form'>
+            @csrf
+            <div class="modal-content">
+                <!--begin::modal header-->
+                <div class="modal-header  mb-2">
+                    <h5 class="modal-title test_answer_header" id="createBrandModalLabel">{!! __('brands.create_new_brand') !!}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <!--end::modal header-->
 
-            <div class="modal-header  mb-2">
-                <h5 class="modal-title test_answer_header" id="createBrandModalLabel">{!! __('brands.create_new_brand') !!}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-
-            <form class="form" action="{!! route('dashboard.brands.store') !!}" method="POST" enctype="multipart/form-data"
-                id='create_brand_form'>
-                @csrf
-
+                <!--begin::modal body-->
                 <div class="modal-body">
                     <!--begin::table-->
                     <div class="row">
@@ -125,7 +126,9 @@
                     </div>
                     <!--end::table-->
                 </div>
+                <!--end::modal body-->
 
+                <!--begin::modal footer-->
                 <div class="modal-footer">
                     <button type="submit" id="create_brand_btn" class="btn btn-info font-weight-bold ">
                         {{ trans('general.save') }}
@@ -134,9 +137,10 @@
                     <button type="button" class="btn btn-light-dark font-weight-bold" data-dismiss="modal">
                         {{ trans('general.cancel') }}</button>
                 </div>
+                <!--end::modal footer-->
 
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
 

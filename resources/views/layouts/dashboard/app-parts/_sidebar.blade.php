@@ -141,7 +141,7 @@
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class=" nav-item">
                         <a href="#">
-                            <i class="la la-list-alt"></i>
+                            <i class="la la-clone"></i>
                             <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.brands') !!}</span>
                             <span class="badge badge badge-info badge-pill float-right mr-2">{!! $brands_count !!}</span>
                         </a>
@@ -160,6 +160,30 @@
             @endcan
             <!-- end: brands -->
 
+            <!-- begin: coupons -->
+            @can(abilities: 'coupons')
+                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li class=" nav-item">
+                        <a href="#">
+                            <i class="la la-cart-arrow-down"></i>
+                            <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.coupons') !!}</span>
+                            <span class="badge badge badge-info badge-pill float-right mr-2">{!! $coupons_count !!}
+                            </span>
+                        </a>
+                        <!-- begin: coupons -->
+                        <ul class="menu-content">
+                            <li class="@if (str_contains(url()->current(), 'coupons')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.coupons.index') !!}" data-i18n="nav.dash.coupons">
+                                    {!! __('coupons.coupons') !!}
+                                </a>
+
+                            </li>
+                        </ul>
+                        <!-- end: coupons -->
+                    </li>
+                </ul>
+            @endcan
+            <!-- end: coupons -->
 
             <!-- begin: faqs -->
             @can('faqs')
