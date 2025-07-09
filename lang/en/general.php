@@ -60,6 +60,7 @@ return [
     'download' => 'Download',
     'flag' => 'Flag',
     'created_at' => 'Created At',
+    'manage_status' => 'Manage Status',
     'user' => 'User',
     'admin' => 'Admin',
     'user_update' => 'User Update',

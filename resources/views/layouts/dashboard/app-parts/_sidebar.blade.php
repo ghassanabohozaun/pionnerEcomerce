@@ -192,7 +192,8 @@
                         <a href="#">
                             <i class="la la-question"></i>
                             <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.faqs') !!}</span>
-                            {{-- <span class="badge badge badge-info badge-pill float-right mr-2">3</span> --}}
+                            <span
+                                class="badge badge badge-info badge-pill float-right mr-2">{!! $faqs_count !!}</span>
                         </a>
                         <!-- begin: faqs -->
                         <ul class="menu-content">

@@ -65,6 +65,7 @@ return [
     'download' => 'التحميل',
     'flag' => 'علم',
     'created_at' => 'انشأ في',
+    'manage_status'=>'إدارة الحالة',
     'user' => 'المستخدم',
     'admin' => 'المدير',
     'user_update' => 'تعديل المستخدم',

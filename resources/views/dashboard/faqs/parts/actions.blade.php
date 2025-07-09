@@ -1,12 +1,19 @@
-<div class="col-xl-12 col-lg-12 mb-1">
-    <div class="form-group text-center">
-        <a href="{!! route('dashboard.faqs.edit', $faq->id) !!}" class=" btn btn-social-icon btn-sm mr-1 btn-outline-primary btn-round">
+<div class="form-group">
+    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+        {{-- edit --}}
+        <a href="#" class="btn btn-sm btn-outline-primary edit_faq_button" title="{!! __('general.edit') !!}"
+            faq-id="{!! $faq->id !!}" faq-question-ar="{!! $faq->getTranslation('question', 'ar') !!}"
+            faq-question-en="{!! $faq->getTranslation('question', 'en') !!}" faq-answer-ar="{!! $faq->getTranslation('answer', 'ar') !!}"
+            faq-answer-en="{!! $faq->getTranslation('answer', 'en') !!}" faq-status = "{!! $faq->status !!}">
             <i class="la la-edit"></i>
         </a>
 
-        <a href="#" class="btn btn-social-icon btn-sm mr-1 btn-round  delete_faq_btn btn-outline-danger"
+
+        {{-- delete --}}
+        <button class="btn btn-sm btn-outline-danger delete_faq_btn" title="{!! __('general.delete') !!}"
             data-id="{!! $faq->id !!}">
             <i class="la la-trash"></i>
-        </a>
+        </button>
+
     </div>
 </div>

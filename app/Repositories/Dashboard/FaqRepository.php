@@ -20,46 +20,19 @@ class FaqRepository
     // get faqs
     public function getFaqs()
     {
-        $faqs = Faq::orderByDesc('created_at')->select('id', 'question', 'answer', 'status')->paginate(5);
-        return $faqs;
+        return Faq::latest()->get();
     }
 
     // store faq
-    public function storeFaq($request)
+    public function storeFaq($data)
     {
-        $faq = Faq::create([
-            'question' => [
-                'en' => $request->question['en'],
-                'ar' => $request->question['ar'],
-            ],
-            'answer' => [
-                'en' => $request->answer['en'],
-                'ar' => $request->answer['ar'],
-            ],
-            'status' => $request->has('status') ? 1 : 0,
-        ]);
-
-        return $faq;
+        return Faq::create($data);
     }
 
     // update faq
-    public function updateFaq($request, $id)
+    public function updateFaq($faq, $data)
     {
-        $faq = self::getFaq($id);
-
-        $faq->update([
-            'question' => [
-                'en' => $request->question['en'],
-                'ar' => $request->question['ar'],
-            ],
-            'answer' => [
-                'en' => $request->answer['en'],
-                'ar' => $request->answer['ar'],
-            ],
-            'status' => $request->has('status') ? 1 : 0,
-        ]);
-
-        return $faq;
+        return $faq->update($data);
     }
 
     // destroy faq
@@ -71,9 +44,8 @@ class FaqRepository
     // change status
     public function changeStatus($faq, $status)
     {
-        $faq = $faq->update([
+        return $faq->update([
             'status' => $status,
         ]);
-        return $faq;
     }
 }

@@ -47,7 +47,7 @@ Route::group(
         Route::group(['middleware' => 'auth:admin'], function () {
             ########################################### welcome  ##########################################################################
             Route::get('welcome', [WelcomeController::class, 'index'])->name('welcome');
-             ########################################### roles routes ######################################################################
+            ########################################### roles routes ######################################################################
             Route::group(['middleware' => 'can:roles'], function () {
                 Route::resource('roles', RolesController::class);
                 Route::post('/roles/destroy', [RolesController::class, 'destroy'])->name('roles.destroy');
@@ -104,7 +104,7 @@ Route::group(
             ########################################### faqs routes  ######################################################################
             Route::group(['middleware', 'can:faqs'], function () {
                 Route::resource('faqs', FaqsController::class);
-                Route::post('/faqs/destroy', [FaqsController::class, 'destroy'])->name('faqs.destroy');
+                Route::get('/faqs-all', [FaqsController::class, 'getAll'])->name('faqs.get.all');
                 Route::post('/faqs/status', [FaqsController::class, 'changeStatus'])->name('faqs.change.status');
             });
         });

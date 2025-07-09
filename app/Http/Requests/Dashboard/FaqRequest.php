@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Dashboard;
 
-use CodeZero\UniqueTranslation\UniqueTranslationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class FaqRequest extends FormRequest
@@ -23,8 +22,9 @@ class FaqRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'question.*' => ['required', 'string', 'max:100', UniqueTranslationRule::for('faqs')->ignore($this->id)],
-            'answer.*' => ['required', 'string', 'max:10000', UniqueTranslationRule::for('faqs')->ignore($this->id)],
+            'question.*' => ['required', 'string', 'max:255'],
+            'answer.*' => ['required', 'string', 'min:10', 'max:5000'],
+            'status' => ['required', 'in:0,1'],
         ];
     }
 }

@@ -179,6 +179,7 @@
     </div>
 </div>
 
+
 @push('scripts')
     <script type="text/javascript">
         // edit button click
@@ -213,7 +214,7 @@
         })
 
         // reset form
-        function resetForm() {
+        function resetEditForm() {
 
             $('#code_edit').css('border-color', '');
             $('#discount_percentage_edit').css('border-color', '');
@@ -236,14 +237,14 @@
         $('body').on('click', '#cancel_coupon_btn', function(e) {
             $('#editCouponModal').modal('hide');
             $('#edit_coupon_form')[0].reset();
-            resetForm();
+            resetEditForm();
         });
 
         // hide
         $('#editCouponModal').on('hidden.bs.modal', function(e) {
             $('#editCouponModal').modal('hide');
             $('#edit_coupon_form')[0].reset();
-            resetForm();
+            resetEditForm();
         });
 
 
@@ -251,7 +252,7 @@
         $('#edit_coupon_form').on('submit', function(e) {
             e.preventDefault();
             // reset
-            resetForm();
+            resetEditForm();
 
             // paramters
             var currentPage = $('#yajra-datatable').DataTable().page();
@@ -271,7 +272,7 @@
                     if (data.status == true) {
                         $('#yajra-datatable').DataTable().page(currentPage).draw(false);
                         $('#edit_coupon_form')[0].reset();
-                        resetForm();
+                        resetEditForm();
                         $('#editCouponModal').modal('hide');
                         flasher.success("{!! __('general.add_success_message') !!}");
                     } else {

@@ -3,6 +3,7 @@
 namespace App\Services\Dashboard;
 
 use App\Repositories\Dashboard\FaqRepository;
+use Yajra\DataTables\Facades\DataTables;
 
 class FaqService
 {
@@ -28,10 +29,35 @@ class FaqService
         return $this->faqRepository->getFaqs();
     }
 
-    // store faq
-    public function storeFaq($request)
+    // get all
+    public function getAll()
     {
-        $faq = $this->faqRepository->storeFaq($request);
+        $faqs = $this->faqRepository->getFaqs();
+
+        return DataTables::of($faqs)
+            ->addIndexColumn()
+            ->addColumn('actions', function ($faq) {
+                return view('dashboard.faqs.parts.actions', compact('faq'));
+            })
+            ->addColumn('question', function ($faq) {
+                return $faq->getTranslation('question', Lang());
+            })
+            ->addColumn('answer', function ($faq) {
+                return $faq->getTranslation('answer', Lang());
+            })
+            ->addColumn('status', function ($faq) {
+                return $faq->status == 1 ? __('general.active') : __('general.inactive');
+            })
+            ->addColumn('manage_status', function ($faq) {
+                return view('dashboard.faqs.parts.status', compact('faq'));
+            })
+            ->make(true);
+    }
+
+    // store faq
+    public function storeFaq($data)
+    {
+        $faq = $this->faqRepository->storeFaq($data);
         if (!$faq) {
             return false;
         }
@@ -39,14 +65,11 @@ class FaqService
     }
 
     // update faq
-    public function updateFaq($request, $id)
+    public function updateFaq($data)
     {
-        $faq = self::getFaq($id);
-        if (!$faq) {
-            return false;
-        }
+        $faq = self::getFaq($data['id']);
 
-        $faq = $this->faqRepository->updateFaq($request, $id);
+        $faq = $this->faqRepository->updateFaq($faq, $data);
         if (!$faq) {
             return false;
         }
@@ -57,9 +80,7 @@ class FaqService
     public function destroyFaq($id)
     {
         $faq = self::getFaq($id);
-        if (!$faq) {
-            return false;
-        }
+
         $faq = $this->faqRepository->destroyFaq($faq);
         if (!$faq) {
             return false;
@@ -71,10 +92,8 @@ class FaqService
     public function changeStatus($id, $status)
     {
         $faq = self::getFaq($id);
-        if (!$faq) {
-            return false;
-        }
-        $faq = $this->faqRepository->changeStatus($faq ,$status);
+
+        $faq = $this->faqRepository->changeStatus($faq, $status);
         if (!$faq) {
             return false;
         }

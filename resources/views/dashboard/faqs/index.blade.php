@@ -35,9 +35,10 @@
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
                     <div class="float-md-right mb-2">
-                        <a href="{{ route('dashboard.faqs.create') }}" class="btn btn-info round btn-glow px-2" i>
-                            {!! __('faqs.create_new_faq') !!}</a>
-
+                        <button type="button" class="btn btn-info round btn-glow px-2" data-toggle="modal"
+                            data-target="#createFaqModal">
+                            {!! __('faqs.create_new_faq') !!}
+                        </button>
                     </div>
                 </div>
                 <!-- end: content header right-->
@@ -72,38 +73,21 @@
                                 <div class="card-content collapse show">
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table" id='myTable'>
+                                            <table id="yajra-datatable" class="table table-striped table-bordered">
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
                                                         <th>{!! __('faqs.question') !!}</th>
                                                         <th>{!! __('faqs.answer') !!}</th>
+                                                        <th>{!! __('general.created_at') !!}</th>
                                                         <th>{!! __('faqs.status') !!}</th>
-                                                        <th style="text-align: center">{!! __('general.actions') !!}</th>
+                                                        <th>{!! __('general.manage_status') !!}</th>
+                                                        <th>{!! __('general.actions') !!}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @forelse ($faqs as $faq)
-                                                        <tr>
-                                                            <th class="col-lg-1">{!! $loop->iteration !!} </th>
-                                                            <td class="col-lg-3">{!! $faq->question !!}</td>
-                                                            <td class="col-lg-5">{!! $faq->answer !!}</td>
-                                                            <td class="col-lg-1"> @include('dashboard.faqs.parts.status')</td>
-                                                            <td class="col-lg-2"> @include('dashboard.faqs.parts.actions') </td>
-                                                        </tr>
-                                                    @empty
-                                                        <tr>
-                                                            <td colspan="5" class="text-center">
-                                                                {!! __('faqs.no_faqs_found') !!}
-                                                            </td>
-                                                        </tr>
-                                                    @endforelse
                                                 </tbody>
-
                                             </table>
-                                            <div class="float-right">
-                                                {!! $faqs->links() !!}
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -115,13 +99,144 @@
             </div><!-- end: content body  -->
         </div> <!-- end: content wrapper  -->
     </div><!-- end: content app  -->
+
+    @include('dashboard.faqs.modals.create')
+    @include('dashboard.faqs.modals.edit')
 @endsection
 @push('scripts')
     <script type="text/javascript">
-        // delete faq
+        var lang = '{{ Lang() }}';
+        // yajra tables
+        var table = $('#yajra-datatable').DataTable({
+            // dom: 'Bfrtip',
+            processing: true,
+            serverSide: true,
+            colReorder: true,
+            fixedHeader: true,
+            // rowReorder: {
+            //     update: false,
+            //     // selector: 'tr',
+            // },
+            // select: true,
+            // responsive: true,
+            // scrollCollapse: true,
+            // scroller: true,
+            // scrollY: 900,
+            responsive: {
+                details: {
+                    display: DataTable.Responsive.display.modal({
+                        header: function(row) {
+                            var data = row.data();
+                            console.log(data);
+                            return '{!! __('general.detalis_for') !!} : ' + data['code'];
+                        }
+                    }),
+                    renderer: DataTable.Responsive.renderer.tableAll({
+                        tableClass: 'table'
+                    })
+                }
+            },
+
+
+            ajax: '{!! route('dashboard.faqs.get.all') !!}',
+
+            columns: [{
+                    data: 'DT_RowIndex',
+                    searchable: false,
+                    orderable: false,
+                },
+                {
+                    data: 'question',
+                    name: 'question',
+                },
+
+                {
+                    data: 'answer',
+                    name: 'answer',
+                },
+                {
+                    data: 'created_at',
+                    name: 'created_at',
+                },
+                {
+                    data: 'status',
+                    name: 'status',
+                },
+                {
+                    data: 'manage_status',
+                    name: 'manage_status',
+                    searchable: false,
+                    orderable: false,
+                },
+
+                {
+                    data: 'actions',
+                    searchable: false,
+                    orderable: false,
+                }
+            ],
+
+            layout: {
+                // 'colvis',
+                topStart: {
+                    buttons: ['copy', 'print', 'excel', 'pdf']
+                }
+            },
+            language: lang === 'ar' ? {
+                url: '{!! asset('vendor/datatables/ar.json') !!}',
+            } : {},
+
+            buttons: [{
+                    extend: 'colvis',
+                    className: 'btn btn-default',
+                    exportOptions: {
+                        // columns: [0, 1, 2],
+                        columns: ':not(:last-child)',
+                    }
+                },
+                {
+                    extend: 'copy',
+                    className: 'btn btn-default',
+                    exportOptions: {
+                        // columns: [0, 1, 2],
+                        columns: ':not(:last-child)',
+                    }
+                },
+                {
+                    extend: 'print',
+                    className: 'btn btn-default',
+                    exportOptions: {
+                        // columns: [0, 1, 2],
+                        columns: ':not(:last-child)',
+                    }
+                },
+                {
+                    extend: 'excel',
+                    className: 'btn btn-default',
+                    exportOptions: {
+                        // columns: [0, 1, 2],
+                        columns: ':not(:last-child)',
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    className: 'btn btn-default',
+                    exportOptions: {
+                        // columns: [0, 1, 2],
+                        columns: ':not(:last-child)',
+                    }
+                },
+
+            ]
+
+        });
+
+
+        // delete
         $('body').on('click', '.delete_faq_btn', function(e) {
             e.preventDefault();
-            var id = $(this).data('id');
+            var currentPage = $('#yajra-datatable').DataTable().page();
+            var faq_id = $(this).data('id');
 
             swal({
                 title: "{{ __('general.ask_delete_record') }}",
@@ -145,15 +260,10 @@
             }).then(isConfirm => {
                 if (isConfirm) {
                     $.ajax({
-                        url: '{!! route('dashboard.faqs.destroy') !!}',
-                        data: {
-                            id,
-                            id
-                        },
-                        type: 'post',
+                        url: '{!! route('dashboard.faqs.destroy', 'id') !!}'.replace('id', faq_id),
+                        type: 'DELETE',
                         dataType: 'json',
                         success: function(data) {
-                            $('#myTable').load(location.href + (' #myTable'));
                             if (data.status == true) {
                                 swal({
                                     title: "{!! __('general.deleted') !!} ",
@@ -167,6 +277,7 @@
                                         }
                                     }
                                 });
+                                $('#yajra-datatable').DataTable().page(currentPage).draw(false);
                             } else if (data.status == false) {
                                 swal({
                                     title: "{!! __('general.warning') !!} ",
@@ -205,6 +316,7 @@
         var statusSwitch = false;
         $('body').on('change', '.change_status', function(e) {
             e.preventDefault();
+            var currentPage = $('#yajra-datatable').DataTable().page();
             var id = $(this).data('id');
 
             if ($(this).is(':checked')) {
@@ -223,6 +335,7 @@
                 dataType: 'JSON',
                 success: function(data) {
                     if (data.status === true) {
+                        $('#yajra-datatable').DataTable().page(currentPage).draw(false);
                         flasher.success("{!! __('general.change_status_success_message') !!}");
                     } else {
                         flasher.error("{!! __('general.change_status_error_message') !!}");

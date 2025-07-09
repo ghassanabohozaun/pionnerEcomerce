@@ -1,15 +1,15 @@
-<div class="modal fade" id="createCouponModal" tabindex="-1" role="dialog" aria-labelledby="createCouponModalLabel"
+<div class="modal fadeIn" id="updateFaqModal" tabindex="-1" role="dialog" aria-labelledby="updateFaqModalLabel"
     aria-hidden="true">
 
     <div class="modal-dialog modal-md" role="document">
-        <form class="form" action="{!! route('dashboard.coupons.store') !!}" method="POST" enctype="multipart/form-data"
-            id='create_coupon_form'>
+        <form class="form" action="" method="POST" enctype="multipart/form-data" id='update_faq_form'>
             @csrf
+            @method('PUT')
             <div class="modal-content">
 
                 <!--begin::modal header-->
                 <div class="modal-header">
-                    <h5 class="modal-title test_answer_header" id="createCouponModalLabel">{!! __('coupons.create_new_coupon') !!}</h5>
+                    <h5 class="modal-title test_answer_header" id="updateFaqModalLabel">{!! __('faqs.update_faq') !!}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -24,52 +24,27 @@
 
                             <!-- begin: row -->
                             <div class="row">
-
                                 <!-- begin: input -->
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="name">{!! __('coupons.code') !!}</label>
-                                        <input type="text" id="code" name="code" class="form-control"
-                                            autocomplete="off" placeholder="{!! __('coupons.enter_code') !!}">
-                                        <span class="text text-danger">
-                                            <strong id="code_error"> </strong>
-                                        </span>
+                                        <input type="text" id="id_edit" name="id" class="form-control">
                                     </div>
                                 </div>
                                 <!-- end: input -->
                             </div>
                             <!-- end: row -->
 
-
                             <!-- begin: row -->
                             <div class="row">
                                 <!-- begin: input -->
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="name">{!! __('coupons.discount_percentage') !!}</label>
-                                        <input type="number" id="discount_percentage" name="discount_percentage"
+                                        <label for="question">{!! __('faqs.question_ar') !!}</label>
+                                        <input type="text" id="question_ar_edit" name="question[ar]"
                                             class="form-control" autocomplete="off"
-                                            placeholder="{!! __('coupons.enter_discount_percentage') !!}">
+                                            placeholder="{!! __('faqs.enter_question_ar') !!}">
                                         <span class="text text-danger">
-                                            <strong id="discount_percentage_error"> </strong>
-                                        </span>
-                                    </div>
-                                </div>
-                                <!-- end: input -->
-
-                            </div>
-                            <!-- end: row -->
-
-                            <!-- begin: row -->
-                            <div class="row">
-                                <!-- begin: input -->
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="name">{!! __('coupons.start_date') !!}</label>
-                                        <input type="date" id="start_date" name="start_date" class="form-control"
-                                            autocomplete="off" placeholder="{!! __('coupons.enter_start_date') !!}">
-                                        <span class="text text-danger">
-                                            <strong id="start_date_error"> </strong>
+                                            <strong id="question_ar_error_edit"></strong>
                                         </span>
                                     </div>
                                 </div>
@@ -77,17 +52,20 @@
                             </div>
                             <!-- end: row -->
 
+
                             <!-- begin: row -->
                             <div class="row">
                                 <!-- begin: input -->
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="name">{!! __('coupons.end_date') !!}</label>
-                                        <input type="date" id="end_date" name="end_date" class="form-control"
-                                            autocomplete="off" placeholder="{!! __('coupons.enter_end_date') !!}">
+                                        <label for="question">{!! __('faqs.question_en') !!}</label>
+                                        <input type="text" id="question_en_edit" name="question[en]"
+                                            class="form-control" autocomplete="off"
+                                            placeholder="{!! __('faqs.enter_question_en') !!}">
                                         <span class="text text-danger">
-                                            <strong id="end_date_error"> </strong>
+                                            <strong id="question_en_error_edit"></strong>
                                         </span>
+
                                     </div>
                                 </div>
                                 <!-- end: input -->
@@ -99,11 +77,11 @@
                                 <!-- begin: input -->
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="name">{!! __('coupons.limit') !!}</label>
-                                        <input type="number" id="limit" name="limit" class="form-control"
-                                            autocomplete="off" placeholder="{!! __('coupons.enter_limit') !!}">
+                                        <label for="answer">{!! __('faqs.answer_ar') !!}</label>
+                                        <textarea rows="5" id="answer_ar_edit" name="answer[ar]" class="form-control"
+                                            placeholder="{!! __('faqs.enter_answer_ar') !!}"></textarea>
                                         <span class="text text-danger">
-                                            <strong id="limit_error"> </strong>
+                                            <strong id="answer_ar_error_edit"></strong>
                                         </span>
                                     </div>
                                 </div>
@@ -111,30 +89,49 @@
                             </div>
                             <!-- end: row -->
 
+
                             <!-- begin: row -->
                             <div class="row">
                                 <!-- begin: input -->
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="status">{!! __('coupons.is_active') !!}</label>
+                                        <label for="answer">{!! __('faqs.answer_en') !!}</label>
+                                        <textarea rows="5" id="answer_en_edit" name="answer[en]" class="form-control"
+                                            placeholder="{!! __('faqs.enter_answer_en') !!}"></textarea>
+                                        <span class="text text-danger">
+                                            <strong id="answer_en_error_edit"></strong>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- end: input -->
+                            </div>
+                            <!-- end: row -->
+
+
+                            <!-- begin: row -->
+                            <div class="row">
+                                <!-- begin: input -->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="status">{!! __('faqs.status') !!}</label>
                                         <div class="input-group">
                                             <div class="d-inline-block custom-control custom-radio mr-1">
                                                 <input type="radio" class="custom-control-input bg-success"
-                                                    name="is_active" id="colorRadio1" value="1">
+                                                    name="status" id="status_active_edit" value="1">
                                                 <label class="custom-control-label"
-                                                    for="colorRadio1">{!! __('general.active') !!}
+                                                    for="status_active_edit">{!! __('general.active') !!}
                                                 </label>
                                             </div>
                                             <div class="d-inline-block custom-control custom-radio mr-1">
                                                 <input type="radio" class="custom-control-input bg-danger"
-                                                    name="is_active" id="colorRadio2" value="0">
+                                                    name="status" id="status_inactive_edit" value="0">
                                                 <label class="custom-control-label"
-                                                    for="colorRadio2">{!! __('general.inactive') !!}
+                                                    for="status_inactive_edit">{!! __('general.inactive') !!}
                                                 </label>
                                             </div>
                                         </div>
                                         <span class="text text-danger">
-                                            <strong id="is_active_error"> </strong>
+                                            <strong id="status_error_edit"> </strong>
                                         </span>
                                     </div>
                                 </div>
@@ -150,11 +147,11 @@
 
                 <!--begin::modal footer-->
                 <div class="modal-footer">
-                    <button type="submit" id="create_coupon_btn" class="btn btn-info font-weight-bold ">
+                    <button type="submit" id="create_faq_btn" class="btn btn-info font-weight-bold ">
                         {{ trans('general.save') }}
                     </button>
 
-                    <button type="button" id="cancel_coupon_btn" class="btn btn-light-dark font-weight-bold"
+                    <button type="button" id="cancel_faq_btn" class="btn btn-light-dark font-weight-bold"
                         data-dismiss="modal">
                         {{ trans('general.cancel') }}
                     </button>
@@ -168,52 +165,71 @@
 
 @push('scripts')
     <script type="text/javascript">
+        // show edit modal
+        $('body').on('click', '.edit_faq_button', function(e) {
+            e.preventDefault();
+            var faq_id = $(this).attr('faq-id');
+            var faq_question_ar = $(this).attr('faq-question-ar');
+            var faq_question_en = $(this).attr('faq-question-en');
+            var faq_answer_ar = $(this).attr('faq-answer-ar');
+            var faq_answer_en = $(this).attr('faq-answer-en');
+            var faq_status = $(this).attr('faq-status');
+
+            $('#id_edit').val(faq_id);
+            $('#question_ar_edit').val(faq_question_ar);
+            $('#question_en_edit').val(faq_question_en);
+            $('#answer_ar_edit').val(faq_answer_ar);
+            $('#answer_en_edit').val(faq_answer_en);
+
+            if (faq_status == 1) {
+                $('#status_active_edit').prop('checked', true);
+            }
+
+            $('#updateFaqModal').modal('show');
+        })
+
         // reset
-        function resetCreateForm() {
+        function resetEditForm() {
+            $('#question_ar_edit').css('border-color', '');
+            $('#question_en_edit').css('border-color', '');
+            $('#answer_ar_edit').css('border-color', '');
+            $('#answer_en_edit').css('border-color', '');
+            $('#status_edit').css('border-color', '');
 
-            $('#code').css('border-color', '');
-            $('#discount_percentage').css('border-color', '');
-            $('#limit').css('border-color', '');
-            $('#time_used').css('border-color', '');
-            $('#start_date').css('border-color', '');
-            $('#end_date').css('border-color', '');
-            $('#is_active').css('border-color', '');
-
-            $('#code_error').text('');
-            $('#discount_percentage_error').text('');
-            $('#limit_error').text('');
-            $('#time_used_error').text('');
-            $('#start_date_error').text('');
-            $('#end_date_error').text('');
-            $('#is_active_error').text('');
+            $('#question_ar_error_edit').text('');
+            $('#question_en_error_edit').text('');
+            $('#answer_ar_error_edit').text('');
+            $('#answer_en_error_edit').text('');
+            $('#status_error_edit').text('');
         }
 
         // cancel
-        $('body').on('click', '#cancel_coupon_btn', function(e) {
-            $('#createCouponModal').modal('hide');
-            $('#create_coupon_form')[0].reset();
-            resetCreateForm();
+        $('body').on('click', '#cancel_faq_btn', function(e) {
+            $('#updateFaqModal').modal('hide');
+            $('#update_faq_form')[0].reset();
+            resetEditForm();
         });
 
         // hide
-        $('#createCouponModal').on('hidden.bs.modal', function(e) {
-            $('#createCouponModal').modal('hide');
-            $('#create_coupon_form')[0].reset();
-            resetCreateForm();
+        $('#updateFaqModal').on('hidden.bs.modal', function(e) {
+            $('#updateFaqModal').modal('hide');
+            $('#update_faq_form')[0].reset();
+            resetEditForm();
         });
 
 
         // create
-        $('#create_coupon_form').on('submit', function(e) {
+        $('#update_faq_form').on('submit', function(e) {
             e.preventDefault();
             // reset
-            resetCreateForm();
+            resetEditForm();
 
             // paramters
+            var faq_id = $('#id_edit').val();
             var currentPage = $('#yajra-datatable').DataTable().page();
             var data = new FormData(this);
             var type = $(this).attr('method');
-            var url = $(this).attr('action');
+            var url = "{!! route('dashboard.faqs.update', 'id') !!}".replace('id', faq_id);
 
             $.ajax({
                 url: url,
@@ -227,9 +243,9 @@
                     if (data.status == true) {
                         console.log(data);
                         $('#yajra-datatable').DataTable().page(currentPage).draw(false);
-                        $('#create_coupon_form')[0].reset();
-                        resetCreateForm();
-                        $('#createCouponModal').modal('hide');
+                        $('#update_faq_form')[0].reset();
+                        resetEditForm();
+                        $('#updateFaqModal').modal('hide');
                         flasher.success("{!! __('general.add_success_message') !!}");
                     } else {
                         flasher.error("{!! __('general.add_error_message') !!}");
@@ -238,8 +254,17 @@
                 error: function(reject) {
                     var response = $.parseJSON(reject.responseText);
                     $.each(response.errors, function(key, value) {
-                        $('#' + key + '_error').text(value[0]);
-                        $('#' + key).css('border-color', '#F64E60');
+                        if (key == 'question.en') {
+                            key = 'question_en';
+                        } else if (key == 'question.ar') {
+                            key = 'question_ar';
+                        } else if (key == 'answer.ar') {
+                            key = 'answer_ar';
+                        } else if (key == 'answer.en') {
+                            key = 'answer_en';
+                        }
+                        $('#' + key + '_error_edit').text(value[0]);
+                        $('#' + key + '_edit').css('border-color', '#F64E60');
                     });
                 }, //end error
             });
