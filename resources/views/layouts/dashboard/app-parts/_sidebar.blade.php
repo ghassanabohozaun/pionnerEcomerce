@@ -20,6 +20,18 @@
             <!-- end: Dashboard -->
 
 
+            <!-- begin: settings -->
+            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                <li class=" nav-item">
+                    <a href="{!! route('dashboard.settings.index') !!}">
+                        <i class="la la-cog"></i>
+                        <span class="menu-title" data-i18n="nav.dash.main">{!! __('settings.settings') !!}</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- end: Dashboard -->
+
+
             <!-- begin: roles -->
             @can('roles')
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">

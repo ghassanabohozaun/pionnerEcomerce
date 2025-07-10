@@ -13,19 +13,22 @@ return new class extends Migration {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string('site_name');
-            $table->text('address');
-            $table->longText('description');
-            $table->longText('keywords');
-            $table->string('phone');
-            $table->string(column: 'whatsapp');
-            $table->string('email');
-            $table->string('email_support');
-            $table->string('facebook');
-            $table->string('twitter');
-            $table->string('instegram');
-            $table->string('youtbe');
-            $table->string('logo');
-            $table->string('favicon');
+            $table->text('address')->nullable();
+            $table->longText('description')->nullable();
+            $table->longText('keywords')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('whatsapp')->nullable();
+            $table->string('email')->nullable();
+            $table->string('email_support')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('instegram')->nullable();
+            $table->string('youtube')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('favicon')->nullable();
+            $table->string('promation_video_url', 1000)->nullable();
+
             $table->timestamps();
         });
     }

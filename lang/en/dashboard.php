@@ -19,6 +19,7 @@ return [
     'world' => 'World',
     'faqs' => 'Faqs',
     'coupons' => 'Coupons',
+    'settings' => 'Site Settings',
 
     // login
     'login' => 'Login',

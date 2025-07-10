@@ -48,7 +48,16 @@ return [
         'brands' => [
             'driver' => 'local',
             'root' => public_path('/uploads/brands'),
-            'url' => env('APP_URL') . '/uploads/brands',
+            'url' => env('APP_URL'),
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
+        'settings' => [
+            'driver' => 'local',
+            'root' => public_path('/uploads/settings'),
+            'url' => env('APP_URL'),
             'visibility' => 'public',
             'throw' => false,
             'report' => false,

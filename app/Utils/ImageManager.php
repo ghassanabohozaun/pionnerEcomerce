@@ -31,9 +31,9 @@ class ImageManager
         $image->storeAs($path, $file_name, ['disk' => $disk]);
     }
 
-    public function removeImageFromLocal($image)
+    public function removeImageFromLocal($image,$disk)
     {
-        $public_path = public_path('uploads\\brands\\' . $image);
+        $public_path = public_path('uploads\\'.$disk.'\\' . $image);
 
         if (File::exists($public_path)) {
             File::delete($public_path);

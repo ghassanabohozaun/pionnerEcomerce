@@ -74,7 +74,7 @@ class BrandService
     public function store($data)
     {
         // upload logo
-        if ($data['logo'] != null) {
+        if (array_key_exists('logo', $data) && $data['logo'] != null) {
             $file_name = $this->imageManager->uploadSingleImage('/', $data['logo'], 'brands');
             $data['logo'] = $file_name;
         }
@@ -92,9 +92,9 @@ class BrandService
     {
         $brand = $this->brandRepositroy->getBrand($data['id']);
 
-        if (!empty($data['logo'])) {
+        if (array_key_exists('logo', $data) && $data['logo'] != null) {
             // remove old logo
-            $this->imageManager->removeImageFromLocal($brand->logo);
+            $this->imageManager->removeImageFromLocal($brand->logo , 'brands');
             // upload logo
             $data['logo'] = $this->imageManager->uploadSingleImage('/', $data['logo'], 'brands');
         }
@@ -113,7 +113,7 @@ class BrandService
 
         // remove old logo
         if (!empty($brand->logo)) {
-            $this->imageManager->removeImageFromLocal($brand->logo);
+            $this->imageManager->removeImageFromLocal($brand->logo, 'brands');
         }
 
         $brand = $this->brandRepositroy->destroy($brand);

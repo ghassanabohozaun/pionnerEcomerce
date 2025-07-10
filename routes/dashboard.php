@@ -12,6 +12,7 @@ use App\Http\Controllers\Dashboard\CouponsController;
 use App\Http\Controllers\dashboard\FaqsController;
 use App\Http\Controllers\Dashboard\GovernoratiesController;
 use App\Http\Controllers\Dashboard\RolesController;
+use App\Http\Controllers\Dashboard\SettingsController;
 use App\Http\Controllers\Dashboard\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -106,6 +107,11 @@ Route::group(
                 Route::resource('faqs', FaqsController::class);
                 Route::get('/faqs-all', [FaqsController::class, 'getAll'])->name('faqs.get.all');
                 Route::post('/faqs/status', [FaqsController::class, 'changeStatus'])->name('faqs.change.status');
+            });
+            ########################################### settings routes  ######################################################################
+            Route::group(['middleware' => 'can:settings'], function () {
+                Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
+                Route::put('/settings/{id?}', [SettingsController::class, 'update'])->name('settings.update');
             });
         });
     },

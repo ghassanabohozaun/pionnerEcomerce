@@ -6,11 +6,12 @@
                  <li class="nav-item mobile-menu d-md-none mr-auto"><a
                          class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i
                              class="ft-menu font-large-1"></i></a></li>
-                 <li class="nav-item mr-auto">
+                 <li class="nav-item mr-auto site_name_logo_section">
                      <a class="navbar-brand" href="index.html">
-                         {{-- <img class="brand-logo" alt="modern admin logo"
-                             src="{!! asset('assets/dashbaord') !!}/images/logo/logo.png"> --}}
-                         <h4 class="brand-text">{!! __('dashboard.site_name') !!}</h4>
+                         @if ($settings->logo != null)
+                             <img class="brand-logo" alt="" src="{!! asset('uploads/settings/' . $settings->logo) !!}">
+                         @endif
+                         <h4 class="brand-text">{!! $settings->site_name !!}</h4>
                      </a>
                  </li>
                  <li class="nav-item d-none d-md-block float-right"><a class="nav-link modern-nav-toggle pr-0"

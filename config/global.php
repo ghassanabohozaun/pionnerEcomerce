@@ -12,5 +12,6 @@ return [
         'coupons' => 'global.coupons',
         'products' => 'global.products',
         'orders' => 'global.orders',
+
     ],
 ];

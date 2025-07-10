@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\Faq;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
 
@@ -61,6 +62,7 @@ class ViewServiceProvider extends ServiceProvider
                 });
             }
 
+            // view share
             view()->share([
                 'categories_count' => Cache::get('categories_count'),
                 'brands_count' => Cache::get('brands_count'),
@@ -69,5 +71,49 @@ class ViewServiceProvider extends ServiceProvider
                 'faqs_count' => Cache::get('faqs_count'),
             ]);
         });
+
+        // get share settings
+        $settings = $this->firstOrCreateSettings();
+        view()->share([
+            'settings' => $settings,
+        ]);
+    }
+
+    public function firstOrCreateSettings()
+    {
+        $settings = Setting::firstOr(function () {
+            return Setting::create([
+                'site_name' => [
+                    'en' => 'E-Commerce',
+                    'ar' => 'تجارة الكترونية',
+                ],
+                'address' => [
+                    'en' => '',
+                    'ar' => '',
+                ],
+                'description' => [
+                    'en' => '',
+                    'ar' => '',
+                ],
+                'keywords' => [
+                    'en' => '',
+                    'ar' => '',
+                ],
+                'phone' => '',
+                'mobile' => '',
+                'whatsapp' => '',
+                'email' => '',
+                'email_support' => '',
+                'facebook' => '',
+                'twitter' => '',
+                'instegram' => '',
+                'youtube' => '',
+                'logo' => '',
+                'favicon' => '',
+                'promation_video_url' => '',
+            ]);
+        });
+
+        return $settings;
     }
 }
