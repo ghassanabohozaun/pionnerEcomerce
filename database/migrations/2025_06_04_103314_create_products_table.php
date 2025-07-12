@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->date('available_for')->nullable();
             $table->integer('views');
 
-            $table->boolean('has_variant')->default(0);
+            $table->boolean('has_variants')->default(0);
 
             $table->decimal('price', 8, 3)->nullable(); /// if has variants it will be null
             $table->boolean('has_discount')->default(0);
