@@ -18,15 +18,19 @@ return new class extends Migration {
             $table->boolean('status')->default(1);
             $table->string('sku');
             $table->date('available_for')->nullable();
-            $table->decimal('price', 8, 3);
-            $table->decimal('discount');
+            $table->integer('views');
+
+            $table->boolean('has_variant')->default(0);
+
+            $table->decimal('price', 8, 3)->nullable(); /// if has variants it will be null
+            $table->boolean('has_discount')->default(0);
+            $table->decimal('discount')->nullable();
             $table->date('start_discount')->nullable();
             $table->date('end_discount')->nullable();
 
             $table->boolean('manage_stock')->default(0);
-            $table->integer( 'quantity');
+            $table->integer('quantity')->nullable(); /// if has variants it will be null
             $table->boolean(column: 'available_in_stock')->default(1);
-            $table->integer('views');
 
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->foreignId('brand_id')->constrained('brands')->cascadeOnDelete();

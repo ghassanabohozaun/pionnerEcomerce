@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class product_image extends Model
+class productImage extends Model
 {
     use SoftDeletes;
     protected $table = 'product_images';
