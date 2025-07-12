@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         BrandSeeder::class,
         CouponSeeder::class,
         FaqSeeder::class,
+        AttributeSeeder::class,
     ]);
     }
 }

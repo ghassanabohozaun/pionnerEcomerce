@@ -7,7 +7,7 @@
                          class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i
                              class="ft-menu font-large-1"></i></a></li>
                  <li class="nav-item mr-auto site_name_logo_section">
-                     <a class="navbar-brand" href="index.html">
+                     <a class="navbar-brand" href="#">
                          @if ($settings->logo != null)
                              <img class="brand-logo" alt="" src="{!! asset('uploads/settings/' . $settings->logo) !!}">
                          @endif

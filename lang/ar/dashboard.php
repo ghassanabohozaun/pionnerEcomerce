@@ -20,6 +20,8 @@ return [
     'faqs' => 'الأسئلة الشائعة',
     'coupons' => 'الكوبونات',
     'settings'=>'إعدادات الموقع',
+    'attributes'=>'السمات',
+    'products'=>'المنتجات',
 
     // login
     'login' => 'تسجيل الدخول',

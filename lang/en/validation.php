@@ -234,5 +234,7 @@ return [
         'instegram' => 'Instegram',
         'gmail' => 'Gmail',
         'linkedin' => 'Linked In',
+        'value.*.ar' => 'Arabic Value',
+        'value.*.en' => 'English Value',
     ],
 ];

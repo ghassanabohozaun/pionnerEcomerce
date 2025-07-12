@@ -9,8 +9,8 @@ return [
     'categories' => 'Categories Management',
     'world' => 'World Management',
     'faqs' => 'Faqs Management',
-
     'coupons' => 'Coupons Management',
     'products' => 'Products Management',
     'orders' => 'Orders Management',
+    'attributes' => 'Attributes Management',
 ];

@@ -20,6 +20,8 @@ return [
     'faqs' => 'Faqs',
     'coupons' => 'Coupons',
     'settings' => 'Site Settings',
+    'attributes' => 'Attibutes',
+    'products' => 'Products',
 
     // login
     'login' => 'Login',

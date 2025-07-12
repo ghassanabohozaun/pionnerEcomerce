@@ -177,7 +177,7 @@
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class=" nav-item">
                         <a href="#">
-                            <i class="la la-cart-arrow-down"></i>
+                            <i class="la la-opencart"></i>
                             <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.coupons') !!}</span>
                             <span class="badge badge badge-info badge-pill float-right mr-2">{!! $coupons_count !!}
                             </span>
@@ -221,5 +221,31 @@
                 </ul>
             @endcan
             <!-- end: faqs -->
+
+            <!-- begin: products -->
+
+            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                <li class=" nav-item">
+                    <a href="#">
+                        <i class="la la-cart-arrow-down"></i>
+                        <span class="menu-title" data-i18n="nav.dash.products">{!! __('dashboard.products') !!}</span>
+                    </a>
+                    <!-- begin: faqs -->
+                    <ul class="menu-content">
+                        @can('attributes')
+                            <li class="@if (str_contains(url()->current(), 'attributes')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.attributes.index') !!}" data-i18n="nav.dash.attributes">
+                                    {!! __('attributes.attributes') !!}
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- end: products -->
+
+
+
         </div>
     </div>
