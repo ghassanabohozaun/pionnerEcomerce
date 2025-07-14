@@ -4,11 +4,9 @@ namespace App\Services\Dashboard;
 
 use App\Repositories\Dashboard\AttributeRepository;
 use App\Repositories\Dashboard\AttributeValueRepository;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
+ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\Facades\DataTables;
-use function Livewire\of;
 
 class AttributeService
 {
@@ -72,7 +70,7 @@ class AttributeService
             return true;
         } catch (\Exception $e) {
             DB::rollBack();
-            dd($e->getMessage());
+           // dd($e->getMessage());
             Log::error('Error Creating Product Attributes : ' . $e->getMessage(), ['trace' => $e->getTraceAsString()]);
             return false;
         }

@@ -18,8 +18,8 @@ class FaqFactory extends Factory
     {
         return [
             'question' => [
-                'en' => 'en | ' . $this->faker->sentence(10) . '?',
-                'ar' => 'ar | ' . $this->faker->sentence(10) . '?',
+                'en' => 'en | ' . $this->faker->sentence(5) . '?',
+                'ar' => 'ar | ' . $this->faker->sentence(5) . '?',
             ],
             'answer' => [
                 'en' => 'en | ' . $this->faker->paragraph(3),

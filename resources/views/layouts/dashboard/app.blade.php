@@ -5,6 +5,7 @@
 <head>
     @include('layouts.dashboard.app-parts._head')
     @stack('style')
+    {{-- @livewireStyles --}}
 </head>
 
 <body class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar" data-open="click"
@@ -19,6 +20,7 @@
     @include('layouts.dashboard.app-parts._footer')
     @include('layouts.dashboard.app-parts._scripts')
     @stack('scripts')
+    {{-- @livewireScripts --}}
 </body>
 
 </html>

@@ -20,6 +20,18 @@ class ImageManager
         self::storeImageInLocal($image, $path, $file_name, $disk);
         return $file_name;
     }
+
+    public function uploadImages($images, $modal, $disk)
+    {
+        foreach ($images as $image) {
+            $file_name = $this->generateImageName($image);
+            $this->storeImageInLocal($image, '/', $file_name, $disk);
+            $modal->images()->create([
+                'file_name' => $file_name,
+            ]);
+        }
+    }
+
     public function generateImageName($image)
     {
         $file_name = Str::uuid() . time() . '.' . $image->getClientOriginalExtension();
@@ -31,9 +43,9 @@ class ImageManager
         $image->storeAs($path, $file_name, ['disk' => $disk]);
     }
 
-    public function removeImageFromLocal($image,$disk)
+    public function removeImageFromLocal($image, $disk)
     {
-        $public_path = public_path('uploads\\'.$disk.'\\' . $image);
+        $public_path = public_path('uploads\\' . $disk . '\\' . $image);
 
         if (File::exists($public_path)) {
             File::delete($public_path);

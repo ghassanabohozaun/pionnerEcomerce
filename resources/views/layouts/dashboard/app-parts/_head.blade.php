@@ -8,12 +8,10 @@
  <title>{!! __('dashboard.dashboard') !!} | @yield('title')</title>
  <link rel="apple-touch-icon" href="{!! asset('uploads/settings/' . $settings->favicon) !!}">
  <link rel="shortcut icon" type="image/x-icon" href="{!! asset('uploads/settings/' . $settings->favicon) !!}">
- <link
+ {{-- <link
      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
-     rel="stylesheet">
+     rel="stylesheet"> --}}
  <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord/fonts/line-awesome/css/line-awesome.min.css') !!}">
-
-
 
  <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord/vendors/css/weather-icons/climacons.min.css') !!}">
  <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord/fonts/meteocons/style.css') !!}">
@@ -55,7 +53,7 @@
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord/css-rtl/core/colors/palette-gradient.css') !!}">
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord/css-rtl/pages/timeline.css') !!}">
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord/css-rtl/pages/dashboard-ecommerce.css') !!}">
-     {{-- <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/assets/css/style-rtl.css"> --}}
+     <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord') !!}/assets/css/style-rtl.css">
      {{-- <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet" />
      <style>
          body,

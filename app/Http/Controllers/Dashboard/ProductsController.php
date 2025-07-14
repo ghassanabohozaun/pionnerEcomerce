@@ -3,61 +3,65 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Services\Dashboard\ProductService;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected $productService;
+
+    // __construct
+    public function __construct(ProductService $productService){
+        $this->productService = $productService;
+    }
+
+    // index
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // create
     public function create()
     {
-        //
+        $title = __('products.create_new_product');
+        $brands = Brand::all();
+        $categories = Category::all();
+        return view('dashboard.products.create', compact('title', 'brands', 'categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // get all
+    public function getAll(){
+
+        return $this->productService->getAll();
+    }
+    // store
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
+    // show
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    // edit
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // update
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // destroy
     public function destroy(string $id)
     {
         //

@@ -163,6 +163,5 @@
         </form>
     </div><!-- end: content app  -->
 @endsection
-
 @push('scripts')
 @endpush

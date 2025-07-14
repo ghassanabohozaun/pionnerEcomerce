@@ -230,8 +230,9 @@
                         <i class="la la-cart-arrow-down"></i>
                         <span class="menu-title" data-i18n="nav.dash.products">{!! __('dashboard.products') !!}</span>
                     </a>
-                    <!-- begin: faqs -->
+
                     <ul class="menu-content">
+
                         @can('attributes')
                             <li class="@if (str_contains(url()->current(), 'attributes')) active @endif">
                                 <a class="menu-item" href="{!! route('dashboard.attributes.index') !!}" data-i18n="nav.dash.attributes">
@@ -239,6 +240,16 @@
                                 </a>
                             </li>
                         @endcan
+
+                        @can('products')
+                            <li class="@if (str_contains(url()->current(), 'products')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.products.create') !!}" data-i18n="nav.dash.products">
+                                    {!! __('products.products') !!}
+                                </a>
+                            </li>
+                        @endcan
+
+
                     </ul>
                 </li>
             </ul>

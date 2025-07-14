@@ -12,10 +12,12 @@ use App\Http\Controllers\Dashboard\CountriesController;
 use App\Http\Controllers\Dashboard\CouponsController;
 use App\Http\Controllers\dashboard\FaqsController;
 use App\Http\Controllers\Dashboard\GovernoratiesController;
+use App\Http\Controllers\Dashboard\ProductsController;
 use App\Http\Controllers\Dashboard\RolesController;
 use App\Http\Controllers\Dashboard\SettingsController;
 use App\Http\Controllers\Dashboard\WelcomeController;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group(
@@ -119,6 +121,17 @@ Route::group(
             Route::group(['middleware' => 'can:attributes'], function () {
                 Route::resource('attributes', AttributesController::class);
                 Route::get('/attributes-all', [AttributesController::class, 'getAll'])->name('attributes.get.all');
+            });
+
+            ########################################### products routes  ######################################################################
+
+            Livewire::setUpdateRoute(function($handle){
+                return Route::post('/livewire/update',$handle);
+            });
+
+            Route::group(['middleware' => 'can:products'], function () {
+                Route::resource('products', ProductsController::class);
+                Route::get('/products-all', [ProductsController::class, 'getAll'])->name('products.get.all');
             });
         });
     },

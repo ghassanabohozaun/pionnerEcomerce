@@ -236,5 +236,9 @@ return [
         'linkedin' => 'Linked In',
         'value.*.ar' => 'Arabic Value',
         'value.*.en' => 'English Value',
+        'prices.*' => 'Price',
+        'quantities.*' => 'Quantity',
+        'price'=>'Price',
+        'quantity'=>'Quantity',
     ],
 ];

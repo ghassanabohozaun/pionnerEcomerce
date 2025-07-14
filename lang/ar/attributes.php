@@ -2,9 +2,9 @@
 return [
     'create_new_attribute' => 'انشاء سمة جديدة',
     'update_attribute' => 'تعديل  السمة',
-    'attributes' => 'الأسمةة',
-    'show_all_attributes' => 'عرض جميع الأسمةة',
-    'attributes_count' => 'عدد الأسمةة',
+    'attributes' => 'السمات',
+    'show_all_attributes' => 'عرض جميع السمات',
+    'attributes_count' => 'عدد السمات',
 
     'name' => 'اسم السمة',
     'name_ar' => 'اسم السمة بالعربي',

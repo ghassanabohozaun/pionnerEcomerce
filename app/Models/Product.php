@@ -13,7 +13,8 @@ class Product extends Model
 {
     use SoftDeletes, HasFactory, HasTranslations;
     protected $table = 'products';
-    protected $fillable = ['name', 'small_desc', 'desc', 'status', 'sku', 'available_for', 'views', 'has_variants', 'price', 'has_discount', 'discount', 'start_discount', 'end_discount', 'manage_stock', 'quantity', 'available_in_stock', 'category_id', 'brand_id'];
+    protected $fillable = ['name', 'small_desc', 'desc', 'status', 'sku', 'available_for', 'views', 'has_variants', 'price',
+                            'has_discount', 'discount', 'start_discount', 'end_discount', 'manage_stock', 'quantity', 'available_in_stock', 'category_id', 'brand_id'];
 
     // translatable
     public array $translatable = ['name', 'small_desc', 'desc'];
@@ -34,7 +35,7 @@ class Product extends Model
         return $this->hasMany(productPreview::class, 'product_id');
     }
 
-    public function productImages()
+    public function images()
     {
         return $this->hasMany(productImage::class, 'product_id');
     }

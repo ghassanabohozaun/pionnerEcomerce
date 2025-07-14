@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->boolean('status')->default(1);
             $table->string('sku');
             $table->date('available_for')->nullable();
-            $table->integer('views');
+            $table->integer('views')->nullable();
 
             $table->boolean('has_variants')->default(0);
 

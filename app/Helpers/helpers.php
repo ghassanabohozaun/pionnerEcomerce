@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AttributeValue;
 use Illuminate\Support\Facades\Config;
 use App\Models\Setting;
 
@@ -24,5 +25,14 @@ if (!function_exists('admin')) {
     function admin()
     {
         return auth()->guard('admin');
+    }
+}
+
+
+//  get specific attribute Helper Function
+if (!function_exists('getSpecificAttributeValue')) {
+    function getSpecificAttributeValue($id)
+    {
+        return AttributeValue::find($id);
     }
 }

@@ -226,6 +226,9 @@ return [
         'linkedin' => ' لينكد ان ',
         'value.*.ar' => 'القيمة بالعربي',
         'value.*.en' => 'القيمة بالانجليزي',
+        'prices.*' => 'السعر',
+        'quantities.*' => 'الكمية',
+        'quantity' => 'الكمية',
 
         'username' => 'اسم المُستخدم',
         'first_name' => 'الاسم',
