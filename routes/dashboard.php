@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\BrandsController;
 use App\Http\Controllers\Dashboard\CitiesController;
 use App\Http\Controllers\Dashboard\CountriesController;
 use App\Http\Controllers\Dashboard\CouponsController;
+use App\Http\Controllers\Dashboard\EventsController;
 use App\Http\Controllers\dashboard\FaqsController;
 use App\Http\Controllers\Dashboard\GovernoratiesController;
 use App\Http\Controllers\Dashboard\ProductsController;
@@ -125,13 +126,22 @@ Route::group(
 
             ########################################### products routes  ######################################################################
 
-            Livewire::setUpdateRoute(function($handle){
-                return Route::post('/livewire/update',$handle);
+            Livewire::setUpdateRoute(function ($handle) {
+                return Route::post('/livewire/update', $handle);
             });
-
             Route::group(['middleware' => 'can:products'], function () {
                 Route::resource('products', ProductsController::class);
                 Route::get('/products-all', [ProductsController::class, 'getAll'])->name('products.get.all');
+                Route::post('/products/change-status', [ProductsController::class, 'changeStatus'])->name('products.change.status');
+                Route::delete('/product/destroy-varaint/{id?}', [ProductsController::class, 'destroyProductVaraint'])->name('products.destroy.varaint');
+            });
+
+            ########################################### events routes  ######################################################################
+            //  Livewire::setUpdateRoute(function ($handle) {
+            //     return Route::post('/livewire/update', $handle);
+            // });
+            Route::group(['middlewere' => 'can:events'], function () {
+                Route::resource('events', EventsController::class);
             });
         });
     },

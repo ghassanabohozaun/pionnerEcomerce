@@ -4,7 +4,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="name_ar">{!! __('products.name_ar') !!}</label>
-            <input type="text" wire:model.live="name_ar" class="form-control" autocomplete="off"
+            <input type="text" wire:model.live="name_ar" class="form-control" autocomplete="off" value=""
                 placeholder="{!! __('products.enter_name_ar') !!}">
             @error('name_ar')
                 <span class="text text-danger">
@@ -73,7 +73,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="desc_ar">{!! __('products.desc_ar') !!}</label>
-            <textarea rows="5" wire:model.live="desc_ar" class="form-control" autocomplete="off"
+            <textarea rows="6" wire:model.live="desc_ar" class="form-control" autocomplete="off"
                 placeholder="{!! __('products.enter_desc_ar') !!}"></textarea>
             @error('desc_ar')
                 <span class="text text-danger">
@@ -88,7 +88,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="desc_en">{!! __('products.desc_en') !!}</label>
-            <textarea rows="5" wire:model.live='desc_en' class="form-control" autocomplete="off"
+            <textarea rows="6" wire:model.live='desc_en' class="form-control" autocomplete="off"
                 placeholder="{!! __('products.enter_desc_en') !!}"></textarea>
             @error('desc_en')
                 <span class="text text-danger">
@@ -102,11 +102,11 @@
 <!-- end: product  description -->
 
 
-<!-- begin: product  category brand SKU -->
+<!-- begin: product  category brand SKU  available_for-->
 <div class="row">
 
     <!-- begin: input -->
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="form-group">
             <label for="category_id">{!! __('products.category_id') !!}</label>
             <select class="form-control custom_select" id="DefaultSelect" wire:model.live="category_id">
@@ -128,9 +128,8 @@
     </div>
     <!-- end: input -->
 
-
     <!-- begin: input -->
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="form-group">
             <label for="brand_id">{!! __('products.brand_id') !!}</label>
             <select class="form-control custom_select" id="DefaultSelect" wire:model.live="brand_id">
@@ -153,7 +152,7 @@
     <!-- end: input -->
 
     <!-- begin: input -->
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="form-group">
             <label for="sku">{!! __('products.sku') !!}</label>
             <input type="text" wire:model.live='sku' class="form-control" autocomplete="off"
@@ -167,13 +166,8 @@
     </div>
     <!-- end: input -->
 
-</div>
-<!-- end: product  category brand SKU -->
-
-<!-- begin: product available_for tags -->
-<div class="row">
     <!-- begin: input -->
-    <div class="col-md-6">
+    <div class="col-md-3">
         <div class="form-group">
             <label for="available_for">{!! __('products.available_for') !!}</label>
             <input type="date" wire:model.live="available_for" class="form-control" autocomplete="off"
@@ -187,8 +181,13 @@
     </div>
     <!-- end: input -->
 
+</div>
+<!-- end: product  category brand SKU  available_for-->
+
+<!-- begin: product  tags -->
+<div class="row">
     <!-- begin: input -->
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="form-group">
             <label for="tags">{!! __('products.tags') !!}</label>
             <input type="text" wire:model.live='tags' class="form-control " autocomplete="off"

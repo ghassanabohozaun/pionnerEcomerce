@@ -2,6 +2,7 @@
     @csrf
     <div class="form-body">
 
+
         @if (!empty($successMessage))
             <div class="container-fluid">
                 <div class="alert alert-success">
@@ -42,28 +43,28 @@
 
         <!-- begin: first basic info -->
         <div class="container-fluid {!! $currentStep != 1 ? 'displayNone' : '' !!}">
-            @include('livewire.dashboard.product._create.basic-info')
+            @include('livewire.dashboard.product._edit.basic-info')
         </div>
         <!-- end: first basic info  -->
 
 
         <!-- begin: second product variants -->
         <div class="container-fluid {!! $currentStep != 2 ? 'displayNone' : '' !!}">
-            @include('livewire.dashboard.product._create.product-variants')
+            @include('livewire.dashboard.product._edit.product-variants')
         </div>
         <!-- end: second product variants -->
 
 
         <!-- begin: third product images -->
         <div class="container-fluid {!! $currentStep != 3 ? 'displayNone' : '' !!}">
-            @include('livewire.dashboard.product._create.product-images')
+            @include('livewire.dashboard.product._edit.product-images')
         </div>
         <!-- end: third product images -->
 
 
         <!-- begin: fourth confirmations -->
         <div class="container-fluid {!! $currentStep != 4 ? 'displayNone' : '' !!}">
-            @include('livewire.dashboard.product._create.confirmations')
+            @include('livewire.dashboard.product._edit.confirmations')
         </div>
         <!-- end: fourth confirmations -->
 

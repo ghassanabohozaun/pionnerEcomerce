@@ -26,8 +26,8 @@
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item active">
-                                    <a href="{!! route('dashboard.products.create') !!}">
-                                        {!! __('products.create_new_product') !!}
+                                    <a href="{!! route('dashboard.products.edit', $id) !!}">
+                                        {!! __('products.update_product') !!}
                                     </a>
                                 </li>
                             </ol>
@@ -48,7 +48,7 @@
                                 <!-- begin: card header -->
                                 <div class="card-header">
                                     <h4 class="card-title" id="basic-layout-colored-form-control">
-                                        {!! __('products.create_new_product') !!}
+                                        {!! __('products.update_product') !!}
                                     </h4>
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -61,11 +61,10 @@
                                     </div>
                                 </div>
                                 <!-- end: card header -->
-
                                 <!-- begin: card content -->
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        @livewire('dashboard.product.create-product', ['categories' => $categories, 'brands' => $brands])
+                                        @livewire('dashboard.product.edit-product', ['productID' => $id, 'categories' => $categories, 'brands' => $brands, 'productAttribute' => $attributes])
                                     </div>
                                     <!-- end: card content -->
                                 </div>
@@ -86,7 +85,6 @@
         <link rel="stylesheet" href="{!! asset('assets/dashbaord/css/product-wizard.css') !!}" rel="stylesheet">
     @endif
 @endpush
-
 
 @push('scripts')
     <script>

@@ -13,4 +13,5 @@ return [
     'products' => 'Products Management',
     'orders' => 'Orders Management',
     'attributes' => 'Attributes Management',
+    'events' => 'Events Management',
 ];

@@ -153,7 +153,7 @@
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class=" nav-item">
                         <a href="#">
-                            <i class="la la-clone"></i>
+                            <i class="la la-tag"></i>
                             <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.brands') !!}</span>
                             <span class="badge badge badge-info badge-pill float-right mr-2">{!! $brands_count !!}</span>
                         </a>
@@ -223,7 +223,6 @@
             <!-- end: faqs -->
 
             <!-- begin: products -->
-
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class=" nav-item">
                     <a href="#">
@@ -243,7 +242,7 @@
 
                         @can('products')
                             <li class="@if (str_contains(url()->current(), 'products')) active @endif">
-                                <a class="menu-item" href="{!! route('dashboard.products.create') !!}" data-i18n="nav.dash.products">
+                                <a class="menu-item" href="{!! route('dashboard.products.index') !!}" data-i18n="nav.dash.products">
                                     {!! __('products.products') !!}
                                 </a>
                             </li>
@@ -253,10 +252,34 @@
                     </ul>
                 </li>
             </ul>
-
             <!-- end: products -->
 
 
+            <!-- begin: events -->
+            @can('events')
+                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li class=" nav-item">
+                        <a href="#">
+                            <i class="la la-question"></i>
+                            <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.events') !!}</span>
+                            {{-- <span
+                                class="badge badge badge-info badge-pill float-right mr-2">{!! $events_count !!}
+                            </span> --}}
+                        </a>
+                        <!-- begin: events -->
+                        <ul class="menu-content">
+                            <li class="@if (str_contains(url()->current(), 'events')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.events.index') !!}" data-i18n="nav.dash.events">
+                                    {!! __('events.events') !!}
+                                </a>
+
+                            </li>
+                        </ul>
+                        <!-- end: events -->
+                    </li>
+                </ul>
+            @endcan
+            <!-- end: events -->
 
         </div>
     </div>

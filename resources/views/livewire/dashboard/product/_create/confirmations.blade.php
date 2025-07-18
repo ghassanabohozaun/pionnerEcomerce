@@ -64,11 +64,10 @@
     </table>
     <!-- end: basic information -->
 
-
     <!-- begin: product variants -->
     @if ($has_variants == 1)
-        <h2>{!! __('products.product_variants') !!}</h2>
-        <table class="table table-responsive" style=" width:100%;">
+        <h2 class=" mt-3">{!! __('products.product_variants') !!}</h2>
+        <table class="table table-responsive  mb-3" style=" width:100%;">
             <thead>
                 <tr>
                     <td>{!! __('products.prices') !!}</td>
@@ -93,18 +92,32 @@
     @endif
     <!-- end: product variants -->
 
-
     <!-- begin: product images -->
     @if ($images)
-        <h2>{!! __('products.product_images') !!}</h2>
-        <br /><br />
-        <div class="col-md-12">
-            @foreach ($images as $key => $image)
-                <div class="position-relative d-inline-block mr-2 mb-2">
-                    <img src="{!! $image->temporaryUrl() !!}" class="img-thumbnail round-md" width="300">
+        <h2 class="mb-2">{!! __('products.product_images') !!}</h2>
+        <!-- begin: slider-->
+        <div class="col-12 mb-2">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width: 50%">
+                <div class="carousel-inner">
+                    @foreach ($images as $key => $image)
+                        <div class="carousel-item {!! $key == 0 ? 'active' : '' !!}">
+                            <img src="{!! $image->temporaryUrl() !!}" class="d-block w-100" alt="...">
+                        </div>
+                    @endforeach
+                    <a href="#carouselExampleControls}" class="carousel-control-prev" type="button"
+                        data-target="#carouselExampleControls" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">{!! __('general.previous') !!}</span>
+                    </a>
+                    <a href="#carouselExampleControls" class="carousel-control-next" type="button"
+                        data-target="#carouselExampleControls" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">{!! __('general.next') !!}</span>
+                    </a>
                 </div>
-            @endforeach
+            </div>
         </div>
+        <!-- end: slider-->
     @endif
     <!-- end: product images -->
 </div>

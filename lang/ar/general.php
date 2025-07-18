@@ -65,7 +65,7 @@ return [
     'download' => 'التحميل',
     'flag' => 'علم',
     'created_at' => 'انشأ في',
-    'manage_status'=>'إدارة الحالة',
+    'manage_status' => 'إدارة الحالة',
     'user' => 'المستخدم',
     'admin' => 'المدير',
     'user_update' => 'تعديل المستخدم',
@@ -90,6 +90,8 @@ return [
     'update_error_message' => 'لم تتم عملية التعديل',
     'restore_success_message' => 'تمت عملية الاسترجاع بنجاح',
     'restore_error_message' => 'لم تتم عملية الاسترجاع',
+    'delete_image_success_message' => 'تمت عملية حذف الصورة بنجاح',
+    'delete_image_error_message' => 'لم تتم عملية حذف الصورة',
 
     'upload_success_message' => 'تمت عملية الرفع بنجاح',
     'upload_error_message' => 'لم تتم عملية الرفع ',

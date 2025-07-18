@@ -18,7 +18,8 @@
         <div class="col-md-12">
             @foreach ($images as $key => $image)
                 <div class="position-relative d-inline-block mr-2 mb-2">
-                    <img src="{!! $image->temporaryUrl() !!}" class="img-thumbnail round-md" width="300">
+                    <img src="{!! $image->temporaryUrl() !!}" class="img-fluid img-thumbnail round-md"
+                        style="max-width: 300px; max-height: 300px;">
 
                     <!-- begin: delete image -->
                     <button type="button" wire:click="deleteImage({!! $key !!})"

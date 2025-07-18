@@ -4,6 +4,7 @@ return [
     'update_product' => 'Update Product',
     'products' => 'Products',
     'show_all_products' => 'Show All Products',
+    'show_product' => 'Show  Product',
     'basic_information' => 'Basic Informations',
     'product_variants' => 'Product Variants',
     'product_images' => 'Product Images',
@@ -16,6 +17,10 @@ return [
     'prices' => 'Prices',
     'quantities' => 'Quantities',
     'attributes' => 'Attributes',
+    'full_screen' => 'Full Screen',
+    'in_stock' => 'In Stock',
+    'select' => 'Select',
+    'new_images' => 'New Images',
 
     'product_name' => 'Product Name',
     'name_ar' => 'Arabic Product Name',
@@ -40,6 +45,7 @@ return [
     'start_discount' => 'Start Discount',
     'end_discount' => 'End Discount',
     'images' => 'Product Images',
+    'views' => 'Views',
 
     'enter_name_ar' => 'Enter Arabic Product Name',
     'enter_name_en' => 'Enter English Product Name',
@@ -59,4 +65,5 @@ return [
     'manage_status' => 'Manage Status',
 
     'no_products_found' => 'No Products Found !',
+    'no_product_varaints_found' => 'No Product Variants Found !',
 ];

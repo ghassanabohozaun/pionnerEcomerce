@@ -76,7 +76,7 @@ class CreateProduct extends Component
             'brand_id' => ['required', 'exists:brands,id'],
             'sku' => ['required', 'string', 'min:20'],
             'available_for' => ['required', 'date'],
-            'tags' => ['required', 'string'],
+            // 'tags' => ['required', 'string'],
         ]);
 
         $this->currentStep = 2;
@@ -180,7 +180,7 @@ class CreateProduct extends Component
     public function submitForm()
     {
         // add basic info
-        $product = [
+        $productData = [
             'name' => ['ar' => $this->name_ar, 'en' => $this->name_en],
             'small_desc' => ['ar' => $this->small_desc_ar, 'en' => $this->small_desc_en],
             'desc' => ['ar' => $this->desc_ar, 'en' => $this->desc_en],
@@ -188,6 +188,7 @@ class CreateProduct extends Component
             'brand_id' => $this->brand_id,
             'sku' => $this->sku,
             'available_for' => $this->available_for,
+            // 'tags' => $this->tags,
             'has_variants' => $this->has_variants,
             'price' => $this->has_variants == 1 ? null : $this->price,
             'manage_stock' => $this->manage_stock,
@@ -211,12 +212,16 @@ class CreateProduct extends Component
             } // end prices foreach
         } // end if has vaiants
 
-        $this->productService->createProductWithDetails($product, $productVaraints, $this->images);
+        $productCreated = $this->productService->createProductWithDetails($productData, $productVaraints, $this->images);
 
-        $this->resetExcept(['categories', 'brands', 'successMessage']);
-        flash()->success(message: __('general.add_success_message'));
-        // $this->successMessage = ;
-        $this->currentStep = 1;
+        if (!$productCreated) {
+            flash()->error(message: __('general.add_error_message'));
+            $this->currentStep = 1;
+        } else {
+            flash()->success(message: __('general.add_success_message'));
+            $this->resetExcept(['categories', 'brands', 'successMessage']);
+            $this->currentStep = 1;
+        }
     }
 
     // back setp
@@ -258,7 +263,7 @@ class CreateProduct extends Component
         $this->brand_id = '';
         $this->sku = '';
         $this->available_for = '';
-        $this->tags = '';
+        // $this->tags = '';
         $this->has_variants = 0;
         $this->price = '';
         $this->manage_stock = 0;

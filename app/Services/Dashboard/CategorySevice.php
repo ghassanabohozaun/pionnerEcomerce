@@ -26,8 +26,13 @@ class CategorySevice
         return $category;
     }
 
-    //  get categories
+    // get categories
     public function getCategories()
+    {
+        return   $this->categoryRepository->getCategories();
+    }
+    //  get all
+    public function getAll()
     {
         $categories = $this->categoryRepository->getCategories();
 

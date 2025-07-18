@@ -21,15 +21,14 @@ class CategoriesController extends Controller
     public function index()
     {
         $title = __('categories.categories');
-        $categories = $this->categorySevice->getCategories();
         $parentCategoires = $this->categorySevice->getParentCategories();
-        return view('dashboard.categories.index', compact('title', 'categories', 'parentCategoires'));
+        return view('dashboard.categories.index', compact('title',  'parentCategoires'));
     }
 
-    // get all categories
+    // get all
     public function getAll()
     {
-        $categories = $this->categorySevice->getCategories();
+        $categories = $this->categorySevice->getAll();
         return $categories;
     }
     // create

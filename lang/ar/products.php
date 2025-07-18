@@ -4,6 +4,7 @@ return [
     'update_product' => 'تعديل المنتج',
     'products' => 'المنتجات',
     'show_all_products' => 'عرض جميع المنتجات',
+    'show_product' => 'عرض المنتج',
     'basic_information' => 'المعلومات الأساسية',
     'product_variants' => 'متغيرات المنتج',
     'product_images' => 'صور المنتج',
@@ -13,6 +14,10 @@ return [
     'submit' => 'إرسال',
     'add_new_variant' => 'إضافة متغير جديد',
     'remove_varaint' => 'حذف المتغير',
+    'full_screen' => 'ملأ الشاشة',
+    'in_stock' => 'متاح في المخزن',
+    'select' => 'اختار',
+    'new_images' => 'صور جديدة',
 
     'product_name' => 'اسم المنتج',
     'name_ar' => 'اسم المنتج بالعربي',
@@ -37,6 +42,7 @@ return [
     'start_discount' => 'تاريخ بداية الخصم',
     'end_discount' => 'تاريخ انتهاء الخصم',
     'images' => 'صور المنتج',
+    'views' => 'عدد المشاهدات',
 
     'enter_name_ar' => 'ادخل اسم المنتج بالعربي',
     'enter_name_en' => 'ادخل اسم المنتج بالانجليزي',
@@ -56,4 +62,5 @@ return [
     'manage_status' => 'إدراة الحالة',
 
     'no_products_found' => 'لا يوجد المنتجات حالياً !',
+    'no_product_varaints_found' => 'لا يوجد متغيرات للمنتج حالياً !',
 ];

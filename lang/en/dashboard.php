@@ -22,6 +22,7 @@ return [
     'settings' => 'Site Settings',
     'attributes' => 'Attibutes',
     'products' => 'Products',
+    'events' => 'Events',
 
     // login
     'login' => 'Login',
