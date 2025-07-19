@@ -29,6 +29,12 @@ class CountryService
         return $this->countryRepository->getCountries();
     }
 
+    // get all countries without relations
+    public function getAllCountriesWithoutRelations()
+    {
+        return $this->countryRepository->getAllCountriesWithoutRelations();
+    }
+
     // get all governorates by country
     public function getAllGovernoratiesByCountry($id)
     {
@@ -65,7 +71,7 @@ class CountryService
     public function destroyCountry($id)
     {
         $country = self::getCountry($id);
-        if ($country->governorates->count() > 0 ||   !$country) {
+        if ($country->governorates->count() > 0 || !$country) {
             return false;
         }
 

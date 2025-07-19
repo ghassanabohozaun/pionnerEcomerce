@@ -23,21 +23,27 @@ class GovernorateRepository
     // get governorates
     public function getgovernoraties()
     {
-        $governorates = Governorate::withCount(['cities', 'users'])->with(['country' ,'shippingPrice'])
+        $governorates = Governorate::withCount(['cities', 'users'])
+            ->with(['country', 'shippingPrice'])
             ->when(!empty(request()->keyword), function ($q) {
                 $q->where('name', 'like', '%' . request()->keyword . '%');
             })
             ->orderByDesc('id')
             ->paginate(10);
 
-
         return $governorates;
+    }
+
+    // get all governorates without relations
+    public function getAllGovernoratesWithoutRelations()
+    {
+        return Governorate::get();
     }
 
     // get all cities by governorate
     public function getAllCitiesbyGovernorate($governorate)
     {
-        $cities = $governorate->cities()->paginate(5);
+        $cities = $governorate->cities()->get();
         return $cities;
     }
 

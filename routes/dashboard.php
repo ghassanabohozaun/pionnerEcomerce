@@ -16,6 +16,7 @@ use App\Http\Controllers\Dashboard\GovernoratiesController;
 use App\Http\Controllers\Dashboard\ProductsController;
 use App\Http\Controllers\Dashboard\RolesController;
 use App\Http\Controllers\Dashboard\SettingsController;
+use App\Http\Controllers\Dashboard\UsersController;
 use App\Http\Controllers\Dashboard\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
@@ -142,6 +143,13 @@ Route::group(
             // });
             Route::group(['middlewere' => 'can:events'], function () {
                 Route::resource('events', EventsController::class);
+            });
+
+            ########################################### users routes  ######################################################################
+            Route::group(['middlewire' => 'can:users'], function () {
+                Route::resource('users', UsersController::class);
+                Route::get('/users-all', [UsersController::class, 'getAll'])->name('users.get.all');
+                Route::post('/users/change-status', [UsersController::class, 'changeStatus'])->name('users.change.status');
             });
         });
     },

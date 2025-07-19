@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Country;
+use App\Models\Governorate;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -23,11 +25,31 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $country = Country::first();
+        if (!$country) {
+            throw new \Exception('No Countries Exists  , Please Seed Some Counties');
+        }
+
+        $governorate = $country->governorates()->first();
+        if (!$governorate) {
+            throw new \Exception("No Governorates Exists form this Country {$country->id} Please Seed Some Governorates");
+        }
+
+        $city = $governorate->cities()->first();
+        if (!$city) {
+            throw new \Exception("No Cites Exists form this Country {$governorate->id} Please Seed Some Cities");
+        }
+
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'mobile'=>fake()->phoneNumber(),
+            'status' =>  fake()->boolean(80),
+            'country_id' => $country->id,
+            'governorate_id' => $governorate->id,
+            'city_id' => $city->id,
+            'password' => (static::$password ??= Hash::make('password')),
             'remember_token' => Str::random(10),
         ];
     }
@@ -37,8 +59,10 @@ class UserFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
-        ]);
+        return $this->state(
+            fn(array $attributes) => [
+                'email_verified_at' => null,
+            ],
+        );
     }
 }

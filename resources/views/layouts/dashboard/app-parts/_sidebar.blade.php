@@ -81,6 +81,30 @@
             <!-- end: admins -->
 
 
+            <!-- begin: users -->
+            @can('users')
+                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li class=" nav-item">
+                        <a href="#">
+                            <i class="la la-users"></i>
+                            <span class="menu-title" data-i18n="nav.dash.users">{!! __('dashboard.users') !!}</span>
+                            <span class="badge badge badge-info badge-pill float-right mr-2">{!! $users_count !!}</span>
+                        </a>
+                        <!-- begin: users -->
+                        <ul class="menu-content">
+                            <li class="@if (str_contains(url()->current(), 'users')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.users.index') !!}" data-i18n="nav.dash.users">
+                                    {!! __('users.users') !!}
+                                </a>
+
+                            </li>
+                        </ul>
+                        <!-- end: users -->
+                    </li>
+                </ul>
+            @endcan
+            <!-- end: users -->
+
             <!-- begin: world -->
             @can('world')
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
@@ -155,7 +179,8 @@
                         <a href="#">
                             <i class="la la-tag"></i>
                             <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.brands') !!}</span>
-                            <span class="badge badge badge-info badge-pill float-right mr-2">{!! $brands_count !!}</span>
+                            <span
+                                class="badge badge badge-info badge-pill float-right mr-2">{!! $brands_count !!}</span>
                         </a>
                         <!-- begin: brands -->
                         <ul class="menu-content">

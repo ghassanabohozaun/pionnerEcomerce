@@ -30,6 +30,12 @@ class GovernorateService
         return $this->governorateRepository->getgovernoraties();
     }
 
+      // get all governorates without relations
+    public function getAllGovernoratesWithoutRelations()
+    {
+        return  $this->governorateRepository->getAllGovernoratesWithoutRelations();
+    }
+
     // get all cities by governorate
     public function getAllCitiesbyGovernorate($id)
     {

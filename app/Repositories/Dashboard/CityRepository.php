@@ -20,7 +20,7 @@ class CityRepository
         return City::find($id);
     }
 
-    // get countries
+    // get cities
     public function getCities()
     {
         $cities = City::when(!empty(request()->keyword), function ($query) {
@@ -31,6 +31,14 @@ class CityRepository
             ->paginate(10);
         return $cities;
     }
+
+
+    // get cities without Relations
+    public function getAllCitiesWithoutRelation()
+    {
+        return City::get();
+    }
+
 
     // store city
     public function storeCity($request)

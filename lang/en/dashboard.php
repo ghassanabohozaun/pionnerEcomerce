@@ -14,6 +14,7 @@ return [
     // menu
     'roles' => 'Roles',
     'admins' => 'Admins',
+    'users' => 'Users',
     'brands' => 'Brands',
     'categories' => 'Categories',
     'world' => 'World',

@@ -18,10 +18,46 @@ class CitySeeder extends Seeder
 
         $cities = [
             [
-                'governorate_id' => 27,
+                'governorate_id' => 1,
                 'name' => [
-                    'en' => 'Riyadh City',
-                    'ar' => 'مدينة الرياض',
+                    'en' => 'Kafr el-Sheikh Governorate',
+                    'ar' => 'كفر الشيخ ',
+                ],
+            ],
+
+            [
+                'governorate_id' => 1,
+                'name' => [
+                    'en' => 'Desooq',
+                    'ar' => 'دسوق',
+                ],
+            ],
+            [
+                'governorate_id' => 1,
+                'name' => [
+                    'en' => 'Sede Salem',
+                    'ar' => 'سيدي سالم',
+                ],
+            ],
+            [
+                'governorate_id' => 2,
+                'name' => [
+                    'en' => 'Cairo City',
+                    'ar' => 'مدينة القاهرة ',
+                ],
+            ],
+            [
+                'governorate_id' => 2,
+                'name' => [
+                    'en' => 'Helwan City',
+                    'ar' => 'مدينة حلوان ',
+                ],
+            ],
+            [
+                'governorate_id' => 2,
+                'name' => [
+                    'en' => 'Banha City',
+                    'ar' => 'مدينة بنها ',
                 ],
             ],
             [

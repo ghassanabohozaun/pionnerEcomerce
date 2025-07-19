@@ -33,10 +33,20 @@ class CountryRepository
         return $conuntries;
     }
 
+    // get all countries without relations
+    public function getAllCountriesWithoutRelations()
+    {
+        return Country::get();
+    }
+
     // get all governorates by country
     public function getAllGovernoratiesByCountry($country)
     {
-        $governorates = $country->governorates()->withCount(['cities', 'users'])->with(['country' ,'shippingPrice'])->paginate(5);
+        $governorates = $country
+            ->governorates()
+            ->withCount(['cities', 'users'])
+            ->with(['country', 'shippingPrice'])
+            ->get();
         return $governorates;
     }
 

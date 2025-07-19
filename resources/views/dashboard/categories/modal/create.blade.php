@@ -50,7 +50,7 @@
                                         <div class="form-group">
                                             <label for="name">{!! __('categories.name_en') !!}</label>
                                             <input type="text" id="name" name="name[en]"
-                                                value="{!! old('name.en') !!}" class="form-control border-primary "
+                                                value="{!! old('name.en') !!}" class="form-control border-primary"
                                                 autocomplete="off" placeholder="{!! __('categories.enter_name_en') !!}">
                                             @error('name.en')
                                                 <span class="text text-danger">

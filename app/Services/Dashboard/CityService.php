@@ -2,6 +2,7 @@
 
 namespace App\Services\Dashboard;
 
+use App\Models\City;
 use App\Repositories\Dashboard\CityRepository;
 
 class CityService
@@ -20,6 +21,12 @@ class CityService
             return false;
         }
         return $city;
+    }
+
+    // get cities without Relations
+    public function getAllCitiesWithoutRelation()
+    {
+        return $this->cityRepository->getAllCitiesWithoutRelation();
     }
 
     // get cities
