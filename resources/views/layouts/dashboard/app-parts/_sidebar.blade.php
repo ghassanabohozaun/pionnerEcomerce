@@ -2,19 +2,13 @@
         <div class="main-menu-content">
 
             <!-- begin: Dashboard -->
-            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <ul class="navigation navigation-main">
                 <li class=" nav-item">
-                    <a href="index.html">
+                    <a href="{!! route('dashboard.index') !!}">
                         <i class="la la-home"></i>
                         <span class="menu-title" data-i18n="nav.dash.main">{!! __('dashboard.dashboard') !!}</span>
                         {{-- <span class="badge badge badge-info badge-pill float-right mr-2">3</span> --}}
                     </a>
-
-                    <ul class="menu-content">
-                        <li class=""><a class="menu-item" href="dashboard-ecommerce.html"
-                                data-i18n="nav.dash.ecommerce">eCommerce</a>
-                        </li>
-                    </ul>
                 </li>
             </ul>
             <!-- end: Dashboard -->

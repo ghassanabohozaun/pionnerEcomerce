@@ -22,6 +22,8 @@
     </header>
     <!-- end  header -->
 
+    @yield('content')
+
     <!-- begin  footer -->
     @include('layouts.website.app-parts._footer')
     <!-- end  footer -->

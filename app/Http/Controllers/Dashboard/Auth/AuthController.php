@@ -40,7 +40,7 @@ class AuthController extends Controller implements HasMiddleware
             return redirect()->back();
         } else {
             flash()->success(__('general.login_success'));
-            return redirect()->intended(route('dashboard.welcome'));
+            return redirect()->intended(route('dashboard.index'));
         }
     }
     public function logout()

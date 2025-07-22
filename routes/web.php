@@ -1,20 +1,24 @@
 <?php
 
+use App\Http\Controllers\Website\HomeController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
+        'as' => '',
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
     ],
     function () {
-        Route::get('/', function () {
-            return view('layouts.website.app');
-        });
-
-        Route::get('/email', function () {
-            return view('dashboard.auth.password.email');
-        });
+        /// any
+        Route::get('',[HomeController::class, 'index'])
+            ->where(['any' => '.*'])
+            ->name('index');
+        Route::get('/home', [HomeController::class, 'index'])->name('index');
     },
 );
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

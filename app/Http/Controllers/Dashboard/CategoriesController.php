@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\CategoryRequest;
-use App\Models\Category;
 use App\Services\Dashboard\CategorySevice;
 use Illuminate\Http\Request;
-use Yajra\DataTables\Facades\DataTables;
 
 class CategoriesController extends Controller
 {

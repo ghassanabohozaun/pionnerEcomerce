@@ -1,13 +1,16 @@
+<title>{!! $settings->site_name !!} | @yield('title')</title>
+
 <meta charset="utf-8">
-<meta name="keywords"
-    content="ShopUS, bootstrap-5, bootstrap, sass, css, HTML Template, HTML,html, bootstrap template, free template, figma, web design, web development,front end, bootstrap datepicker, bootstrap timepicker, javascript, ecommerce template">
+<meta name="keywords" content="{!! $settings->keywords !!}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="{!! asset('assets/website/images/') !!}/homepage-one/icon.png">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>@yield('title')</title>
+<meta name="description" content="{!! $settings->description !!}">
+<meta name="application-name" content="{!! $settings->site_name !!}" />
+<meta name="author" content="{!! $settings->site_name !!}" />
+
 <link rel="apple-touch-icon" href="{!! asset('uploads/settings/' . $settings->favicon) !!}">
 <link rel="shortcut icon" type="image/x-icon" href="{!! asset('uploads/settings/' . $settings->favicon) !!}">
-
+<link rel="icon" href="{!! asset('uploads/settings/' . $settings->favicon) !!}">
 
 <link rel="stylesheet" href="{!! asset('assets/website/css/swiper10-bundle.min.css') !!}">
 

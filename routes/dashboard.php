@@ -1,25 +1,12 @@
 <?php
 
-use App\Http\Controllers\Dashboard\AdminsController;
-use App\Http\Controllers\Dashboard\AttributesController;
+use App\Http\Controllers\Dashboard\{AdminsController, AttributesController, CategoriesController, BrandsController, CitiesController,
+    ContactsController, CountriesController, CouponsController, DashboardController, EventsController, FaqsController, GovernoratiesController,
+    ProductsController, RolesController, SettingsController, UsersController};
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\Auth\AuthController;
 use App\Http\Controllers\Dashboard\Auth\Passowrd\ForgetPasswordController;
 use App\Http\Controllers\Dashboard\Auth\Passowrd\ResetPasswordController;
-use App\Http\Controllers\Dashboard\CategoriesController;
-use App\Http\Controllers\Dashboard\BrandsController;
-use App\Http\Controllers\Dashboard\CitiesController;
-use App\Http\Controllers\Dashboard\ContactsController;
-use App\Http\Controllers\Dashboard\CountriesController;
-use App\Http\Controllers\Dashboard\CouponsController;
-use App\Http\Controllers\Dashboard\EventsController;
-use App\Http\Controllers\dashboard\FaqsController;
-use App\Http\Controllers\Dashboard\GovernoratiesController;
-use App\Http\Controllers\Dashboard\ProductsController;
-use App\Http\Controllers\Dashboard\RolesController;
-use App\Http\Controllers\Dashboard\SettingsController;
-use App\Http\Controllers\Dashboard\UsersController;
-use App\Http\Controllers\Dashboard\WelcomeController;
-use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -34,7 +21,6 @@ Route::group(
         Route::get('login', [AuthController::class, 'getLogin'])->name('get.login');
         Route::post('login', [AuthController::class, 'postLogin'])->name('post.login');
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-
         ########################################### reset password  ######################################################################
         Route::group(['prefix' => 'password', 'as' => 'password.'], function () {
             Route::controller(ForgetPasswordController::class)->group(function () {
@@ -53,7 +39,7 @@ Route::group(
         ########################################### protected routes  #####################################################################
         Route::group(['middleware' => 'auth:admin'], function () {
             ########################################### welcome  ##########################################################################
-            Route::get('welcome', [WelcomeController::class, 'index'])->name('welcome');
+            Route::get('/', [DashboardController::class, 'index'])->name('index');
             ########################################### roles routes ######################################################################
             Route::group(['middleware' => 'can:roles'], function () {
                 Route::resource('roles', RolesController::class);

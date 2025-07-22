@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.app')
 @section('title')
-    Welcome
+    {!! __('dashboard.home') !!}
 @endsection
 @section('content')
     <h2>Welcome</h2>

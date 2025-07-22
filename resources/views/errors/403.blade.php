@@ -97,7 +97,7 @@
                             </fieldset>
                             <div class="row py-2">
                                 <div class="col-12">
-                                    <a href="{{ route('dashboard.welcome') }}"
+                                    <a href="{{ route('dashboard.index') }}"
                                         class="btn btn-primary btn-block btn-lg"><i class="la la-home"></i>
                                         {!! __('dashboard.back_to_home') !!}</a>
                                 </div>

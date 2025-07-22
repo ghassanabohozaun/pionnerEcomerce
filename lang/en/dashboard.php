@@ -10,6 +10,7 @@ return [
     'back_to_home' => 'Back To Home',
     'search' => 'Search ... ',
     'hello' => 'Hello ,',
+    'welcome'=>'Welcome',
 
     // menu
     'roles' => 'Roles',

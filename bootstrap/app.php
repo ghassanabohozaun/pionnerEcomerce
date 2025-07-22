@@ -32,7 +32,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->redirectUsersTo(function () {
             if (Auth::guard('admin')->check()) {
-                return route('dashboard.welcome');
+                return route('dashboard.index');
             } else {
                 return route('/');
             }

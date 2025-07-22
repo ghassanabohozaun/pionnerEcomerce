@@ -99,7 +99,7 @@ class ViewServiceProvider extends ServiceProvider
             ]);
         });
 
-        // get share settings
+        // get share settings in scope dashbaord and website
         $settings = $this->firstOrCreateSettings();
         view()->share([
             'settings' => $settings,
