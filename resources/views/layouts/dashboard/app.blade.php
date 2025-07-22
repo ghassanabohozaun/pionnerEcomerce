@@ -14,11 +14,11 @@
 
     @include('layouts.dashboard.app-parts._header')
     @include('layouts.dashboard.app-parts._sidebar')
-    <!-- ////////////////////////////////////////////////////////////////////////////-->
 
     @yield('content')
 
     @include('layouts.dashboard.app-parts._footer')
+
     @include('layouts.dashboard.app-parts._scripts')
     @stack('scripts')
     {{-- @livewireScripts --}}

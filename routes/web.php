@@ -10,7 +10,7 @@ Route::group(
     ],
     function () {
         Route::get('/', function () {
-            return view('website.welcome');
+            return view('layouts.website.app');
         });
 
         Route::get('/email', function () {
