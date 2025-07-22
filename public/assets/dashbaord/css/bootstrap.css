@@ -2239,7 +2239,7 @@ tbody.collapse.show {
   .dropdown-item:hover, .dropdown-item:focus {
     color: #1e2122;
     text-decoration: none;
-    background-color: #F9FAFD; }
+    background-color: #d9dadd; }
   .dropdown-item.active, .dropdown-item:active {
     color: #fff;
     text-decoration: none;

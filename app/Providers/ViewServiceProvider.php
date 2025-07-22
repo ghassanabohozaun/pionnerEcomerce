@@ -5,8 +5,10 @@ namespace App\Providers;
 use App\Models\Admin;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\Coupon;
 use App\Models\Faq;
+use App\Models\Product;
 use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
@@ -70,6 +72,20 @@ class ViewServiceProvider extends ServiceProvider
                 });
             }
 
+            // contacts count
+            if (!Cache::has('contacts_count')) {
+                Cache::remember('contacts_count', now()->addMinutes(60), function () {
+                    return Contact::where('is_read', 0)->count();
+                });
+            }
+
+            // products count
+            if (!Cache::has('products_count')) {
+                Cache::remember('products_count', now()->addMinutes(60), function () {
+                    return Product::count();
+                });
+            }
+
             // view share
             view()->share([
                 'categories_count' => Cache::get('categories_count'),
@@ -78,6 +94,8 @@ class ViewServiceProvider extends ServiceProvider
                 'users_count' => Cache::get('users_count'),
                 'coupons_count' => Cache::get('coupons_count'),
                 'faqs_count' => Cache::get('faqs_count'),
+                'contacts_count' => Cache::get('contacts_count'),
+                'products_count' => Cache::get('products_count'),
             ]);
         });
 

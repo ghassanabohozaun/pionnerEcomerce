@@ -24,6 +24,7 @@ return [
     'attributes' => 'Attibutes',
     'products' => 'Products',
     'events' => 'Events',
+    'contacts' => 'Contacts',
 
     // login
     'login' => 'Login',

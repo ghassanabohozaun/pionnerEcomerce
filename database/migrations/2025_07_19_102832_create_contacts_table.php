@@ -18,7 +18,11 @@ return new class extends Migration {
             $table->string('phone');
             $table->string('subject');
             $table->text('message');
+            $table->text('replay')->nullable();
+            $table->boolean(column: 'is_replay')->default(false);
             $table->boolean('is_read')->default(false);
+            $table->boolean('is_star')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

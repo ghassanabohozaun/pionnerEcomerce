@@ -104,15 +104,15 @@ html body .pace .pace-progress {
 */
 @media (min-width: 992px) {
   body .content-right {
-    width : -webkit-calc(100% - 300px);
-    width :    -moz-calc(100% - 300px);
-    width :         calc(100% - 300px);
+    width : -webkit-calc(100% - 650px);
+    width :    -moz-calc(100% - 650px);
+    width :         calc(100% - 650px);
     float : left;
   }
   body .content-left {
-    width : -webkit-calc(100% - 300px);
-    width :    -moz-calc(100% - 300px);
-    width :         calc(100% - 300px);
+    width : -webkit-calc(100% - 650px);
+    width :    -moz-calc(100% - 650px);
+    width :         calc(100% - 650px);
     float : right;
   }
   body .content-detached {
@@ -120,46 +120,46 @@ html body .pace .pace-progress {
   }
   body .content-detached.content-right {
     float : left;
-    margin-right : -300px;
+    margin-right : -650px;
   }
   body .content-detached.content-right .content-body {
-    margin-right : 320px;
+    margin-right : 650px;
   }
   body .content-detached.content-left {
     float : right;
-    margin-left : -300px;
+    margin-left : -650px;
   }
   body .content-detached.content-left .content-body {
-    margin-left : 320px;
+    margin-left : 650px;
   }
   .sidebar-right.sidebar-sticky {
     float : left !important;
-    margin-right : -300px;
-    width : 300px !important;
+    margin-right : -650px;
+    width : 650px !important;
   }
   [data-col='content-left-sidebar'] .sticky-wrapper {
     float : right;
   }
   .vertical-content-menu .content .sidebar-left {
-    margin-right : 288px;
+    margin-right : 650px;
   }
   .vertical-content-menu .content .content-detached.content-right {
     float : left;
-    width : -webkit-calc(100% - 300px);
-    width :    -moz-calc(100% - 300px);
-    width :         calc(100% - 300px);
-    margin-right : -300px;
+    width : -webkit-calc(100% - 650px);
+    width :    -moz-calc(100% - 650px);
+    width :         calc(100% - 650px);
+    margin-right : -650px;
   }
   .vertical-content-menu .content .content-detached.content-right .content-body {
-    margin-right : 295px;
+    margin-right : 650px;
   }
   .vertical-content-menu .content .content-detached.content-left {
     float : right;
     width : 100%;
-    margin-left : -300px;
+    margin-left : -650px;
   }
   .vertical-content-menu .content .content-detached.content-left .content-body {
-    margin-left : 320px;
+    margin-left : 650px;
   }
 }
 
@@ -179,7 +179,7 @@ html body .pace .pace-progress {
 @media (min-width: 992px) {
   .sidebar {
     vertical-align : top;
-    width : 300px;
+    width : 650px;
   }
 }
 
@@ -1219,7 +1219,7 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu-footer .content {
 }
 
 .width-600 {
-  width : 600px !important;
+  width : 650px !important;
 }
 
 .width-650 {
@@ -1359,7 +1359,7 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu-footer .content {
 }
 
 .height-600 {
-  height : 600px !important;
+  height : 650px !important;
 }
 
 .height-650 {
@@ -4293,7 +4293,7 @@ select.form-control:not([size]):not([multiple]).form-group-xl .form-control-stat
 select.form-control:not([size]):not([multiple]).input-lg, input.form-control.input-lg {
   height : 3rem;
   padding : 0.75rem 0.75rem;
-  font-size : 1.25rem;
+  font-size : 1.0rem;
   line-height : 1.45;
   border-radius : 0.35rem;
 }

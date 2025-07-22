@@ -8,8 +8,9 @@
     {{-- @livewireStyles --}}
 </head>
 
-<body class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar" data-open="click"
+<body class="vertical-layout vertical-menu-modern 2-columns  menu-expanded fixed-navbar" data-open="click"
     data-menu="vertical-menu-modern" data-col="2-columns">
+
 
     @include('layouts.dashboard.app-parts._header')
     @include('layouts.dashboard.app-parts._sidebar')

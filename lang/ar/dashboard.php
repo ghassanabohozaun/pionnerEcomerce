@@ -24,6 +24,7 @@ return [
     'attributes' => 'السمات',
     'products' => 'المنتجات',
     'events' => 'الأحداث',
+    'contacts' => 'إدارة التواصل',
 
     // login
     'login' => 'تسجيل الدخول',

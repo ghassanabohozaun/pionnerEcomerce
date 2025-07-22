@@ -256,7 +256,6 @@
                     </a>
 
                     <ul class="menu-content">
-
                         @can('attributes')
                             <li class="@if (str_contains(url()->current(), 'attributes')) active @endif">
                                 <a class="menu-item" href="{!! route('dashboard.attributes.index') !!}" data-i18n="nav.dash.attributes">
@@ -273,38 +272,36 @@
                             </li>
                         @endcan
 
-
                     </ul>
                 </li>
             </ul>
             <!-- end: products -->
 
 
-            <!-- begin: events -->
-            @can('events')
+            <!-- begin: contacts -->
+            @can('contacts')
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class=" nav-item">
                         <a href="#">
-                            <i class="la la-question"></i>
-                            <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.events') !!}</span>
-                            {{-- <span
-                                class="badge badge badge-info badge-pill float-right mr-2">{!! $events_count !!}
-                            </span> --}}
+                            <i class="la la-phone"></i>
+                            <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.contacts') !!}</span>
+                            <span class="badge badge badge-info badge-pill float-right mr-2">{!! $contacts_count !!}
+                            </span>
                         </a>
-                        <!-- begin: events -->
+                        <!-- begin: contacts -->
                         <ul class="menu-content">
-                            <li class="@if (str_contains(url()->current(), 'events')) active @endif">
-                                <a class="menu-item" href="{!! route('dashboard.events.index') !!}" data-i18n="nav.dash.events">
-                                    {!! __('events.events') !!}
+                            <li class="@if (str_contains(url()->current(), 'contacts')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.contacts.index') !!}" data-i18n="nav.dash.contacts">
+                                    {!! __('contacts.contacts') !!}
                                 </a>
 
                             </li>
                         </ul>
-                        <!-- end: events -->
+                        <!-- end: contacts -->
                     </li>
                 </ul>
             @endcan
-            <!-- end: events -->
+            <!-- end: contacts -->
 
         </div>
     </div>

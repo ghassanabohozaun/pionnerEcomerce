@@ -35,6 +35,8 @@ return [
     'choose_file' => 'Choose File ..',
     'no_file_found' => 'No File',
     'english_langauge_enabled_all_the_times' => 'English Langauge enabled all the times',
+    'send' => 'Send',
+
     'not_found' => 'Not Found',
     'example' => 'Example',
     'financial' => 'Financial',

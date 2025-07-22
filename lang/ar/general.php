@@ -39,6 +39,8 @@ return [
     'choose_file' => 'اختار الملف ..',
     'no_file_found' => 'لا يوجد ملف',
     'english_langauge_enabled_all_the_times' => 'اللغة الانجليزية فعالة دائماً',
+    'send' => 'إرسال',
+
 
     'not_found' => 'غير متاحة',
     'example' => 'مثال',

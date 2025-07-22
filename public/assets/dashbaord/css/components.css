@@ -68,43 +68,43 @@ html {
 */
 @media (min-width: 992px) {
   body .content-right {
-    width: calc(100% - 300px);
+    width: calc(100% - 650px);
     float: right; }
   body .content-left {
-    width: calc(100% - 300px);
+    width: calc(100% - 650px);
     float: left; }
   body .content-detached {
     width: 100%; }
     body .content-detached.content-right {
       float: right;
-      margin-left: -300px; }
+      margin-left: -650px; }
       body .content-detached.content-right .content-body {
-        margin-left: 320px; }
+        margin-left: 650px; }
     body .content-detached.content-left {
       float: left;
-      margin-right: -300px; }
+      margin-right: -650px; }
       body .content-detached.content-left .content-body {
-        margin-right: 320px; }
+        margin-right: 650px; }
   .sidebar-right.sidebar-sticky {
     float: right !important;
-    margin-left: -300px;
-    width: 300px !important; }
+    margin-left: -650px;
+    width: 650px !important; }
   [data-col="content-left-sidebar"] .sticky-wrapper {
     float: left; }
   .vertical-content-menu .content .sidebar-left {
-    margin-left: 288px; }
+    margin-left: 650px; }
   .vertical-content-menu .content .content-detached.content-right {
     float: right;
-    width: calc(100% - 300px);
-    margin-left: -300px; }
+    width: calc(100% - 650px);
+    margin-left: -650px; }
     .vertical-content-menu .content .content-detached.content-right .content-body {
-      margin-left: 295px; }
+      margin-left: 650px; }
   .vertical-content-menu .content .content-detached.content-left {
     float: left;
     width: 100%;
-    margin-right: -300px; }
+    margin-right: -650px; }
     .vertical-content-menu .content .content-detached.content-left .content-body {
-      margin-right: 320px; } }
+      margin-right: 650px; } }
 
 /*=========================================================================================
 	File Name: sidebar.scss
@@ -121,7 +121,7 @@ html {
   @media (min-width: 992px) {
     .sidebar {
       vertical-align: top;
-      width: 300px; } }
+      width: 650px; } }
 
 .sidebar-fixed {
   position: fixed;
@@ -840,7 +840,7 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu-footer .content {
   width: 550px !important; }
 
 .width-600 {
-  width: 600px !important; }
+  width: 650px !important; }
 
 .width-650 {
   width: 650px !important; }
@@ -945,7 +945,7 @@ body.vertical-layout.vertical-menu.menu-expanded .main-menu-footer .content {
   height: 550px !important; }
 
 .height-600 {
-  height: 600px !important; }
+  height: 650px !important; }
 
 .height-650 {
   height: 650px !important; }
@@ -3094,7 +3094,7 @@ input.form-control {
   input.form-control.input-lg {
     height: 3rem;
     padding: 0.75rem 0.75rem;
-    font-size: 1.25rem;
+    font-size: 1.0rem;
     line-height: 1.45;
     border-radius: 0.35rem; }
   select.form-control:not([size]):not([multiple]).form-group-lg .form-control,

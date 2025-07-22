@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\Auth\Passowrd\ResetPasswordController;
 use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\BrandsController;
 use App\Http\Controllers\Dashboard\CitiesController;
+use App\Http\Controllers\Dashboard\ContactsController;
 use App\Http\Controllers\Dashboard\CountriesController;
 use App\Http\Controllers\Dashboard\CouponsController;
 use App\Http\Controllers\Dashboard\EventsController;
@@ -150,6 +151,11 @@ Route::group(
                 Route::resource('users', UsersController::class);
                 Route::get('/users-all', [UsersController::class, 'getAll'])->name('users.get.all');
                 Route::post('/users/change-status', [UsersController::class, 'changeStatus'])->name('users.change.status');
+            });
+
+            ########################################### contacts routes  ######################################################################
+            Route::group(['middleware' => 'can:contacts'], function () {
+                Route::get('/contacts', [ContactsController::class, 'index'])->name('contacts.index');
             });
         });
     },

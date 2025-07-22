@@ -17,13 +17,14 @@ class ContactFactory extends Factory
      */
     public function definition(): array
     {
+        $email = fake()->email;
         return [
             'user_id' => User::inRandomOrder()->first()->id,
             'name' => fake()->name,
-            'email' => fake()->email,
+            'email' => $email,
             'phone' => fake()->phoneNumber,
-            'subject' => fake()->sentence(5),
-            'message' => fake()->paragraph(2),
+            'subject' => fake()->sentence(5) . ' : ' . $email,
+            'message' => fake()->paragraph(10),
             'is_read' => random_int(0, 1),
         ];
     }

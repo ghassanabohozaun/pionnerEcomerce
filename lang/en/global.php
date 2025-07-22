@@ -14,4 +14,5 @@ return [
     'orders' => 'Orders Management',
     'attributes' => 'Attributes Management',
     'events' => 'Events Management',
+    'contacts'=>'Contacts Management',
 ];
