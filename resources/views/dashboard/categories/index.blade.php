@@ -41,7 +41,7 @@
                             data-target="#createCategoryModal">
                             {!! __('categories.create_new_category') !!}
                         </button>
-                        @include('dashboard.categories.modal.create')
+
                     </div>
                 </div>
                 <!-- end: content header right-->
@@ -83,6 +83,7 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>#</th>
+                                                                <th>{!! __('categories.icon') !!}</th>
                                                                 <th>{!! __('categories.category_name') !!}</th>
                                                                 <th>{!! __('categories.parent') !!}</th>
                                                                 <th>{!! __('brands.products_count') !!}</th>
@@ -94,18 +95,6 @@
                                                         </thead>
                                                         <tbody>
                                                         </tbody>
-                                                        <tfoot>
-                                                            <tr>
-                                                                <th>#</th>
-                                                                <th>{!! __('categories.category_name') !!}</th>
-                                                                <th>{!! __('categories.parent') !!}</th>
-                                                                <th>{!! __('brands.products_count') !!}</th>
-                                                                <th>{!! __('categories.status') !!}</th>
-                                                                <th>{!! __('categories.manage_status') !!}</th>
-                                                                <th>{!! __('categories.created_at') !!}</th>
-                                                                <th>{!! __('general.actions') !!}</th>
-                                                            </tr>
-                                                        </tfoot>
                                                     </table>
                                                 </div>
                                             </div>
@@ -121,6 +110,8 @@
             <!-- end: content body  -->
         </div> <!-- end: content wrapper  -->
     </div><!-- end: content app  -->
+
+    @include('dashboard.categories.modal.create')
 @endsection
 
 
@@ -135,10 +126,10 @@
             colReorder: true,
             fixedHeader: true,
 
-            rowReorder: {
-                update: false,
-                // selector: 'tr',
-            },
+            // rowReorder: {
+            //     update: false,
+            //     // selector: 'tr',
+            // },
             // select: true,
             // responsive: true,
             // scrollCollapse: true,
@@ -164,6 +155,12 @@
 
             columns: [{
                     data: 'DT_RowIndex',
+                    searchable: false,
+                    orderable: false,
+                },
+                {
+                    data: 'icon',
+                    name: 'icon',
                     searchable: false,
                     orderable: false,
                 },

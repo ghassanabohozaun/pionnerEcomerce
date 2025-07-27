@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\Dashboard\{AdminsController, AttributesController, CategoriesController, BrandsController, CitiesController,
-    ContactsController, CountriesController, CouponsController, DashboardController, EventsController, FaqsController, GovernoratiesController,
-    ProductsController, RolesController, SettingsController, UsersController};
+use App\Http\Controllers\Dashboard\{AdminsController, AttributesController, CategoriesController, BrandsController, CitiesController, ContactsController, CountriesController, CouponsController, DashboardController, EventsController, FaqQuestionsController, FaqsController, GovernoratiesController, PagesController, ProductsController, RolesController, SettingsController, SlidersController, UsersController};
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\Auth\AuthController;
 use App\Http\Controllers\Dashboard\Auth\Passowrd\ForgetPasswordController;
@@ -97,8 +95,16 @@ Route::group(
             ########################################### faqs routes  ######################################################################
             Route::group(['middleware', 'can:faqs'], function () {
                 Route::resource('faqs', FaqsController::class);
-                Route::get('/faqs-all', [FaqsController::class, 'getAll'])->name('faqs.get.all');
-                Route::post('/faqs/status', [FaqsController::class, 'changeStatus'])->name('faqs.change.status');
+                Route::controller(FaqsController::class)->group(function () {
+                    Route::get('/faqs-all', 'getAll')->name('faqs.get.all');
+                    Route::post('/faqs/status', 'changeStatus')->name('faqs.change.status');
+                });
+
+                Route::controller(FaqQuestionsController::class)->group(function () {
+                    Route::get('faq-questions', 'index')->name('faq.questoins.index');
+                    Route::delete('faq/{id?}', 'destory')->name('faq.questions.destroy');
+                    Route::get('faq-questions-get-all', 'getAll')->name('faq.questoins.get.all');
+                });
             });
             ########################################### settings routes  ######################################################################
             Route::group(['middleware' => 'can:settings'], function () {
@@ -142,6 +148,20 @@ Route::group(
             ########################################### contacts routes  ######################################################################
             Route::group(['middleware' => 'can:contacts'], function () {
                 Route::get('/contacts', [ContactsController::class, 'index'])->name('contacts.index');
+            });
+            ###########################################  sliders routes  ######################################################################
+            Route::group(['middlwire' => 'can:sliders'], function () {
+                Route::resource('sliders', SlidersController::class);
+                Route::get('/slides-all', [SlidersController::class, 'getAll'])->name('sliders.get.all');
+                Route::post('/sliders/change-status', [SlidersController::class, 'changeStatus'])->name('sliders.change.status');
+            });
+
+            ###########################################  pages routes  ######################################################################
+            Route::group(['middlewire' => 'can:pages'], function () {
+                Route::resource('pages', PagesController::class);
+                Route::get('/pages-all', [PagesController::class, 'getAll'])->name('pages.get.all');
+                Route::post('/pages/change-status', [PagesController::class, 'changeStatus'])->name('pages.change.status');
+                Route::post('/pages/delete-photo', [PagesController::class, 'deletePhoto'])->name('pages.delete.photo');
             });
         });
     },

@@ -14,6 +14,8 @@ return [
         'orders' => 'global.orders',
         'attributes' => 'global.attributes',
         'events' => 'global.events',
-        'contacts'=>'global.contacts',
+        'contacts' => 'global.contacts',
+        'sliders' => 'global.sliders',
+        'pages' => 'global.pages',
     ],
 ];

@@ -38,34 +38,15 @@ class CategoryRepository
     }
 
     // store category
-    public function storeCategory($request)
+    public function storeCategory($data)
     {
-        $category = Category::create([
-            'name' => [
-                'en' => $request->name['en'],
-                'ar' => $request->name['ar'],
-            ],
-            'status' => $request->status,
-            'parent' => $request->parent,
-        ]);
-
-        return $category;
+        return Category::create($data);
     }
 
     // update category
-    public function updateCategory($request, $id)
+    public function updateCategory($category, $data)
     {
-        $category = self::getCategory($id);
-        $category = $category->update([
-            'name' => [
-                'en' => $request->name['en'],
-                'ar' => $request->name['ar'],
-            ],
-            'status' => $request->status,
-            'parent' => $request->parent,
-        ]);
-
-        return $category;
+        return $category->update($data);
     }
 
     // destroy category

@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Coupon;
 use App\Models\Faq;
+use App\Models\Page;
 use App\Models\Product;
 use App\Models\Setting;
 use App\Models\User;
@@ -29,6 +30,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // view composer dashboard
         view()->composer('dashboard.*', function ($view) {
             // categories count
             if (!Cache::has('categories_count')) {
@@ -99,6 +101,18 @@ class ViewServiceProvider extends ServiceProvider
             ]);
         });
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // view composer website
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        view()->composer('website.*', function ($view) {
+            $pages = Page::latest()->active()->get();
+
+            view()->share([
+                'pages' => $pages,
+            ]);
+        });
+
         // get share settings in scope dashbaord and website
         $settings = $this->firstOrCreateSettings();
         view()->share([
@@ -106,6 +120,8 @@ class ViewServiceProvider extends ServiceProvider
         ]);
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // first Or Create Settings
     public function firstOrCreateSettings()
     {
         $settings = Setting::firstOr(function () {

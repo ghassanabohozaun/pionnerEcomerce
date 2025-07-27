@@ -15,8 +15,8 @@ return new class extends Migration {
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->boolean('status')->default(true);
-            // $table->bigInteger('parent')->nullable();
             $table->foreignId('parent')->nullable()->constrained('categories')->nullOnDelete();
+            $table->string('icon');
             $table->softDeletes();
             $table->timestamps();
         });

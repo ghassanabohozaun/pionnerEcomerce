@@ -20,7 +20,7 @@ class CategoriesController extends Controller
     {
         $title = __('categories.categories');
         $parentCategoires = $this->categorySevice->getParentCategories();
-        return view('dashboard.categories.index', compact('title',  'parentCategoires'));
+        return view('dashboard.categories.index', compact('title', 'parentCategoires'));
     }
 
     // get all
@@ -40,13 +40,13 @@ class CategoriesController extends Controller
     // store
     public function store(CategoryRequest $request)
     {
-        $category = $this->categorySevice->storeCategory($request);
+        $data = $request->only(['name', 'status', 'parent', 'icon']);
+
+        $category = $this->categorySevice->storeCategory($data);
         if (!$category) {
-            flash()->error(__('general.add_error_message'));
-            return redirect()->back();
+            return response()->json(['status' => false], 500);
         }
-        flash()->success(__('general.add_success_message'));
-        return redirect()->back();
+        return response()->json(['status' => true], 201);
     }
 
     // show
@@ -71,13 +71,14 @@ class CategoriesController extends Controller
     // update
     public function update(CategoryRequest $request, string $id)
     {
-        $category = $this->categorySevice->updateCategory($request, $id);
+
+        $data = $request->only(['id', 'name', 'status', 'parent', 'icon']);
+        $category = $this->categorySevice->updateCategory($data);
+
         if (!$category) {
-            flash()->error(__('general.update_error_message'));
-            return redirect()->back();
+            return response()->json(['status' => false], 500);
         }
-        flash()->success(__('general.update_success_message'));
-        return redirect()->back();
+        return response()->json(['status' => true], 200);
     }
 
     // destroy
@@ -86,9 +87,9 @@ class CategoriesController extends Controller
         if ($request->json()) {
             $category = $this->categorySevice->destroyCategory($request->id);
             if (!$category) {
-                return response()->json(['status' => false]);
+                return response()->json(['status' => false] , 500);
             }
-            return response()->json(['status' => true]);
+            return response()->json(['status' => true] , 200);
         }
     }
     // change status

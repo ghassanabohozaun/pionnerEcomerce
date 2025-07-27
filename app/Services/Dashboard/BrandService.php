@@ -79,6 +79,12 @@ class BrandService
             $data['logo'] = $file_name;
         }
 
+        //slug
+        $data['slug'] = [
+            'ar' => slug($data['name']['ar']),
+            'en' => slug($data['name']['en']),
+        ];
+
         $brand = $this->brandRepositroy->store($data);
         if (!$brand) {
             return false;
@@ -94,10 +100,16 @@ class BrandService
 
         if (array_key_exists('logo', $data) && $data['logo'] != null) {
             // remove old logo
-            $this->imageManager->removeImageFromLocal($brand->logo , 'brands');
+            $this->imageManager->removeImageFromLocal($brand->logo, 'brands');
             // upload logo
             $data['logo'] = $this->imageManager->uploadSingleImage('/', $data['logo'], 'brands');
         }
+
+        //slug
+        $data['slug'] = [
+            'ar' => slug($data['name']['ar']),
+            'en' => slug($data['name']['en']),
+        ];
 
         $brand = $this->brandRepositroy->update($brand, $data);
         if (!$brand) {

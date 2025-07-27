@@ -14,16 +14,48 @@
             <!-- end: Dashboard -->
 
 
+
             <!-- begin: settings -->
+
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class=" nav-item">
-                    <a href="{!! route('dashboard.settings.index') !!}">
+                    <a href="#">
                         <i class="la la-cog"></i>
-                        <span class="menu-title" data-i18n="nav.dash.main">{!! __('settings.settings') !!}</span>
+                        <span class="menu-title" data-i18n="nav.dash.main">{!! __('dashboard.settings') !!}</span>
+                        {{-- <span class="badge badge badge-info badge-pill float-right mr-2">3</span> --}}
                     </a>
+                    <!-- begin: settings -->
+                    <ul class="menu-content">
+                        @can('settings')
+                            <li class="@if (str_contains(url()->current(), 'settings')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.settings.index') !!}" data-i18n="nav.dash.settings">
+                                    {!! __('settings.settings') !!}
+                                </a>
+                            </li>
+                        @endcan
+
+                        @can('sliders')
+                            <li class="@if (str_contains(url()->current(), 'sliders')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.sliders.index') !!}" data-i18n="nav.dash.sliders">
+                                    {!! __('sliders.sliders') !!}
+                                </a>
+                            </li>
+                        @endcan
+
+                        @can('pages')
+                            <li class="@if (str_contains(url()->current(), 'pages')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.pages.index') !!}" data-i18n="nav.dash.pages">
+                                    {!! __('pages.pages') !!}
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                    <!-- end: settings -->
                 </li>
             </ul>
-            <!-- end: Dashboard -->
+
+            <!-- end: settings -->
+
 
 
             <!-- begin: roles -->
@@ -148,7 +180,8 @@
                         <a href="#">
                             <i class="la la-list-alt"></i>
                             <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.categories') !!}</span>
-                            <span class="badge badge badge-info badge-pill float-right mr-2">{!! $categories_count !!}</span>
+                            <span
+                                class="badge badge badge-info badge-pill float-right mr-2">{!! $categories_count !!}</span>
                         </a>
                         <!-- begin: categories -->
                         <ul class="menu-content">
@@ -232,7 +265,12 @@
                                 <a class="menu-item" href="{!! route('dashboard.faqs.index') !!}" data-i18n="nav.dash.faqs">
                                     {!! __('faqs.faqs') !!}
                                 </a>
+                            </li>
 
+                            <li class="@if (str_contains(url()->current(), 'faq-questions')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.faq.questoins.index') !!}" data-i18n="nav.dash.faq_questions">
+                                    {!! __('faqs.faq_questions') !!}
+                                </a>
                             </li>
                         </ul>
                         <!-- end: faqs -->

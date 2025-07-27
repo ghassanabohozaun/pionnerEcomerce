@@ -12,8 +12,14 @@ return new class extends Migration {
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
-            $table->string('file_name');
-            $table->string('product_slug')->nullable();
+            $table->string('title')->nullable();
+            $table->text('details')->nullable();
+            $table->string('url')->nullable();
+            $table->integer('order')->nullable();
+            $table->boolean('details_status')->default(true);
+            $table->boolean('button_status')->default(true);
+            $table->boolean('status')->default(true);
+            $table->string('photo')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

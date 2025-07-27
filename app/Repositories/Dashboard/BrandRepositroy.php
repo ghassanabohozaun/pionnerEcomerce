@@ -27,11 +27,7 @@ class BrandRepositroy
     // store brand
     public function store($data)
     {
-        return Brand::create([
-            'name' => $data['name'],
-            'status' => $data['status'],
-            'logo' => $data['logo'],
-        ]);
+        return Brand::create($data);
     }
 
     // update brand

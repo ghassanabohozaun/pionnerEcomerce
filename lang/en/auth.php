@@ -42,4 +42,9 @@ return [
     'enter_confirm_password' => 'Enter Confirm Password',
     'try_again_later' => 'Try Again Later',
     'your_password_update_successfully' => 'Your Passowrd Update Successfully',
+    'dont_have_account' => 'Dont\'t have an account',
+    'sign_up' => 'Sign Up Free',
+    'already_have_an_account' => 'Already have an account',
+    'i_agree_all_terms' => 'I agree all terms and condition in ',
+    'please_accept_terms' => 'Please Accept terms and condition',
 ];

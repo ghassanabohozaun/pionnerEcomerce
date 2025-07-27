@@ -3,6 +3,11 @@
 return [
     'please_wait' => 'Please Wait ...',
     'no_record_found' => 'No records found',
+    'page_not_found' => 'Sorry , Page Not Found',
+    'no_photo' => 'No Photo',
+    'no_image' => 'No Image',
+    'no_logo' => 'No Log',
+
     'prev' => 'Previous',
     'more' => 'More pages',
     'input' => 'Page number',
@@ -36,6 +41,7 @@ return [
     'no_file_found' => 'No File',
     'english_langauge_enabled_all_the_times' => 'English Langauge enabled all the times',
     'send' => 'Send',
+    'write_here' => 'Write Here ...',
 
     'not_found' => 'Not Found',
     'example' => 'Example',
@@ -100,6 +106,7 @@ return [
     'cancelled_message' => 'Sorry, You  canceled the order',
     'error' => 'Error',
     'warning' => 'Warning',
+    'success' => 'Success',
 
     'ask_delete_record' => 'Do You Want To Delete This Record ? ',
     'ask_permanent_delete_record' => 'Do You Want To Permanent Delete This Record ? ',

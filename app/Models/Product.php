@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,13 +13,32 @@ use Spatie\Translatable\HasTranslations;
 
 class Product extends Model
 {
-    use SoftDeletes, HasFactory, HasTranslations;
+    use SoftDeletes, HasFactory, HasTranslations, Sluggable;
     protected $table = 'products';
-    protected $fillable = ['name', 'small_desc', 'desc', 'status', 'sku', 'available_for', 'views', 'has_variants', 'price', 'has_discount', 'discount', 'start_discount', 'end_discount', 'manage_stock', 'quantity', 'available_in_stock', 'category_id', 'brand_id'];
+    protected $fillable = ['name', 'slug', 'small_desc', 'desc', 'status', 'sku', 'available_for', 'views', 'has_variants', 'price', 'has_discount', 'discount', 'start_discount', 'end_discount', 'manage_stock', 'quantity', 'available_in_stock', 'category_id', 'brand_id'];
+
+    // sluggable
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name',
+            ],
+        ];
+    }
 
     // translatable
     public array $translatable = ['name', 'small_desc', 'desc'];
 
+    // functions
+    public function getPriceAfterDiscount()
+    {
+        if ($this->has_discount) {
+            return $this->price - $this->discount;
+        }
+
+        return $this->price;
+    }
     // relations
     public function category()
     {
@@ -77,10 +97,12 @@ class Product extends Model
     }
 
     //scopes
-    public function scopeActive($query)  {
-        return $query->where('status' , 1);
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
     }
-    public function scopeInactive($query)  {
-        return $query->where('status' , 0);
+    public function scopeInactive($query)
+    {
+        return $query->where('status', 0);
     }
 }

@@ -20,4 +20,18 @@ return [
     'enter_faq_question_en' => 'ادخل سؤال السؤال شائع  بالانجليزي',
 
     'no_faqs_found' => 'لا يوجد اسئلة شائعة حالياً !',
+
+    // faq question
+    'faq_questions' => 'أسئلة العملاء',
+        'show_all_faq_questions' => 'عرض جميع أسئلة العملاء',
+
+    'name' => 'الإسم',
+    'email' => 'الإيميل',
+    'subject' => 'العنوان',
+    'message' => 'الرسالة',
+
+    'enter_name' => 'ادخل الإسم',
+    'enter_email' => 'ادخل الإيميل',
+    'enter_subject' => 'ادخل العنوان',
+    'enter_message' => 'ادخل الرسالة',
 ];

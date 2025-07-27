@@ -4,8 +4,8 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="country_id">{!! __('users.country_id') !!}</label>
-                <select type="text" wire:change="changeCountry($event.target.value)" id="country_id" name="country_id"
-                    class="form-control">
+                <select type="text" wire:model="countryId" wire:change="changeCountry($event.target.value)"
+                    name="country_id" class="form-control">
                     <option value="0" selected='selected'>
                         {!! __('users.select') !!} {!! __('users.country_id') !!}
                     </option>
@@ -13,9 +13,11 @@
                         <option value="{!! $country->id !!}"> {!! $country->name !!} </option>
                     @endforeach
                 </select>
-                <span class="text text-danger">
-                    <strong id="country_id_error"></strong>
-                </span>
+                @error('country_id')
+                    <span class="text text-danger">
+                        <strong class="strong-weight">{!! $message !!}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <!-- end: input -->
@@ -33,10 +35,11 @@
                         <option value="{!! $governorate->id !!}">{!! $governorate->name !!}</option>
                     @endforeach
                 </select>
-                <span class="text text-danger">
-                    <strong id="governorate_id_error"></strong>
-                </span>
-
+                @error('governorate_id')
+                    <span class="text text-danger">
+                        <strong class="strong-weight">{!! $message !!}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <!-- end: input -->
@@ -54,10 +57,11 @@
                         <option value="{!! $city->id !!}">{!! $city->name !!}</option>
                     @endforeach
                 </select>
-                <span class="text text-danger">
-                    <strong id="city_id_error"></strong>
-                </span>
-
+                @error('city_id')
+                    <span class="text text-danger">
+                        <strong class="strong-weight">{!! $message !!}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <!-- end: input -->

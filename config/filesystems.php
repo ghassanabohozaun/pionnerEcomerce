@@ -45,10 +45,18 @@ return [
             'report' => false,
         ],
 
+        'categories' => [
+            'driver' => 'local',
+            'root' => public_path('/uploads/categories'),
+            'url' => env('APP_URL') . '/uploads/categories',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
         'brands' => [
             'driver' => 'local',
             'root' => public_path('/uploads/brands'),
-            'url' => env('APP_URL'),
+            'url' => env('APP_URL') . '/uploads/brands',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,
@@ -57,7 +65,7 @@ return [
         'settings' => [
             'driver' => 'local',
             'root' => public_path('/uploads/settings'),
-            'url' => env('APP_URL'),
+            'url' => env('APP_URL') . '/uploads/settings',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,
@@ -66,7 +74,25 @@ return [
         'products' => [
             'driver' => 'local',
             'root' => public_path('/uploads/products'),
-            'url' => env('APP_URL'),
+            'url' => env('APP_URL') . '/uploads/products',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
+        'sliders' => [
+            'driver' => 'local',
+            'root' => public_path('/uploads/sliders'),
+            'url' => env('APP_URL') . '/uploads/sliders',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
+        'pages' => [
+            'driver' => 'local',
+            'root' => public_path('/uploads/pages'),
+            'url' => env('APP_URL') . '/uploads/pages',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,

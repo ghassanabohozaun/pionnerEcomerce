@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
@@ -12,20 +11,10 @@ use function PHPSTORM_META\elementType;
 
 class Brand extends Model
 {
-    use SoftDeletes, HasTranslations, Sluggable;
+    use SoftDeletes, HasTranslations;
     protected $table = 'brands';
-    protected $fillable = ['name', 'logo', 'status', 'slug'];
-    public array $translatable = ['name'];
-
-    // sluggable
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'name',
-            ],
-        ];
-    }
+    protected $fillable = ['name', 'slug', 'logo', 'status'];
+    public array $translatable = ['name', 'slug'];
 
     //relations
     public function products()

@@ -3,29 +3,18 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
 class Category extends Model
 {
-    use SoftDeletes, HasTranslations, Sluggable;
+    use SoftDeletes, HasTranslations;
     protected $table = 'categories';
-    protected $fillable = ['name', 'slug', 'status', 'parent'];
+    protected $fillable = ['name', 'slug', 'status', 'parent', 'icon'];
 
     // translation
-    public array $translatable = ['name'];
-
-    // sluggable
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'name',
-            ],
-        ];
-    }
+    public array $translatable = ['name', 'slug'];
 
     // relation
     public function products()

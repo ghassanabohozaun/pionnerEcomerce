@@ -7,15 +7,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use Spatie\Translatable\HasTranslations;
 
 class Admin extends Authenticatable
 {
-    use HasFactory, Notifiable, SoftDeletes, HasTranslations;
+    use HasFactory, Notifiable, SoftDeletes, HasTranslations,HasApiTokens;
     protected $table = 'admins';
 
     // fillable
-    protected $fillable = ['name', 'email', 'password', 'role_id' , 'status'];
+    protected $fillable = ['name', 'email', 'password', 'role_id', 'status'];
 
     public array $translatable = ['name'];
 
@@ -37,10 +38,10 @@ class Admin extends Authenticatable
     }
 
     // accessories
-      public function getStatusAttribute($status)
-    {
-        return $status == 1 ? 'on' : '';
-    }
+    // public function getStatusAttribute($status)
+    // {
+    //     return $status == 1 ? 'on' : '';
+    // }
 
     // has ability permission
     public function hasAbility($permissions)

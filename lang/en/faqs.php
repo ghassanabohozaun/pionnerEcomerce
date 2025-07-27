@@ -19,4 +19,18 @@ return [
     'enter_question_en' => 'Enter English Faq Question',
 
     'no_faqs_found' => 'No Faqs Found !',
+
+    // faq question
+    'faq_questions' => 'Faq Qauestions',
+    'show_all_faq_questions' => 'Show All Faq Qauestions',
+
+    'name' => 'Name',
+    'email' => 'Email',
+    'subject' => 'Subject',
+    'message' => 'Message',
+
+    'enter_name' => 'Enter Name',
+    'enter_email' => 'Enter Email',
+    'enter_subject' => 'Enter Subject',
+    'enter_message' => 'Enter Message',
 ];

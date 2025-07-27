@@ -76,26 +76,26 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>{!! __('roles.role_name') !!}</th>
-                                                        <th>{!! __('roles.permissions') !!}</th>
-                                                        <th style="text-align: center">{!! __('general.actions') !!}</th>
+                                                        <th class="text-center">{!! __('roles.role_name') !!}</th>
+                                                        <th class="text-center">{!! __('roles.permissions') !!}</th>
+                                                        <th class="text-center">
+                                                            {!! __('general.actions') !!}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @forelse ($roles as $role)
                                                         <tr>
-                                                            <th class="col-lg-1">{!! $loop->iteration !!} </th>
-                                                            <td class="col-lg-1">{!! $role->role !!}</td>
-                                                            <td class="col-lg-8">
+                                                            <th class="col-lg-1 text-center">{!! $loop->iteration !!} </th>
+                                                            <td class="col-lg-1 text-center">{!! $role->role !!}</td>
+                                                            <td class="col-lg-8 ">
                                                                 @foreach (config('global.permissions') as $name => $value)
                                                                     {{ in_array($name, $role->permissions) ? __(config('global.permissions.', $value)) . ' | ' : '' }}
                                                                 @endforeach
                                                             </td>
-                                                            <td class="col-lg-2">
+                                                            <td class="col-lg-2 text-center">
                                                                 @include('dashboard.roles.parts.actions')
                                                             </td>
                                                         </tr>
-
                                                         <!-- begin: delete form -->
                                                         {{-- <form id='delete_form_{{ $role->id }}'
                                                             action=" {!! route('dashboard.roles.destroy', $role->id) !!}" method="post"

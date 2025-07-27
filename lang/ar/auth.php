@@ -19,7 +19,7 @@ return [
     'login_dashboard' => 'تسجيل الدخول الي لوحة التحكم',
     'login' => 'تسجيل الدخول',
     'register' => 'التسجيل',
-    'email' => 'الإميل',
+    'email' => 'الإيميل',
     'password' => 'كلمة المرور',
     'enter_you_email' => 'ادخل الايميل',
     'enter_you_password' => 'ادخل كلمة المرور',
@@ -42,4 +42,9 @@ return [
     'enter_confirm_password' => 'ادخل تأكيد كلمة المرور',
     'try_again_later' => 'حاول مرة اخري لاحقاً',
     'your_password_update_successfully' => 'تم تعديل كلمة مرورك بنجاح',
+    'dont_have_account' => 'هل تمتلك حساب لدينا ؟',
+    'sign_up' => 'يمكنك التسجيل مجاناً',
+    'already_have_an_account' => 'أمتلك حساب مسبقاً',
+    'i_agree_all_terms' => 'لقد وافقت علي جميع الشروط لـ ',
+    'please_accept_terms' => 'الرجاء قبول شروطنا اولاُ',
 ];

@@ -100,9 +100,8 @@
                                                         <div class="form-group">
                                                             <label for="role_name">{!! __('roles.role_ar') !!}</label>
                                                             <input type="text" id="role" name="role[ar]"
-                                                                value="{!! old('role.ar', $role->getTranslation('role', 'ar')) !!}"
-                                                                class="form-control round border-primary" autocomplete="off"
-                                                                placeholder="{!! __('roles.enter_role_ar') !!}">
+                                                                value="{!! old('role.ar', $role->getTranslation('role', 'ar')) !!}" class="form-control"
+                                                                autocomplete="off" placeholder="{!! __('roles.enter_role_ar') !!}">
                                                             @error('role.ar')
                                                                 <span class="text text-danger">
                                                                     <strong>{!! $message !!}</strong>
@@ -118,9 +117,8 @@
                                                         <div class="form-group">
                                                             <label for="role_name">{!! __('roles.role_en') !!}</label>
                                                             <input type="text" id="role" name="role[en]"
-                                                                value="{!! old('role.en', $role->getTranslation('role', 'en')) !!}"
-                                                                class="form-control round border-primary" autocomplete="off"
-                                                                placeholder="{!! __('roles.enter_role_en') !!}">
+                                                                value="{!! old('role.en', $role->getTranslation('role', 'en')) !!}" class="form-control"
+                                                                autocomplete="off" placeholder="{!! __('roles.enter_role_en') !!}">
                                                             @error('role.en')
                                                                 <span class="text text-danger">
                                                                     <strong>{!! $message !!}</strong>

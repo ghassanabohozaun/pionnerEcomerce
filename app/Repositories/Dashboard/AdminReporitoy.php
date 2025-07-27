@@ -40,7 +40,7 @@ class AdminReporitoy
             'email' => $request->email,
             'password' => $request->password,
             'role_id' => $request->role_id,
-            'status' => $request->has('status') ? 1 : 0,
+            'status' => empty($request->input('status')) ? 0 : 1,
         ]);
 
         return $admin;
@@ -58,7 +58,7 @@ class AdminReporitoy
             'email' => $request->email,
             'password' => empty($request->input('password')) ? $admin->password : $request->password,
             'role_id' => $request->role_id,
-            'status' => $request->has('status') ? 1 : 0,
+            'status' => empty($request->input('status')) ? 0 : 1,
         ]);
 
         return $admin;

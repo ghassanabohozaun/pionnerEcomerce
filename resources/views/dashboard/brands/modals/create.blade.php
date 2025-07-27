@@ -94,14 +94,16 @@
                                             <div class="input-group">
                                                 <div class="d-inline-block custom-control custom-radio mr-1">
                                                     <input type="radio" class="custom-control-input bg-success"
-                                                        name="status" id="colorRadio1" value="1">
+                                                        name="status" id="colorRadio1" value="1"
+                                                        @checked(old('status' == 1))>
                                                     <label class="custom-control-label"
                                                         for="colorRadio1">{!! __('general.active') !!}
                                                     </label>
                                                 </div>
                                                 <div class="d-inline-block custom-control custom-radio mr-1">
                                                     <input type="radio" class="custom-control-input bg-danger"
-                                                        name="status" id="colorRadio2" value="0">
+                                                        name="status" id="colorRadio2" value="0"
+                                                        @checked(old('status' == 0))>
                                                     <label class="custom-control-label"
                                                         for="colorRadio2">{!! __('general.inactive') !!}
                                                     </label>

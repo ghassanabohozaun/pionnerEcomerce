@@ -6,7 +6,7 @@
 <!-- begin head -->
 
 <head>
-    @include('layouts.website.app-parts._head')
+    @include('layouts.website.app-parts.__head')
     @stack('style')
 </head>
 
@@ -16,21 +16,21 @@
 
     <!-- begin  header -->
     <header id="header" class="header">
-        @include('layouts.website.app-parts._header-top')
-        @include('layouts.website.app-parts._header-center')
-        @include('layouts.website.app-parts._header-bottom')
+        @include('layouts.website.app-parts.__header-top')
+        @include('layouts.website.app-parts.__header-center')
+        @include('layouts.website.app-parts.__header-bottom')
     </header>
     <!-- end  header -->
 
     @yield('content')
 
     <!-- begin  footer -->
-    @include('layouts.website.app-parts._footer')
+    @include('layouts.website.app-parts.__footer')
     <!-- end  footer -->
 
 </body>
 <!-- begin   scripts -->
-@include('layouts.website.app-parts._scripts')
+@include('layouts.website.app-parts.__scripts')
 @stack('scripts')
 <!-- end scripts -->
 

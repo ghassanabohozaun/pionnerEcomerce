@@ -11,6 +11,7 @@ return [
     'name_ar' => 'Arabic Category Name',
     'name_en' => 'English Category Name',
     'status' => 'Category Status',
+    'icon'=>'Category Icon',
     'manage_status' => 'manage Status',
     'slug' => 'Category Slug ',
     'parent' => 'Category Parent',

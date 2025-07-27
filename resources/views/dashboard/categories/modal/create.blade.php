@@ -1,7 +1,7 @@
 <div class="modal fade" id="createCategoryModal" tabindex="-1" role="dialog" aria-labelledby="createCategoryModalLabel"
     aria-hidden="true">
 
-    <div class="modal-dialog modal-md" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <form class="form" action="{!! route('dashboard.categories.store') !!}" method="POST" enctype="multipart/form-data"
             id='create_category_form'>
             @csrf
@@ -26,42 +26,36 @@
                                 <!-- begin: row -->
                                 <div class="row">
                                     <!-- begin: input -->
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="name">{!! __('categories.name_ar') !!}</label>
-                                            <input type="text" id="name" name="name[ar]"
-                                                value="{!! old('name.ar') !!}" class="form-control border-primary"
-                                                autocomplete="off" placeholder="{!! __('categories.enter_name_ar') !!}">
-                                            @error('name.ar')
-                                                <span class="text text-danger">
-                                                    <strong>{!! $message !!}</strong>
-                                                </span>
-                                            @enderror
+                                            <input type="text" id="name" name="name[ar]" id="name_ar"
+                                                class="form-control" autocomplete="off"
+                                                placeholder="{!! __('categories.enter_name_ar') !!}">
+                                            <span class="text text-danger">
+                                                <strong id="name_ar_error"> </strong>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!-- end: input -->
+
+                                    <!-- begin: input -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="name">{!! __('categories.name_en') !!}</label>
+                                            <input type="text" id="name" name="name[en]" id="name_en"
+                                                class="form-control" autocomplete="off"
+                                                placeholder="{!! __('categories.enter_name_en') !!}">
+                                            <span class="text text-danger">
+                                                <strong id="name_en_error"> </strong>
+                                            </span>
                                         </div>
                                     </div>
                                     <!-- end: input -->
                                 </div>
                                 <!-- end: row -->
 
-                                <!-- begin: row -->
-                                <div class="row">
-                                    <!-- begin: input -->
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="name">{!! __('categories.name_en') !!}</label>
-                                            <input type="text" id="name" name="name[en]"
-                                                value="{!! old('name.en') !!}" class="form-control border-primary"
-                                                autocomplete="off" placeholder="{!! __('categories.enter_name_en') !!}">
-                                            @error('name.en')
-                                                <span class="text text-danger">
-                                                    <strong>{!! $message !!}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <!-- end: input -->
-                                </div>
-                                <!-- end: row -->
+
 
                                 <!-- begin: row -->
                                 <div class="row">
@@ -69,7 +63,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="role_id">{!! __('categories.parent') !!}</label>
-                                            <select class="form-control border-primary" id='parent' name="parent">
+                                            <select class="form-control " id='parent' name="parent">
                                                 <option value="" selected="">
                                                     {!! __('general.select_from_list') !!}
                                                 </option>
@@ -79,17 +73,31 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            @error('parent')
-                                                <span class="text text-danger">
-                                                    <strong>{!! $message !!}</strong>
-                                                </span>
-                                            @enderror
+                                            <span class="text text-danger">
+                                                <strong id="parent_error"> </strong>
+                                            </span>
                                         </div>
                                     </div>
                                     <!-- end: input -->
                                 </div>
                                 <!-- end: row -->
 
+                                <!-- begin: row -->
+                                <div class="row">
+                                    <!-- begin: input -->
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="icon">{!! __('categories.icon') !!}</label>
+                                            <input type="file" id="single_image_create" name="icon"
+                                                class="form-control border-primary ">
+                                            <span class="text text-danger">
+                                                <strong id="icon_error"> </strong>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!-- end: input -->
+                                </div>
+                                <!-- end: row -->
 
                                 <!-- begin: row -->
                                 <div class="row">
@@ -113,11 +121,9 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            @error('status')
-                                                <span class="text text-danger">
-                                                    <strong>{!! $message !!}</strong>
-                                                </span>
-                                            @enderror
+                                            <span class="text text-danger">
+                                                <strong id="status_error"> </strong>
+                                            </span>
                                         </div>
                                     </div>
                                     <!-- end: input -->
@@ -135,11 +141,11 @@
 
                 <!--begin::modal footer-->
                 <div class="modal-footer">
-                    <button type="submit" id="create_category_btn" class="btn btn-info font-weight-bold ">
+                    <button type="submit" class="btn btn-info font-weight-bold ">
                         {{ trans('general.save') }}
                     </button>
 
-                    <button type="button" class="btn btn-light-dark font-weight-bold" data-dismiss="modal">
+                    <button type="button" id="cancel_category_btn" class="btn btn-light-dark font-weight-bold">
                         {{ trans('general.cancel') }}</button>
                 </div>
                 <!--end::modal footer-->
@@ -150,11 +156,97 @@
 </div>
 
 @push('scripts')
-    @if ($errors->any())
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#createCategoryModal').modal('show');
-            })
-        </script>
-    @endif
+    <script type="text/javascript">
+        var lang = "{!! Lang() !!}";
+        $("#single_image_create").fileinput({
+            theme: 'fa5',
+            language: lang,
+            allowedFileTypes: ['image'],
+            maxFileCount: 1,
+            enableResumableUpload: true,
+            initialPreviewAsData: true,
+            allowedFileTypes: ['image'],
+            showCancel: false,
+            showUpload: false,
+        });
+
+        // reset create category from
+        function resetCreateCategoryFrom() {
+            $('#name_ar').css('border-color', '');
+            $('#name_en').css('border-color', '');
+            $('#status').css('border-color', '');
+            $('#parent').css('border-color', '');
+            $('#icon').css('border-color', '');
+
+            $('#name_ar_error').text('');
+            $('#name_en_error').text('');
+            $('#status_error').text('');
+            $('#parent_error').text('');
+            $('#icon_error').text('');
+        }
+
+        // cancel
+        $('body').on('click', '#cancel_category_btn', function(e) {
+            $('#create_category_form')[0].reset();
+            $('#createCategoryModal').modal('hide');
+            resetCreateCategoryFrom();
+        });
+
+        // hide
+        $('#createCategoryModal').on('hidden.bs.modal', function(e) {
+            $('#create_category_form')[0].reset();
+            $('#createCategoryModal').modal('hide');
+            resetCreateCategoryFrom();
+        });
+
+
+        // store
+        $("#create_category_form").on('submit', function(e) {
+            e.preventDefault();
+            resetCreateCategoryFrom()
+
+            var data = new FormData(this);
+            var type = $(this).attr('method');
+            var url = $(this).attr('action');
+
+            var currentPage = $('#yajra-datatable').DataTable().page();
+
+            $.ajax({
+                url: url,
+                type: type,
+                data: data,
+                dataType: 'json',
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    if (data.status == true) {
+                        console.log(data);
+                        $('#yajra-datatable').DataTable().page(currentPage).draw(false);
+                        $('#create_category_form')[0].reset();
+                        $('#createCategoryModal').modal('hide');
+                        resetCreateCategoryFrom()
+                        flasher.success("{!! __('general.add_success_message') !!}");
+                    } else {
+                        flasher.error("{!! __('general.add_error_message') !!}");
+                    }
+                },
+                error: function(reject) {
+                    var response = $.parseJSON(reject.responseText);
+                    $.each(response.errors, function(key, value) {
+                        if (key == 'name.en') {
+                            key = 'name_en';
+                        } else if (key == 'name.ar') {
+                            key = 'name_ar';
+                        }
+                        $('#' + key + '_error').text(value[0]);
+                        $('#' + key).css('border-color', '#F64E60');
+                    });
+                }, //end error
+
+            }); // end ajax
+
+
+        });
+    </script>
 @endpush

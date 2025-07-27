@@ -10,15 +10,19 @@ use Spatie\Translatable\HasTranslations;
 
 class Faq extends Model
 {
-    use SoftDeletes, HasTranslations ,HasFactory;
+    use SoftDeletes, HasTranslations, HasFactory;
     protected $table = 'faqs';
     protected $fillable = ['question', 'answer', 'status'];
     public array $translatable = ['question', 'answer'];
 
-    // relations
-
+    // accessoreis
     public function getCreatedAtAttribute($value)
     {
         return Carbon::parse($value)->format('d/m/Y H:i a');
+    }
+    // scopes
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
     }
 }

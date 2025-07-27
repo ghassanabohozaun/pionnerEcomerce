@@ -3,16 +3,18 @@
 namespace App\Services\Dashboard;
 
 use App\Repositories\Dashboard\CategoryRepository;
+use App\Utils\ImageManager;
 use Illuminate\Support\Facades\Cache;
 use Yajra\DataTables\Facades\DataTables;
 
 class CategorySevice
 {
-    protected $categoryRepository;
+    protected $categoryRepository, $imageManager;
     // __construct
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(CategoryRepository $categoryRepository, ImageManager $imageManager)
     {
         $this->categoryRepository = $categoryRepository;
+        $this->imageManager = $imageManager;
     }
 
     // get category
@@ -29,7 +31,7 @@ class CategorySevice
     // get categories
     public function getCategories()
     {
-        return   $this->categoryRepository->getCategories();
+        return $this->categoryRepository->getCategories();
     }
     //  get all
     public function getAll()
@@ -53,6 +55,9 @@ class CategorySevice
             ->addColumn('products_count', function ($category) {
                 return $category->products_count == 0 ? __('general.not_found') : $category->products_count;
             })
+            ->addColumn('icon', function ($category) {
+                return view('dashboard.categories.parts.icon', compact('category'));
+            })
             ->addColumn('actions', function ($category) {
                 return view('dashboard.categories.parts.actions', compact('category'));
             })
@@ -74,9 +79,21 @@ class CategorySevice
         return $category;
     }
     // store category
-    public function storeCategory($request)
+    public function storeCategory($data)
     {
-        $category = $this->categoryRepository->storeCategory($request);
+        // upload logo
+        if (array_key_exists('icon', $data) && $data['icon'] != null) {
+            $file_name = $this->imageManager->uploadSingleImage('/', $data['icon'], 'categories');
+            $data['icon'] = $file_name;
+        }
+
+        //slug
+        $data['slug'] = [
+            'ar' => slug($data['name']['ar']),
+            'en' => slug($data['name']['en']),
+        ];
+
+        $category = $this->categoryRepository->storeCategory($data);
         if (!$category) {
             return false;
         }
@@ -86,11 +103,25 @@ class CategorySevice
     }
 
     // update category
-    public function updateCategory($request, $id)
+    public function updateCategory($data)
     {
-        $category = $this->categoryRepository->getCategory($id);
+        $category = $this->categoryRepository->getCategory($data['id']);
 
-        $category = $this->categoryRepository->updateCategory($request, $id);
+        if (array_key_exists('icon', $data) && $data['icon'] != null) {
+            // delete old icon
+            $this->imageManager->removeImageFromLocal($category->icon, 'categories');
+
+            // add new icon
+            $data['icon'] = $this->imageManager->uploadSingleImage('/', $data['icon'], 'categories');
+        }
+
+        //slug
+        $data['slug'] = [
+            'ar' => slug($data['name']['ar']),
+            'en' => slug($data['name']['en']),
+        ];
+        $category = $this->categoryRepository->updateCategory($category, $data);
+
         if (!$category) {
             return false;
         }
@@ -101,6 +132,10 @@ class CategorySevice
     public function destroyCategory($id)
     {
         $category = $this->categoryRepository->getCategory($id);
+
+        if ($category['icon'] != null) {
+            $this->imageManager->removeImageFromLocal($category->icon, 'categories');
+        }
 
         $category = $this->categoryRepository->destroyCategory($category);
         if (!$category) {

@@ -3,6 +3,11 @@
 return [
     'please_wait' => 'الرجاء الانتظار ...',
     'no_record_found' => 'لايوجد اي سجل',
+    'page_not_found' => 'عذراً الصفحة غير متاحة حالياً',
+    'no_photo' => 'لا يوجد صورة',
+    'no_image' => 'لا يوجد صورة',
+    'no_logo' => 'لا يوجد شعار',
+
     'first' => 'الأول',
     'prev' => 'السابق',
     'next' => 'التالي',
@@ -40,7 +45,7 @@ return [
     'no_file_found' => 'لا يوجد ملف',
     'english_langauge_enabled_all_the_times' => 'اللغة الانجليزية فعالة دائماً',
     'send' => 'إرسال',
-
+    'write_here' => 'اكتب هنا ....',
 
     'not_found' => 'غير متاحة',
     'example' => 'مثال',
@@ -105,6 +110,7 @@ return [
     'error_message' => 'عذراً , هتالك خطأ ما',
     'cancelled_message' => 'عذراً , لقد قمت بالغاء الامر',
     'error' => 'خطأ',
+    'success' => 'نجاح',
     'ask_delete_record' => 'هل تريد حذف هذا السجل ؟ ',
     'ask_permanent_delete_record' => 'هل تريد حذف هذا السجل نهائياً؟ ',
     'move_to_trash' => 'ثم نقل  السجل الي المحذوفات',
