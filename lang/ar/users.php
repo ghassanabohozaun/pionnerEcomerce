@@ -37,4 +37,5 @@ return [
     'enter_city_id' => 'ادخل المدينة',
 
     'no_users_found' => 'لا يوجد مستخدمين حالياً !',
+    'login_success'=>'تم تسجيل الدخول بنجاح',
 ];

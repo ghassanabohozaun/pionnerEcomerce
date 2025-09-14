@@ -22,16 +22,22 @@ return [
     'of' => 'Of',
     'results' => 'Result',
     'has_variants' => 'Has Varaints',
-    'add_to_cart'=>'Add To Cart',
-    'sar'=>'SAR',
+    'add_to_cart' => 'Add To Cart',
+    'sar' => 'SAR',
+    'back_to_shop' => 'Back To Shop',
+    'new_arrival' => 'New Arrival',
+    'flash_sale' => 'Flash Sale',
+    'days' => 'Days',
+    'hours' => 'Hours',
+    'minutes' => 'Minutes',
+    'seconds' => 'Seconds',
 
     // no message
     'no_faqs' => 'No Faq Exists',
     'no_brands' => 'No Brand Exists',
     'no_categories' => 'No Categories Exists',
     'no_products' => 'No Products Exists',
-
-
+    'empty_you_dont_have_any_products' => 'Empty! You don’t have any Products',
 
     'choose_product' => 'Choose Product',
     'choose_product_content' => 'Choose The Product You Want To Buy,and go to payments',

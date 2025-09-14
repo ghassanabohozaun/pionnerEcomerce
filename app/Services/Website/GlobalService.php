@@ -9,6 +9,14 @@ use App\Models\Slider;
 
 class GlobalService
 {
+    protected $productService;
+
+    //__construct
+    public function __construct(ProductService $productService)
+    {
+        $this->productService = $productService;
+    }
+
     // get sliders
     public function getSliders()
     {
@@ -58,7 +66,7 @@ class GlobalService
             ->latest()
             ->active()
             ->select('id', 'name', 'slug', 'category_id', 'brand_id', 'has_variants', 'has_discount', 'price', 'discount')
-            ->paginate(2);
+            ->paginate(8);
 
         return $products;
     }
@@ -74,5 +82,15 @@ class GlobalService
         $products = $brand->products()->active()->latest()->select('id', 'name', 'slug', 'category_id', 'brand_id', 'has_variants', 'has_discount', 'price', 'discount')->paginate(2);
 
         return $products;
+    }
+
+    // get home page products
+    public function getHomePageProducts($limit = null): array
+    {
+        return [
+            'newArrivalsProducts' => $this->productService->newArrivalProducts($limit),
+            'flashSaleProducts' => $this->productService->getFlashSaleProducts($limit),
+            'flashSaleProductsWithTimer' => $this->productService->getFlashSaleProductsWithTimer($limit),
+        ];
     }
 }

@@ -24,12 +24,20 @@ return [
     'has_variants' => 'المنتج له متغيرات',
     'add_to_cart' => 'إضافة الي السلة',
     'sar' => 'الريال السعودي',
+    'back_to_shop' => 'العودة الي المتجر',
+    'new_arrival' => 'وصل حديثاً',
+    'flash_sale' => 'البيع السريع',
+    'days' => 'الأيام',
+    'hours' => 'الساعات',
+    'minutes' => 'الدقائق',
+    'seconds' => 'الثواني',
 
     // no message
     'no_faqs' => 'لا يوجد اسئلة شائعة حالياً',
     'no_brands' => 'لا يوجد علامات تجارية حالياً',
     'no_categories' => 'لا يوجد أقسام حالياً',
     'no_products' => 'لا يوجد منتجات حالياً',
+    'empty_you_dont_have_any_products' => 'لا يوجد اي منتجات حالياً',
 
     'choose_product' => 'اختر المنتج',
     'choose_product_content' => 'اختر المنتج الذي تريد شراءه، ثم انتقل إلى الدفعات',

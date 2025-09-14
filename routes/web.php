@@ -7,6 +7,7 @@ use App\Http\Controllers\Website\CategoriesController;
 use App\Http\Controllers\Website\FaqController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\PagesController;
+use App\Http\Controllers\Website\ProductsController;
 use App\Http\Controllers\Website\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -19,19 +20,19 @@ Route::group(
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
     ],
     function () {
-        ########################################### register routes  ##################################################################
+        ########################################### register routes  ##############################################################
         Route::controller(RegisterController::class)->group(function () {
             Route::get('register', 'index')->name('get.register');
             Route::post('register', 'store')->name('post.register');
         });
 
-        ########################################### login routes ##################################################################
+        ########################################### login routes ###################################################################
         Route::controller(AuthController::class)->group(function () {
             Route::get('/login', 'getLogin')->name('get.login');
             Route::post('login', 'postLogin')->name('post.login');
             Route::get('logout', 'logout')->name('logout');
         });
-        ########################################### profile routes ##################################################################
+        ########################################### profile routes ################################################################
         Route::group(['middleware' => 'auth:web'], function () {
             Route::controller(ProfileController::class)->group(function () {
                 Route::get('/profile', 'index')->name('profile.index');
@@ -46,17 +47,24 @@ Route::group(
         ########################################### pages routes ##################################################################
         Route::get('/page/{slug?}', [PagesController::class, 'getDaymamicPage'])->name('get.daynamic.page');
 
-        ########################################### faqs routes ##################################################################
+        ########################################### faqs routes ####################################################################
         Route::get('/faqs', [FaqController::class, 'showFaqsPage'])->name('faqs.index');
         ########################################### brands routes ##################################################################
         Route::controller(BrandsController::class)->group(function () {
             Route::get('/brands', 'index')->name('brands.index');
             Route::get('/brand/{slug?}/products', 'getProudctsByBrand')->name('products.by.brands');
         });
-        ########################################### categories routes ##################################################################
+        ########################################### categories routes ##############################################################
         Route::controller(CategoriesController::class)->group(function () {
             Route::get('/categories', 'index')->name('categories.index');
             Route::get('/category/{slug?}/products', 'getProductsByCategory')->name('products.by.category');
+        });
+
+        ########################################### products routes ################################################################
+        Route::controller(ProductsController::class)->group(function () {
+            Route::get('/products/show/{slug?}', 'getProductBySlug')->name('products.show.page');
+            Route::get('/products/{type?}', 'getProductsByType')->name('products.get.by.type'); // new-arrivals-products  timer-products flash-products
+            Route::get('/{slug}/releated-products' , 'getRelatedProducts')->name('products.get.related');
         });
     },
 );

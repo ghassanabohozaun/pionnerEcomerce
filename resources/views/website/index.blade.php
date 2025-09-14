@@ -66,4 +66,13 @@
 
     {{-- brands section  --}}
     @include('website.index-parts.brands')
+
+    {{-- new arrivals products --}}
+    @include('website.index-parts.new-arrivals-products')
+
+    {{-- new flas sale products with timer --}}
+    @include('website.index-parts.flash-sale-products-with-timer')
+
+    {{-- flash sale products   --}}
+    @include('website.index-parts.flash-sale-products')
 @endsection

@@ -22,6 +22,10 @@ class HomeController extends Controller
         $sliders = $this->globalService->getSliders();
         $limitCategories = $this->globalService->getCategories(12);
         $limitBrands = $this->globalService->getBrands(12);
-        return view('website.index', compact('title', 'sliders', 'limitCategories', 'limitBrands'));
+
+        $homePageProducts = $this->globalService->getHomePageProducts(8);
+
+
+        return view('website.index', compact('title', 'sliders', 'limitCategories', 'limitBrands','homePageProducts'));
     }
 }

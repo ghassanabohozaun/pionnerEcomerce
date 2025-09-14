@@ -30,7 +30,7 @@ class BrandsController extends Controller
             return redirect()->route('website.index');
         }
 
-        $title = __('website.brands');
+        $title = __('website.products');
         $products = $this->globalService->getProductsByBrand($slug);
         if (!$products) {
             flash()->error('general.page_not_found');

@@ -1,17 +1,24 @@
 <?php
 
-use App\Http\Controllers\Api\Dashboard\ApiCategoriesController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\User\Auth\LoginController;
+use App\Http\Controllers\Api\User\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 
-########################################### categories routes  ######################################################################
+Route::get('/testAPI', function () {
+    return 'test APIdddd';
+});
+Route::group(['prefix' => 'user'], function () {
+    ########################################### login routes  ##############################################################
+    Route::post('login', [LoginController::class, 'login']);
 
-Route::get('test',function(){
-    return 'test';
+    ########################################### register routes  ##############################################################
+    Route::post('register', [RegisterController::class, 'register']);
+
+    ########################################### auth routes ##################################################################
+    Route::group(['middleware' => 'auth:sanctum'], function () {
+        Route::get('test', function () {
+            return 'authicated';
+        });
+    });
 });
 
-Route::controller(ApiCategoriesController::class)->group(function () {
-    Route::resource('categories', ApiCategoriesController::class)->except('show');
-    Route::post('/categories/destroy', [ApiCategoriesController::class, 'destroy'])->name('categories.destroy');
-    Route::post('/categories/status', [ApiCategoriesController::class, 'changeStatus'])->name('categories.change.status');
-});

@@ -4,9 +4,9 @@ return [
     'update_user' => 'Update User',
     'users' => 'Users',
     'show_all_users' => 'Show All Users',
-    'orders_count'=>'Orders Count',
-    'no_orders'=>'No Orders',
-    'select'=>'Select',
+    'orders_count' => 'Orders Count',
+    'no_orders' => 'No Orders',
+    'select' => 'Select',
 
     'name' => 'User Name',
     'name_ar' => 'Arabic User Name',
@@ -35,4 +35,5 @@ return [
     'enter_city_id' => 'Enter City',
 
     'no_users_found' => 'No Users Found !',
+    'login_success' => 'Users Login Successfully',
 ];
